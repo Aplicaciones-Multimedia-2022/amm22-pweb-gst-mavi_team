@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MAVI'S STATION</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="./estilo.css">
+    </head>
+
+    <body>
+        <header>
+            <img src="imagen/titulo.png"></img>
+        </header>
+        <hr>
+        <nav>
+            <button class="nav" onclick="navegar(event, 'Juego')">Juego</button>
+            <button class="nav" onclick="navegar(event, 'Descripcion')">Descripción</button>
+            <button class="nav" onclick="navegar(event, 'Autores')">Autores</button>
+            <button class="nav" onclick="navegar(event, 'Multimedia')">Multimedia</button>
+            <button class="nav" onclick="navegar(event, 'Desarrollo')">Desarrollo</button>
+            <button class="nav" onclick="navegar(event, 'Referencias')">Referencias</button>
+
+        </nav> 
+
+        <br>
+
+        <div id="Juego" class="contenido">
+            <br>
+            
+            <section>
+                <p>PUNTUAJE</p>
+            </section>
+
+            <aside>
+                <p>CONTADOR</p>
+            </aside>
+            
+            <canvas width="950" height="500" id="campo"></canvas>
+            
+        </div>
+
+        <div id="Descripcion" class="contenido">
+            <h2>Descripcion</h2>
+            
+        </div>
+
+        <div id="Autores" class="contenido">
+            <h2>Autores</h2>
+            
+        </div>
+
+        <div id="Multimedia" class="contenido">
+            <h2>Multimedia</h2>
+            
+        </div>
+
+        <div id="Desarrollo" class="contenido">
+            <h2>Desarrollo</h2>
+            
+        </div>
+
+        <div id="Referencias" class="contenido">
+            <h2>Referencias</h2>
+            
+        </div>
+
+        <footer>
+
+        </footer>
+    </body>
+
+    <script src="./main.js"></script>
+    <script src="../Pagina inicio/inicio_main.js"></script>
+</html>
