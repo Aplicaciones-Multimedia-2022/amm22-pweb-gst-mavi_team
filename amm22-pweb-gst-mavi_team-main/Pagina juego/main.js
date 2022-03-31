@@ -110,24 +110,6 @@ function dibujarT(){
     //dibujar tren
 }
 
-//Navegacion botones
-function navegar(evento, eleccion){
-    let i, contenido, enlace;
-
-    contenido = document.getElementsByClassName("contenido");
-    for(i = 0; i < contenido.length; i++){
-        contenido[i].style.display="none";
-    }
-
-    enlace = document.getElementsByClassName("nav");
-    for(i = 0; i < enlace.length; i++){
-        enlace[i].className = enlace[i].className.replace(" active", "");
-    }
-
-    document.getElementById(eleccion).style.display = "block";
-    evento.currentTarget.className += " active";
-}
-
 //Nombre del formulario
 
 function getNombre(name, url){

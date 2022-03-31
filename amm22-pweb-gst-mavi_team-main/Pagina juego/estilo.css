@@ -4,16 +4,6 @@ body{
 }
 
 /*Titulos y parrafos*/
-h1{
-    color: #ffffff; 
-    font-family: texto1; 
-    font-size: 62px; 
-    font-weight: 800; 
-    line-height: 72px; 
-    margin: 0 0 24px; 
-    text-align: center; 
-    text-transform: uppercase; 
-}
 
 h2{
     color: #ffffff; 
