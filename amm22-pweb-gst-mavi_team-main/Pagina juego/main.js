@@ -124,7 +124,7 @@ function getNombre(name, url){
 document.addEventListener("mousemove", moverJ, false);
 
 function moverJ(e){
-    //
+    //hola
 }
 
 
