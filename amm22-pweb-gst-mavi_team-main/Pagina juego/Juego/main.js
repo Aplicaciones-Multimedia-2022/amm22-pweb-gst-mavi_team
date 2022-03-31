@@ -1,6 +1,7 @@
 //Constantes//
 
-const borde = 20;
+const borde = 50;
+const zona = 100;
 
 
 //Variables//
@@ -22,7 +23,7 @@ var jugador = {
 };
 
 var moneda = {
-    x: nAleatorio(100 + borde, campo.width - 200 - borde),
+    x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
     y: nAleatorio(borde, campo.height - borde),
     img: new Image()
 };
@@ -31,13 +32,11 @@ var moneda = {
 //Main//
 
 function main(){
-    requestAnimationFrame(main);
+    requestAnimationFrame();
+    clear();
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    //Dibujar obstáculos
-    
-    dibujarJ(jugador.x, jugador.y);
+    //Dibujar
+    dibujarJ();
     dibujarM();
     dibujarO();
     //dibujarZ();
@@ -54,7 +53,7 @@ function main(){
             jugador.bono = true;
 
         }else{
-            moneda.x = nAleatorio(100 + borde, campo.width - 200 - borde);
+            moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
             moneda.y = nAleatorio(borde, campo.height - borde);
             ctx.drawImage(image, moneda.x, moneda.y, borde, borde);
         }
@@ -65,33 +64,33 @@ function main(){
     //Colisiones con bordes
 
     //Colisiones con obstáculos
+
+    
+    
 }
 
 //Funciones//
 
 //Dibujar
 
-function dibujarJ(ratonx, ratony){
+function dibujarJ(){
     jugador.img.src = 'imagen/icono.png';
-    jugador.img.crossOrigin = 'anonymous';
-    ctx.clearRect(0, 0, campo.width, campo.height);
-    ctx.drawImage(jugador.img, ratonx - borde, ratony - borde, borde*2, borde*2);
+    ctx.drawImage(jugador.img, zona/2, campo.height/2, borde, borde);
 
-    if(ratonx < borde || ratony < borde || ratonx > campo.width - borde - 150 || ratony > campo.height - borde) {
-        ctx.fillStyle = 'rgba(255, 0, 0, 0.3)'; // 30% opacity red
-        ctx.fillRect(ratonx - borde, ratony - borde, borde*2, borde*2); // Draw this over top of your image
-    }
+    canvas.style.cursor = "none";
+    document.body.insertBefore(canvas, document.body.childNodes[0]);
+    window.addEventListener('mousemove', function(e){jugador.x = e.pageX; jugador.y = e.pageY;});
 }
 
 function dibujarM(){
     moneda.img.src = 'imagen/moneda.png';
-    ctx.drawImage(moneda.img, moneda.x, moneda.y, 50, 50);
+    ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde);
 }
 
 function dibujarO(){
     ctx.beginPath();
-    ctx.rect(100, 0, borde, campo.height);
-    ctx.rect(campo.width - 150, 0, 2*borde, campo.height);
+    ctx.rect(zona, 0, borde, campo.height);
+    ctx.rect(campo.width - zona - borde, 0, 2*borde, campo.height);
     ctx.rect(campo.width - borde, 0, borde, campo.height);
     ctx.fillStyle = "gray";
     ctx.fill();
@@ -131,14 +130,15 @@ function getNombre(name, url){
 
 //Movimiento jugador
 
-canvas.addEventListener('mousemove', function(e) {
-    dibujarJ(e.pageX, e.pageY);
-}, false);
-
-
+window.addEventListener('mousemove', function(e){jugador.x = e.pageX; jugador.y = e.pageY;});
 //Funciones auxiliares
+
 function nAleatorio(min, max) {
     return Math.random() * (max - min) + min;
+}
+
+function clear(){
+    ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
 
