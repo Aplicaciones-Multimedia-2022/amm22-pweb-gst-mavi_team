@@ -113,6 +113,16 @@ function dibujarT(){
     ctx.closePath();
 }
 
+function nuevaM(){
+    //Borrar moneda y jugador.moneda++
+    //Si tiene 3 monedas => bono = true (se abren tornos)
+    //Else: nAleatorio para moneda.x e y moneda.y y representarla
+}
+
+function abrirP(){
+    //Borrar tornos
+}
+
 //Nombre del formulario
 
 function getNombre(name, url){
@@ -147,6 +157,7 @@ function moverJ(e){
     if(ratonY > 0 && ratonY < campo.height){
         jugador.y = ratonY - ancho;
     }
+
 }
 //Funciones auxiliares
 
