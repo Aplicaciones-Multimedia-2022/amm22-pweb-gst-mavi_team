@@ -76,6 +76,7 @@ function dibujarJ(){
 function dibujarM(){
     moneda.img.src = 'imagen/moneda.png';
     ctx.drawImage(moneda.img, moneda.x, moneda.y, 50, 50);
+    //hola maga
 }
 
 function dibujarO(){
