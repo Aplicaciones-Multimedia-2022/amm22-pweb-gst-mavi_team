@@ -1,6 +1,7 @@
 //Constantes//
 
-const borde = 50;
+const borde = 25;
+const ancho = 50;
 const zona = 100;
 
 
@@ -15,7 +16,7 @@ var nivel = 1;
 //Objetos//
 
 var jugador = {
-    x: borde,
+    x: zona/2,
     y: campo.height/2,
     img: new Image,
     monedas: 0,
@@ -32,16 +33,15 @@ var moneda = {
 //Main//
 
 function main(){
-    requestAnimationFrame();
     clear();
 
     //Dibujar
     dibujarJ();
     dibujarM();
     dibujarO();
-    //dibujarZ();
-    //dibujarP();
-    //dibujarT();
+    dibujarZ();
+    dibujarP();
+    dibujarT();
 
     //Movimiento del jugador
 
@@ -55,7 +55,7 @@ function main(){
         }else{
             moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
             moneda.y = nAleatorio(borde, campo.height - borde);
-            ctx.drawImage(image, moneda.x, moneda.y, borde, borde);
+            ctx.drawImage(moneda.img, moneda.x, moneda.y, ancho, ancho);
         }
     }
 
@@ -65,7 +65,7 @@ function main(){
 
     //Colisiones con obstáculos
 
-    
+    setInterval(main, 10);
     
 }
 
@@ -75,38 +75,42 @@ function main(){
 
 function dibujarJ(){
     jugador.img.src = 'imagen/icono.png';
-    ctx.drawImage(jugador.img, zona/2, campo.height/2, borde, borde);
-
+    ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
     canvas.style.cursor = "none";
-    document.body.insertBefore(canvas, document.body.childNodes[0]);
-    window.addEventListener('mousemove', function(e){jugador.x = e.pageX; jugador.y = e.pageY;});
 }
 
 function dibujarM(){
     moneda.img.src = 'imagen/moneda.png';
-    ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde);
+    ctx.drawImage(moneda.img, moneda.x, moneda.y, ancho, ancho);
 }
 
 function dibujarO(){
+    //Maga
+}
+
+function dibujarZ(){
     ctx.beginPath();
     ctx.rect(zona, 0, borde, campo.height);
-    ctx.rect(campo.width - zona - borde, 0, 2*borde, campo.height);
-    ctx.rect(campo.width - borde, 0, borde, campo.height);
     ctx.fillStyle = "gray";
     ctx.fill();
     ctx.closePath();
 }
 
-function dibujarZ(){
-    //dibujar zona de seguridad
-}
-
 function dibujarP(){
-    //dibujar tornos
+    ctx.beginPath();
+    ctx.rect(campo.width - 2*zona - borde, 0, ancho, campo.height);
+    ctx.fillStyle = "gray";
+    ctx.fill();
+    ctx.closePath();
+    
 }
 
 function dibujarT(){
-    //dibujar tren
+    ctx.beginPath();
+    ctx.rect(campo.width - borde, 0, borde, campo.height);
+    ctx.fillStyle = "gray";
+    ctx.fill();
+    ctx.closePath();
 }
 
 //Nombre del formulario
@@ -130,7 +134,20 @@ function getNombre(name, url){
 
 //Movimiento jugador
 
-window.addEventListener('mousemove', function(e){jugador.x = e.pageX; jugador.y = e.pageY;});
+document.addEventListener("mousemove", moverJ, false);
+
+function moverJ(e){
+    var ratonX = e.pageX - campo.offsetLeft;
+    var ratonY = e.pageY - campo.offsetTop;
+
+    if(ratonX > 0 && ratonX < campo.width){
+        jugador.x = ratonX - ancho/2;
+    }
+
+    if(ratonY > 0 && ratonY < campo.height){
+        jugador.y = ratonY - ancho;
+    }
+}
 //Funciones auxiliares
 
 function nAleatorio(min, max) {
