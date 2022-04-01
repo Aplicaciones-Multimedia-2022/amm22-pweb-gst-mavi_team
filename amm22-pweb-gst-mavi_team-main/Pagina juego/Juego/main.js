@@ -150,12 +150,14 @@ function moverJ(e){
     var ratonX = e.pageX - campo.offsetLeft;
     var ratonY = e.pageY - campo.offsetTop;
 
-    if(ratonX > 0 && ratonX < campo.width){
-        jugador.x = ratonX - ancho/2;
+    if(ratonX > 0 && ratonX < campo.width-45){
+        jugador.x = ratonX - 10;
+       
     }
 
-    if(ratonY > 0 && ratonY < campo.height){
-        jugador.y = ratonY - ancho;
+    if(ratonY > 5 && ratonY < campo.height-40){
+        jugador.y = ratonY - 10;
+        
     }
 
 }
