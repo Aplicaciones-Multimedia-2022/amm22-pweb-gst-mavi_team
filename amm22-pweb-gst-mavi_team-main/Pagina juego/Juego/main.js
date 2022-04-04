@@ -257,7 +257,7 @@ function contar(){
     }
 
 };
-
+//hola
 setTimeout(contar,1000);
 
 setInterval(dibujar, 10);
