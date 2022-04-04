@@ -1,6 +1,7 @@
 /*Para el cuerpo pagina*/
 body{
-    background-color: grey;
+    background-image: url(imagen/fondo.jpeg);
+    background-size: cover
 }
 
 /*Titulos y parrafos*/
@@ -16,9 +17,10 @@ h2{
 }
 
 p{
-    color: #f8f8f8; 
+    color: rgba(255, 255, 255, 0.808); 
+    border: black;
     font-family: texto1; 
-    font-size: 14px; 
+    font-size: 20px; 
     font-weight: 500; 
     line-height: 32px; 
     margin: 0 0 24px;
@@ -31,6 +33,15 @@ p{
     font-weight: 500; 
     line-height: 32px; 
     margin: 0 0 24px;
+}
+.titulo3{
+    background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
+    -webkit-background-clip: text;
+    color: transparent; 
+    font-family: texto1;
+    text-align: center;
+    font-size: 70px;
+    text-shadow: -4px 3px rgb(110, 138, 173);
 }
 
 #titulo1{
@@ -54,6 +65,7 @@ p{
     font-size: 100px;
     text-align: center;
     margin-top: 250px;
+    
 }
 
 /*Secciones*/
@@ -107,7 +119,7 @@ aside{
 }
 
 #izq{
-    margin-right: 30px;
+    margin-right: 70px;
 }
 
 .contador{
@@ -143,14 +155,14 @@ button{
     cursor: pointer;
     text-decoration: none;
     position: relative;
-    color: #ffffff;
-    background: rgb(90, 87, 87);
+    color: rgb(54, 52, 52);
+    background: rgb(180, 212, 238);
     line-height: 15px;
     border-radius: 20px;
     padding: 10px;
     font-size: 15px;
     font-weight: 300;
-    box-shadow: rgb(255, 198, 0) -1px -1px 0px 1px, rgb(246, 84, 174) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
+    box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
     transition: all 0.2s;
     font-family: texto1;
     margin-left: 10px;
