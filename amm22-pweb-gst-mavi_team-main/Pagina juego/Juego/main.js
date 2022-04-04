@@ -194,7 +194,6 @@ function abrirP(){
 
 
 
-}
 
 //Nombre del formulario
 
@@ -243,6 +242,23 @@ function nAleatorio(min, max) {
 function clear(){
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
+
+//Contador
+
+//CONTADOR
+
+tiempo = 10;
+
+function contar(){
+    tiempo--;
+    document.getElementById("contador1").innerHTML = String(tiempo);
+    if(tiempo>0){
+        setTimeout(contar,1000);
+    }
+
+};
+
+setTimeout(contar,1000);
 
 setInterval(dibujar, 10);
 setInterval(creaObstaculo, 1000);

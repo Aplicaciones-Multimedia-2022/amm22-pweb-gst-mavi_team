@@ -101,6 +101,29 @@ button:hover{
     transform: scale(1.01);
 }
 
+/*CONTADOR*/
+
+#contador{
+    margin-right: 10px;
+}
+
+#reloj{
+    width: 100px;
+	height: 100px;
+	
+	background-color: lightgrey;
+	margin: auto;
+}
+span {
+	display: block;
+	width: 100%;
+	margin: auto;
+	padding-top: 25px;
+	text-align: center;
+	font-size: 45px;
+}
+
+
 
 /*Campo de juego*/
 canvas{
