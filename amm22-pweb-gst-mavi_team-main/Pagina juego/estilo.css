@@ -35,10 +35,17 @@ p{
 
 #titulo1{
     margin-bottom: 40px;
+    text-decoration: underline;
 }
 
-#texto{
-    font-size: 18px;
+.subtitulo{
+    color: #f8f8f8; 
+    font-family: texto1; 
+    font-size: 20px; 
+    font-weight: 500; 
+    line-height: 32px; 
+    margin: 0 0 24px;
+    text-decoration: underline;
 }
 
 
@@ -48,7 +55,6 @@ p{
     text-align: center;
     margin-top: 250px;
 }
-
 
 /*Secciones*/
 
@@ -60,6 +66,7 @@ nav{
     justify-content: center;
     font-family: texto1;
 }
+
 #nav1{
     margin: auto;
     background-color: inherit;
@@ -103,6 +110,15 @@ aside{
     margin-right: 30px;
 }
 
+.contador{
+	display: block;
+	text-align: center;
+	font-size: 20px;
+    font-family: texto1; 
+    color: white;
+    margin-bottom: 10px;
+}
+
 /*Botones*/
 
 button{
@@ -133,15 +149,6 @@ button:hover{
 }
 
 /*Contador*/
-
-span {
-	display: block;
-	text-align: center;
-	font-size: 20px;
-    font-family: texto1; 
-    color: white;
-    margin-bottom: 10px;
-}
 
 
 
