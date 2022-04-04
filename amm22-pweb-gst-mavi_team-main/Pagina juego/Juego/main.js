@@ -29,6 +29,11 @@ var moneda = {
     img: new Image()
 };
 
+var contar = {
+    segundos: 60,
+    empezar: true
+};
+
 
 //Main//
 
@@ -43,6 +48,9 @@ function main(){
     dibujarP();
     dibujarT();
 
+    //Contador
+
+    setInterval(function(){contador();}, 1000);
     //Movimiento del jugador
 
     if(jugador.x == moneda.x && jugador.y == moneda.y){
@@ -121,6 +129,11 @@ function nuevaM(){
 
 function abrirP(){
     //Borrar tornos
+}
+
+function contador(){
+    //
+
 }
 
 //Nombre del formulario
