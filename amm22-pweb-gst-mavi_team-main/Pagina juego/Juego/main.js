@@ -26,8 +26,7 @@ var jugador = {
 
 var moneda = {
     x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
-    y: nAleatorio(borde, campo.height - borde),
-    img: new Image()
+    y: nAleatorio(borde, campo.height - borde)
 };
 
 
@@ -72,7 +71,6 @@ function dibujar() {
 
     //Dibujar
     dibujarJ();
-    dibujarM();
 
     if (obstaculos.length != 0) {
         dibujarO();
@@ -88,19 +86,7 @@ function dibujar() {
     setInterval(function(){contador();}, 1000);
     //Movimiento del jugador
 
-    if(jugador.x == moneda.x && jugador.y == moneda.y){
-        jugador.monedas++;
-        ctx.clearRect(moneda.x, moneda.y, borde, borde);
-
-        if(jugador.monedas == 3){
-            jugador.bono = true;
-
-        }else{
-            moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
-            moneda.y = nAleatorio(borde, campo.height - borde);
-            ctx.drawImage(moneda.img, moneda.x, moneda.y, ancho, ancho);
-        }
-    }
+    nuevaM(jugador.x, jugador.y);
 
     //Movimiento de los obstáculos
     //updateGameArea();
@@ -125,8 +111,8 @@ function dibujar() {
 
 function obst (posJugadorX, posJugadorY) {
     //Funcion para crear los obstáculos
-    this.obsX = obsX;
-    this.obsY = obsY;
+    this.obsX = posJugadorX;
+    this.obsY = posJugadorY;
 }
 
 //Dibujar
@@ -138,8 +124,11 @@ function dibujarJ(){
 }
 
 function dibujarM(){
-    moneda.img.src = 'imagen/moneda.png';
-    ctx.drawImage(moneda.img, moneda.x, moneda.y, ancho, ancho);
+    ctx.beginPath();
+    ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+    ctx.closePath();
 }
 
 function dibujarO(){
@@ -188,10 +177,23 @@ function dibujarT(){
     ctx.closePath();
 }
 
-function nuevaM(){
-    //Borrar moneda y jugador.moneda++
-    //Si tiene 3 monedas => bono = true (se abren tornos)
-    //Else: nAleatorio para moneda.x e y moneda.y y representarla
+function nuevaM(x, y){
+    document.getElementById("monedas").innerHTML = jugador.monedas;
+
+    if((jugador.x = x) && (jugador.y = y)){
+        jugador.monedas++;
+        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
+        setTimeout('', 5000);
+        moneda.x = nAleatorio(zona + borde/2, campo.width - 2*zona - borde/2);
+        moneda.y = nAleatorio(borde/2, campo.height - borde/2);
+        dibujarM();
+    }
+
+    if(jugador.monedas = 3){
+        bono = true;
+        document.getElementById("bono").innerHTML = "Recargado";
+        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
+    }
 }
 
 function abrirP(){
