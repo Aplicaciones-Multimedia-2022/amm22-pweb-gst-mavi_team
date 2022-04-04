@@ -35,21 +35,11 @@ var moneda = {
     y: nAleatorio(borde, campo.height - borde/2)
 };
 
-
-// var obsAbuela = {
-//     obsAbuelax: campo.width - 2*zona - borde,
-//     obsAbuelay: 150,
-//     img: new Image,
-//     // update: function(){
-//     //     ctx = canvas.context;
-//     //     ctx.fillStyle = color;
-//     //     ctx.fillRect(this.x, this.y, this.width, this.height);
-//     // },
-//     // newPos : function() {
-//     //     this.x += this.speedX;
-//     //     this.y += this.speedY;        
-//     // }
-// };
+var zonaS = {
+    x: 85,
+    y: 0,
+    img: new Image,
+};
 
 var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
@@ -157,9 +147,8 @@ function creaObstaculo (){
 }
 
 function dibujarZ(){
-    var zonaS = new Image();
-    zonaS.src = "imagen/zona.jpeg";
-    ctx.drawImage(zonaS,85,0,25,campo.height);
+    zonaS.img.src = "imagen/zona.jpeg";
+    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
 
 }
 
