@@ -14,6 +14,11 @@ var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
 
+
+tiempo = 25;
+tiempo2 = 20;
+tiempo3 = 15;
+
 //Objetos//
 
 var jugador = {
@@ -68,17 +73,16 @@ var obsAbuela = {
 };
 
 var posJugadorX, posJugadorY = 0;
-// var obsX, obsY;
-// var obsAbuela = new Image;
-// var obstaculos = [];
-
+var obsX,obsY;
+var obsAbuela = new Image;
+var obstaculosH = [];
 
 
 //Main//
 
 function main(){
 
-    obsX = canvas.height / 2;
+    obsX = canvas.height;
     obsY = canvas.width;
     
     setInterval(dibujar, 10);
@@ -95,7 +99,7 @@ function dibujar() {
     //Dibujar
     dibujarJ();
 
-    if (obsAbuela.obstaculos.length != 0) {
+    if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
     }
@@ -106,7 +110,6 @@ function dibujar() {
 
     //Contador
 
-    setInterval(function(){contador();}, 1000);
     //Movimiento del jugador
 
     nuevaM(jugador.x, jugador.y);
@@ -152,31 +155,32 @@ function dibujarM(){
 
 function dibujarO(){
     //Funcion para dibujar los obstáculos
-    for(var i = 0; i < obsAbuela.obstaculos.length; i++) {
-        ctx.drawImage(obsAbuela, obsAbuela.obstaculos[i].obsX, obsAbuela.obstaculos[i].obsY, ancho, ancho);
+    for(var i = 0; i < obstaculosH.length; i++) {
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY + 40, ancho, ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace 
-        obsAbuela.obstaculos[i].obsX -= 3;
-        if(obsAbuela.obstaculos[i].obsX < 0) {
-            obsAbuela.obstaculos.splice(i,1);
+        obstaculosH[i].obsX -= 3;
+        if(obstaculosH[i].obsX < 0) {
+            obstaculosH.splice(i,1);
         }
+        
+        
     }
 }
 
-// function creaObstaculo (){
-//     //Funcion para generar los obstaculos, como si fuesen los objetos
-//     var obstA = new obst (obsX, obsY);
-//     obsAbuela.src = 'imagen/abuela1.png';
-//     obstA.obsX = campo.width;
-//     obstA.obsY = Math.floor(Math.random() * (campo.height - obsAbuela.height));
-//     obstaculos.push(obstA);
-// }
+function creaObstaculo (){
+    //Funcion para generar los obstaculos, como si fuesen los objetos
+    var obstA = new obst (obsX, obsY);
+    obsAbuela.src = 'imagen/abuela.png';
+    obstA.obsX = campo.width;
+    obstA.obsY = Math.floor(Math.random() * (campo.height-50));
+    obstaculosH.push(obstA);
+}
 
 function dibujarZ(){
-    ctx.beginPath();
-    ctx.rect(zona, 0, borde, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    var zonaS = new Image();
+    zonaS.src = "imagen/zona.jpeg";
+    ctx.drawImage(zonaS,85,0,25,campo.height);
+
 }
 
 function dibujarP(){
@@ -272,10 +276,6 @@ function clear(){
 
 
 //CONTADOR
-
-tiempo = 25;
-tiempo2 = 20;
-tiempo3 = 15;
 
 function contar(){
     
