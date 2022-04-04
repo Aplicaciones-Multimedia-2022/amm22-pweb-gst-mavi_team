@@ -58,6 +58,12 @@ function main(){
 
     obsX = canvas.height / 2;
     obsY = canvas.width;
+    
+    setInterval(dibujar, 10);
+    setInterval(creaObstaculo, 1000);
+
+    setTimeout(contar,1000);
+    
 
 }
 
@@ -243,7 +249,6 @@ function clear(){
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
-//Contador
 
 //CONTADOR
 
@@ -255,10 +260,8 @@ function contar(){
     if(tiempo>0){
         setTimeout(contar,1000);
     }
+    if(tiempo==0){
+      document.location.href = "gameOver.html";
+    }
 
 };
-
-setTimeout(contar,1000);
-
-setInterval(dibujar, 10);
-setInterval(creaObstaculo, 1000);

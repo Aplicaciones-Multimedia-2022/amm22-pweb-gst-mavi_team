@@ -33,6 +33,23 @@ p{
     margin: 0 0 24px;
 }
 
+#titulo1{
+    margin-bottom: 40px;
+}
+
+#texto{
+    font-size: 18px;
+}
+
+
+#over{
+    font-family: texto1;
+    font-size: 100px;
+    text-align: center;
+    margin-top: 250px;
+}
+
+
 /*Secciones*/
 
 nav{
@@ -42,6 +59,16 @@ nav{
     align-items: center;
     justify-content: center;
     font-family: texto1;
+}
+#nav1{
+    margin: auto;
+    background-color: inherit;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-family: texto1;
+    margin-top: 300px;
+    
 }
 
 img{
@@ -70,6 +97,10 @@ aside{
     float: right;
     text-align: left;
     
+}
+
+#izq{
+    margin-right: 30px;
 }
 
 /*Botones*/
@@ -101,26 +132,15 @@ button:hover{
     transform: scale(1.01);
 }
 
-/*CONTADOR*/
+/*Contador*/
 
-#contador{
-    margin-right: 10px;
-}
-
-#reloj{
-    width: 100px;
-	height: 100px;
-	
-	background-color: lightgrey;
-	margin: auto;
-}
 span {
 	display: block;
-	width: 100%;
-	margin: auto;
-	padding-top: 25px;
 	text-align: center;
-	font-size: 45px;
+	font-size: 20px;
+    font-family: texto1; 
+    color: white;
+    margin-bottom: 10px;
 }
 
 
@@ -138,4 +158,5 @@ canvas{
     font-family: texto1;
     src: url(nasalization-rg.otf);
   }
+
 
