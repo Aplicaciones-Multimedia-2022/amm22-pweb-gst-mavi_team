@@ -1,9 +1,3 @@
-.WebContainer{
-    width: 100%;
-    height: auto;
-}
-
-
 /*Para el cuerpo pagina*/
 body{
     background-image: url(imagen/fondo.jpeg);
@@ -194,10 +188,8 @@ canvas{
     border: 3px solid black;
 }
 
-
 @font-face{
     font-family: texto1;
     src: url(nasalization-rg.otf);
   }
-
 
