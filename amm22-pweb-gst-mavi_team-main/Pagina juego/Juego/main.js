@@ -71,7 +71,6 @@ function dibujar() {
 
     //Dibujar
     dibujarJ();
-    dibujarM();
 
     if (obstaculos.length != 0) {
         dibujarO();
