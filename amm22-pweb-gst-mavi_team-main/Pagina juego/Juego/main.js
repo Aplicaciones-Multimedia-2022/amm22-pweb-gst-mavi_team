@@ -13,6 +13,7 @@ var canvas = document.getElementById('campo');
 var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
+var monedas = [];
 
 //Objetos//
 
@@ -25,8 +26,8 @@ var jugador = {
 };
 
 var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
-    y: nAleatorio(borde, campo.height - borde)
+    x: nAleatorio(zona + borde, campo.width - 2*zona - borde/2),
+    y: nAleatorio(borde, campo.height - borde/2)
 };
 
 
@@ -62,8 +63,6 @@ function main(){
     setInterval(creaObstaculo, 1000);
 
     setTimeout(contar,1000);
-    
-
 }
 
 function dibujar() {
@@ -71,12 +70,11 @@ function dibujar() {
 
     //Dibujar
     dibujarJ();
-
+    setTimeout(dibujarM,5000);
     if (obstaculos.length != 0) {
         dibujarO();
         i = 0;
     }
-
     dibujarZ();
     dibujarP();
     dibujarT();
@@ -84,7 +82,8 @@ function dibujar() {
     //Contador
 
     setInterval(function(){contador();}, 1000);
-    //Movimiento del jugador
+
+    //Colision
 
     nuevaM(jugador.x, jugador.y);
 
@@ -179,22 +178,24 @@ function dibujarT(){
 
 function nuevaM(x, y){
     document.getElementById("monedas").innerHTML = jugador.monedas;
+    
+    for(var i = 0; i < 3; i++){
+        var monedaAux = new moneda(moneda.x, moneda.y);
+        monedas.push(monedaAux);
 
-    if((jugador.x = x) && (jugador.y = y)){
-        jugador.monedas++;
-        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
-        setTimeout('', 5000);
-        moneda.x = nAleatorio(zona + borde/2, campo.width - 2*zona - borde/2);
-        moneda.y = nAleatorio(borde/2, campo.height - borde/2);
-        dibujarM();
+        moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde/2);
+        moneda.y = nAleatorio(borde, campo.height - borde/2);
     }
 
-    if(jugador.monedas = 3){
-        bono = true;
-        document.getElementById("bono").innerHTML = "Recargado";
-        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
-    }
+    
 }
+
+function borrarM(x, y, radius){
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+    ctx.clip();
+    ctx.clearRect(x - radius - 1, y - radius - 1, radius * 2 + 2, radius * 2 + 2);
+};
 
 function abrirP(){
     //Borrar tornos
@@ -239,7 +240,6 @@ function moverJ(e){
         jugador.y = ratonY - 10;
         
     }
-
 }
 //Funciones auxiliares
 
