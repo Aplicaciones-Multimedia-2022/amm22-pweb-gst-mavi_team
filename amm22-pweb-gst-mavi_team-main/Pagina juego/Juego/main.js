@@ -70,7 +70,7 @@ function dibujar() {
 
     //Dibujar
     dibujarJ();
-    setTimeout(dibujarM,5000);
+    dibujarM();
     if (obstaculos.length != 0) {
         dibujarO();
         i = 0;
@@ -83,9 +83,7 @@ function dibujar() {
 
     setInterval(function(){contador();}, 1000);
 
-    //Colision
-
-    nuevaM(jugador.x, jugador.y);
+    //Moneda de mierda
 
     //Movimiento de los obstáculos
     //updateGameArea();
@@ -126,7 +124,9 @@ function dibujarM(){
     ctx.beginPath();
     ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
     ctx.fillStyle = "yellow";
+    ctx.strokeStyle = 'lightgray';
     ctx.fill();
+    ctx.stroke();
     ctx.closePath();
 }
 
@@ -165,7 +165,6 @@ function dibujarP(){
     ctx.fillStyle = "gray";
     ctx.fill();
     ctx.closePath();
-    
 }
 
 function dibujarT(){
@@ -176,26 +175,9 @@ function dibujarT(){
     ctx.closePath();
 }
 
-function nuevaM(x, y){
-    document.getElementById("monedas").innerHTML = jugador.monedas;
-    
-    for(var i = 0; i < 3; i++){
-        var monedaAux = new moneda(moneda.x, moneda.y);
-        monedas.push(monedaAux);
-
-        moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde/2);
-        moneda.y = nAleatorio(borde, campo.height - borde/2);
-    }
-
-    
+function nuevaM(){
+    //No me sale esta basura
 }
-
-function borrarM(x, y, radius){
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
-    ctx.clip();
-    ctx.clearRect(x - radius - 1, y - radius - 1, radius * 2 + 2, radius * 2 + 2);
-};
 
 function abrirP(){
     //Borrar tornos
@@ -249,6 +231,18 @@ function nAleatorio(min, max) {
 
 function clear(){
     ctx.clearRect(0, 0, campo.width, campo.height);
+}
+
+function colision(x1, x2, y1, y2){
+    if((x1 = x2) && (y1 = y2)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function esperar(mili) {
+    return new Promise(resolve => setTimeout(resolve, mili));
 }
 
 
