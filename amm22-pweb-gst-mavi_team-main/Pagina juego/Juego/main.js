@@ -30,6 +30,7 @@ var moneda = {
     img: new Image()
 };
 
+
 // var obsAbuela = {
 //     obsAbuelax: campo.width - 2*zona - borde,
 //     obsAbuelay: 150,
@@ -49,6 +50,7 @@ var posJugadorX, posJugadorY = 0;
 var obsX, obsY;
 var obsAbuela = new Image;
 var obstaculos = [];
+
 
 //Main//
 
@@ -75,6 +77,9 @@ function dibujar() {
     dibujarP();
     dibujarT();
 
+    //Contador
+
+    setInterval(function(){contador();}, 1000);
     //Movimiento del jugador
 
     if(jugador.x == moneda.x && jugador.y == moneda.y){
@@ -187,7 +192,7 @@ function abrirP(){
     //Borrar tornos
 }
 
-function movObstaculos () {
+
 
 }
 
