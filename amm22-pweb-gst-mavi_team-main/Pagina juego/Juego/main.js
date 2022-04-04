@@ -111,8 +111,8 @@ function dibujar() {
 
 function obst (posJugadorX, posJugadorY) {
     //Funcion para crear los obstáculos
-    this.obsX = obsX;
-    this.obsY = obsY;
+    this.obsX = posJugadorX;
+    this.obsY = posJugadorY;
 }
 
 //Dibujar
