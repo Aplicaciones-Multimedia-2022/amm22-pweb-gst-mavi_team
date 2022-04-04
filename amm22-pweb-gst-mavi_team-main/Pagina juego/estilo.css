@@ -118,6 +118,21 @@ aside{
     color: white;
     margin-bottom: 10px;
 }
+.caja { 
+    font-family:texto1; 
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 400; 
+    text-align: center; 
+    background:  rgb(189, 185, 185); 
+    margin: none; 
+    overflow: hidden; 
+    padding: 70px; 
+    border-radius: 0px 35px 35px 35px; 
+    -moz-border-radius: 0px 35px 35px 35px; 
+    -webkit-border-radius: 0px 35px 35px 35px; 
+    border: 5px solid #808080;
+}
 
 /*Botones*/
 

@@ -267,3 +267,7 @@ function contar(){
     }
 
 };
+setTimeout(contar,1000);
+
+setInterval(dibujar, 10);
+setInterval(creaObstaculo, 1000);
