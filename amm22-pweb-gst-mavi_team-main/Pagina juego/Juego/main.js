@@ -30,25 +30,48 @@ var moneda = {
 };
 
 
-// var obsAbuela = {
-//     obsAbuelax: campo.width - 2*zona - borde,
-//     obsAbuelay: 150,
-//     img: new Image,
-//     // update: function(){
-//     //     ctx = canvas.context;
-//     //     ctx.fillStyle = color;
-//     //     ctx.fillRect(this.x, this.y, this.width, this.height);
-//     // },
-//     // newPos : function() {
-//     //     this.x += this.speedX;
-//     //     this.y += this.speedY;        
-//     // }
-// };
+var obsAbuela = {
+    // obsAbuelax: campo.width - 2*zona - borde,
+    // obsAbuelay: 150,
+    obsX : 0,
+    obsY : 0,
+    img: new Image,
+    obstaculos: [],
+    // dibujarO: function(){
+    //     //Funcion para dibujar los obstáculos
+    //     for(var i = 0; i < obsAbuela.obstaculos.length; i++) {
+    //         ctx.drawImage(obsAbuela, obsAbuela.obstaculos[i].obsX, obsAbuela.obstaculos[i].obsY, ancho, ancho);
+    //         //3 niveles, 3 velocidades distintas? con case o if se hace 
+    //         obsAbuela.obstaculos[i].obsX -= 3;
+    //         if(obsAbuenla.obstaculos[i].obsX < 0) {
+    //             obsAbuela.obstaculos.splice(i,1);
+    //         }
+    //     }
+    // },
+    creaObstaculo: function(){
+        //Funcion para generar los obstaculos, como si fuesen los objetos
+        var obstA = new obst (obsX, obsY);
+        obsAbuela.src = 'imagen/abuela1.png';
+        obstA.obsX = campo.width;
+        obstA.obsY = Math.floor(Math.random() * (campo.height - obsAbuela.height));
+        obsAbuela.obstaculos.push(obstA);
+    }
+    // update: function(){
+    //     ctx = canvas.context;
+    //     ctx.fillStyle = color;
+    //     ctx.fillRect(this.x, this.y, this.width, this.height);
+    // },
+    // newPos : function() {
+    //     this.x += this.speedX;
+    //     this.y += this.speedY;        
+    // }
+};
 
 var posJugadorX, posJugadorY = 0;
-var obsX, obsY;
-var obsAbuela = new Image;
-var obstaculos = [];
+// var obsX, obsY;
+// var obsAbuela = new Image;
+// var obstaculos = [];
+
 
 
 //Main//
@@ -59,7 +82,7 @@ function main(){
     obsY = canvas.width;
     
     setInterval(dibujar, 10);
-    setInterval(creaObstaculo, 1000);
+    setInterval(obsAbuela.creaObstaculo(), 1000);
 
     setTimeout(contar,1000);
     
@@ -72,7 +95,7 @@ function dibujar() {
     //Dibujar
     dibujarJ();
 
-    if (obstaculos.length != 0) {
+    if (obsAbuela.obstaculos.length != 0) {
         dibujarO();
         i = 0;
     }
@@ -96,10 +119,6 @@ function dibujar() {
     // }
     // obsAbuela.x += -0.5;
     
-
-    //Este for añade los obstaculos cada tanto
-
-
     //Colisiones con bordes
 
     //Colisiones con obstáculos
@@ -133,24 +152,24 @@ function dibujarM(){
 
 function dibujarO(){
     //Funcion para dibujar los obstáculos
-    for(var i = 0; i < obstaculos.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculos[i].obsX, obstaculos[i].obsY, ancho, ancho);
+    for(var i = 0; i < obsAbuela.obstaculos.length; i++) {
+        ctx.drawImage(obsAbuela, obsAbuela.obstaculos[i].obsX, obsAbuela.obstaculos[i].obsY, ancho, ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace 
-        obstaculos[i].obsX -= 3;
-        if(obstaculos[i].obsX < 0) {
-            obstaculos.splice(i,1);
+        obsAbuela.obstaculos[i].obsX -= 3;
+        if(obsAbuela.obstaculos[i].obsX < 0) {
+            obsAbuela.obstaculos.splice(i,1);
         }
     }
 }
 
-function creaObstaculo (){
-    //Funcion para generar los obstaculos, como si fuesen los objetos
-    var obstA = new obst (obsX, obsY);
-    obsAbuela.src = 'imagen/abuela1.png';
-    obstA.obsX = campo.width;
-    obstA.obsY = Math.floor(Math.random() * (campo.height - obsAbuela.height));
-    obstaculos.push(obstA);
-}
+// function creaObstaculo (){
+//     //Funcion para generar los obstaculos, como si fuesen los objetos
+//     var obstA = new obst (obsX, obsY);
+//     obsAbuela.src = 'imagen/abuela1.png';
+//     obstA.obsX = campo.width;
+//     obstA.obsY = Math.floor(Math.random() * (campo.height - obsAbuela.height));
+//     obstaculos.push(obstA);
+// }
 
 function dibujarZ(){
     ctx.beginPath();
