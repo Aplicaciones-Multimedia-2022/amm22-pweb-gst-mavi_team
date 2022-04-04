@@ -273,16 +273,45 @@ function clear(){
 
 //CONTADOR
 
-tiempo = 10;
+tiempo = 25;
+tiempo2 = 20;
+tiempo3 = 15;
 
 function contar(){
-    tiempo--;
-    document.getElementById("contador1").innerHTML = String(tiempo);
-    if(tiempo>0){
-        setTimeout(contar,1000);
-    }
-    if(tiempo==0){
-      document.location.href = "gameOver.html";
-    }
+    
+    if(nivel ==1){
+        tiempo--;
+        document.getElementById("contador1").innerHTML = String(tiempo);
+        if(tiempo>0){
+            setTimeout(contar,1000);
+        }
+        if(tiempo==0){
+          document.location.href = "gameOver.html";
+        }
 
+    }else if(nivel==2){
+        tiempo2--;
+        document.getElementById("contador1").innerHTML = String(tiempo2);
+        if(tiempo2>0){
+            setTimeout(contar,1000);
+        }
+        if(tiempo2==0){
+            document.location.href = "gameOver.html";
+        }
+
+    }else if(nivel==3){
+        tiempo3--;
+        document.getElementById("contador1").innerHTML = String(tiempo3);
+        if(tiempo3>0){
+            setTimeout(contar,1000);
+        }
+        if(tiempo3==0){
+            document.location.href = "gameOver.html";
+        }
+    }       
+        
 };
+setTimeout(contar,1000);
+
+setInterval(dibujar, 10);
+setInterval(creaObstaculo, 1000);
