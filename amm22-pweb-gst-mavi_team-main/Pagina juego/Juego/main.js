@@ -75,7 +75,7 @@ function dibujar() {
 
     //Dibujar
     dibujarJ();
-
+    nuevaM();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
@@ -125,11 +125,11 @@ function dibujarJ(){
     canvas.style.cursor = "none";
 }
 
-function dibujarM(){
+function dibujarM(x, y){
     ctx.beginPath();
-    ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
+    ctx.arc(x, y, borde/2, 0, 2 * Math.PI);
     ctx.fillStyle = "yellow";
-    ctx.strokeStyle = 'lightgray';
+    ctx.strokeStyle = "black";
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -144,8 +144,6 @@ function dibujarO(){
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
         }
-        
-        
     }
 }
 
@@ -182,7 +180,30 @@ function dibujarT(){
 }
 
 function nuevaM(){
-    //No me sale esta basura
+    document.getElementById("monedas").innerHTML = jugador.monedas;
+    var aux = new moneda(moneda.x, moneda.y);
+    var pos = 0;
+
+    for(var i = 0; i < 2; i++){
+        monedas.push(aux);
+        aux.x = nAleatorio(zona + borde, campo.width - 2*zona - borde/2);
+        aux.y = nAleatorio(borde, campo.height - borde/2);
+    }
+
+    while(jugador.monedas < 3){
+        dibujarM(monedas[pos].x, monedas[pos].y);
+
+        if(colision(jugador.x, monedas[pos].x, jugador.y, monedas[pos].y)){
+            jugador.monedas++;
+            monedas.splice(pos, 1);
+            pos++;
+        }
+    }
+
+    if(jugador.monedas = 3){
+        jugador.bono = true;
+    }
+    
 }
 
 function abrirP(){
