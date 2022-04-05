@@ -34,6 +34,16 @@ var moneda = {
     y: nAleatorio(borde, campo.height - borde)
 };
 
+var tren = {
+    x: 300,
+    y: 0,
+    img: new Image,
+    tocaTren : false
+};
+
+
+// var obsAbuela = {
+// };
 var zonaS = {
     x: 85,
     y: 0,
@@ -83,17 +93,7 @@ function dibujar() {
     nuevaM(jugador.x, jugador.y);
 
     //Movimiento de los obstáculos
-    //updateGameArea();
-    // for (i = 0; i < obsAbuela; i += 1) {
-    //     myObstacles.x += -1;
-    //     myObstacles[i].update();
-    // }
-    // obsAbuela.x += -0.5;
     
-
-    //Este for añade los obstaculos cada tanto
-
-
     //Colisiones con bordes
 
     //Colisiones con obstáculos
@@ -164,11 +164,8 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    ctx.beginPath();
-    ctx.rect(campo.width - borde, 0, borde, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    tren.img.src = 'imagen/tren.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
 }
 
 function nuevaM(x, y){
