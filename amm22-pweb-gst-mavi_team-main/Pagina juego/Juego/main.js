@@ -14,7 +14,7 @@ var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
 var monedas = [];
-
+var nmonedas = 0;
 
 tiempo = 25;
 tiempo2 = 20;
@@ -26,13 +26,13 @@ var jugador = {
     x: zona/2,
     y: campo.height/2,
     img: new Image,
-    monedas: 0,
+    //monedas: 0,
     bono: false
 };
 
 var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - borde/2),
-    y: nAleatorio(borde, campo.height - borde/2)
+    x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
+    y: nAleatorio(borde, campo.height - borde)
 };
 
 var zonaS = {
@@ -65,7 +65,7 @@ function dibujar() {
 
     //Dibujar
     dibujarJ();
-    nuevaM();
+    dibujarM();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
@@ -76,7 +76,11 @@ function dibujar() {
 
     //Contador
 
+    conta_abuela();
+
     //Movimiento del jugador
+
+    //colisionM();
 
     //Moneda de mierda
 
@@ -115,11 +119,11 @@ function dibujarJ(){
     canvas.style.cursor = "none";
 }
 
-function dibujarM(x, y){
+function dibujarM(){
     ctx.beginPath();
-    ctx.arc(x, y, borde/2, 0, 2 * Math.PI);
+    ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
     ctx.fillStyle = "yellow";
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "gray";
     ctx.fill();
     ctx.stroke();
     ctx.closePath();
@@ -168,14 +172,47 @@ function dibujarT(){
     ctx.closePath();
 }
 
-function nuevaM(){
-    document.getElementById("monedas").innerHTML = jugador.monedas;
+function colisionJ(x){
+    if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+        jugador.x = campo.width - 2*zona - borde;
+    }
+}
+
+function colisionM(x, y){
     
-    
+    if((x < (moneda.x + borde)) && (x > moneda.x)){
+        if((y < (moneda.y + borde)) && (y > moneda.y)){
+            nmonedas++;
+            //Borrar moneda anterior
+            aleatoriaM();
+        }
+    }
+    document.getElementById("monedas").innerHTML = nmonedas;
+}
+
+function conta_abuela(){
+    for(var i =0; i<obstaculosH.length;i++){
+        if( jugador.x>obstaculosH[i].obsX){
+            if (jugador.y > obstaculosH[i].obsY && jugador.y < obstaculosH[i].obsY + 25){
+                obstaculosH.splice(i,1);
+            }
+        }
+      
+
+    }
 }
 
 function abrirP(){
     //Borrar tornos
+}
+
+function paralizarJ(x, y){
+    // 
+}
+
+function aleatoriaM(){
+    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
+    moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
 
@@ -217,6 +254,10 @@ function moverJ(e){
         jugador.y = ratonY - 10;
         
     }
+
+    colisionJ(ratonX);
+    colisionM(ratonX, ratonY);
+    
 }
 //Funciones auxiliares
 
@@ -226,14 +267,6 @@ function nAleatorio(min, max) {
 
 function clear(){
     ctx.clearRect(0, 0, campo.width, campo.height);
-}
-
-function colision(x1, x2, y1, y2){
-    if((x1 = x2) && (y1 = y2)){
-        return true;
-    }else{
-        return false;
-    }
 }
 
 function esperar(mili) {
