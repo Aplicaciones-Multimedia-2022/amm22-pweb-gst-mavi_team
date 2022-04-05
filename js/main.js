@@ -13,7 +13,8 @@ var canvas = document.getElementById('campo');
 var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
-
+var monedas = [];
+var nmonedas = 0;
 
 tiempo = 25;
 tiempo2 = 20;
@@ -25,13 +26,14 @@ var jugador = {
     x: zona/2,
     y: campo.height/2,
     img: new Image,
-    monedas: 0,
+    //monedas: 0,
     bono: false
 };
 
 var moneda = {
     x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
-    y: nAleatorio(borde, campo.height - borde)
+    y: nAleatorio(borde, campo.height - borde),
+    img: new Image
 };
 
 var tren = {
@@ -56,6 +58,7 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 
 
+
 //Main//
 
 function main(){
@@ -67,30 +70,32 @@ function main(){
     setInterval(creaObstaculo, 1000);
 
     setTimeout(contar,1000);
-    
-
 }
 
 function dibujar() {
     clear();
 
     //Dibujar
-    dibujarJ();
-
+    
+    dibujarM();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
     }
-
     dibujarZ();
     dibujarP();
     dibujarT();
+    dibujarJ();
 
     //Contador
 
+    conta_abuela();
+
     //Movimiento del jugador
 
-    nuevaM(jugador.x, jugador.y);
+    //colisionM();
+
+    //Moneda de mierda
 
     //Movimiento de los obstáculos
     
@@ -118,24 +123,24 @@ function dibujarJ(){
 }
 
 function dibujarM(){
-    ctx.beginPath();
-    ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
-    ctx.closePath();
+    if(jugador.bono){
+        moneda.img.src = null;
+    }else{
+        moneda.img.src = '../img/moneda.png';
+    }
+    ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY + 40, ancho, ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY, ancho, ancho);
+        //ctx.drawImage(obsAbuela, obstaculosH[i].posJugadorY+ 120, obstaculosH[i].posJugadorX + 10, ancho, ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace 
         obstaculosH[i].obsX -= 3;
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
         }
-        
-        
     }
 }
 
@@ -160,7 +165,6 @@ function dibujarP(){
     ctx.fillStyle = "gray";
     ctx.fill();
     ctx.closePath();
-    
 }
 
 function dibujarT(){
@@ -168,27 +172,55 @@ function dibujarT(){
     ctx.drawImage(tren.img, tren.x, tren.y, campo.width-750, campo.height);
 }
 
-function nuevaM(x, y){
-    document.getElementById("monedas").innerHTML = jugador.monedas;
+function colisionJ(x){
 
-    if((jugador.x = x) && (jugador.y = y)){
-        jugador.monedas++;
-        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
-        setTimeout('', 5000);
-        moneda.x = nAleatorio(zona + borde/2, campo.width - 2*zona - borde/2);
-        moneda.y = nAleatorio(borde/2, campo.height - borde/2);
-        dibujarM();
+    if(jugador.bono){
+
+    }else{
+        if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+            jugador.x = campo.width - 2*zona - 3*borde;
+        }
+    }
+    
+}
+
+function colisionM(x, y){
+    
+    if((x < (moneda.x + 2*borde)) && (x > (moneda.x - borde))){
+        if((y < (moneda.y + 2*borde)) && (y > (moneda.y - borde))){
+            nmonedas++;
+            aleatoriaM();
+        }
     }
 
-    if(jugador.monedas = 3){
-        bono = true;
-        document.getElementById("bono").innerHTML = "Recargado";
-        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
+    if(nmonedas > 2){
+        jugador.bono = true;
+        document.getElementById("bono").innerHTML = "Cargado";
+    }
+    document.getElementById("monedas").innerHTML = nmonedas;
+}
+
+function conta_abuela(){
+    for(var i =0; i<obstaculosH.length;i++){
+        if( ratonX>obstaculosH[i].obsX){
+            if (ratonY > obstaculosH[i].obsY && ratonY < obstaculosH[i].obsY + 25){
+                obstaculosH.splice(i,1);
+            }
+        }
     }
 }
 
 function abrirP(){
     //Borrar tornos
+}
+
+function paralizarJ(x, y){
+    // 
+}
+
+function aleatoriaM(){
+    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
+    moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
 
@@ -231,6 +263,9 @@ function moverJ(e){
         
     }
 
+    colisionJ(ratonX);
+    colisionM(ratonX, ratonY);
+    
 }
 //Funciones auxiliares
 
@@ -240,6 +275,10 @@ function nAleatorio(min, max) {
 
 function clear(){
     ctx.clearRect(0, 0, campo.width, campo.height);
+}
+
+function esperar(mili) {
+    return new Promise(resolve => setTimeout(resolve, mili));
 }
 
 
