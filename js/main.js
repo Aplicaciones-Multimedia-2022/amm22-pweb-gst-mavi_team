@@ -170,9 +170,15 @@ function dibujarT(){
 }
 
 function colisionJ(x){
-    if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
-        jugador.x = campo.width - 2*zona - borde;
+
+    if(jugador.bono){
+
+    }else{
+        if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+            jugador.x = campo.width - 2*zona - borde;
+        }
     }
+    
 }
 
 function colisionM(x, y){
