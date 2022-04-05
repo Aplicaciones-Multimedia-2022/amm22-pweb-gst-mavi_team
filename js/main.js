@@ -40,7 +40,8 @@ var ladron = {
     x: nAleatorio(zona + ancho, campo.width - 2*zona - ancho),
     y: nAleatorio(ancho, campo.height - ancho),
     img: new Image,
-    vel: 3
+    velx: 3,
+    vely: 3
 };
 
 var tren = {
@@ -81,9 +82,6 @@ function main(){
 function dibujar() {
     clear();
 
-    ladron.x += ladron.vel;
-    ladron.y += ladron.vel;
-
     //Dibujar
     dibujarJ();
     dibujarM();
@@ -96,6 +94,9 @@ function dibujar() {
     dibujarT();
     dibujarL();
 
+    ladron.x += ladron.velx;
+    ladron.y += ladron.vely;
+
     //Contador
 
     conta_abuela();
@@ -103,6 +104,14 @@ function dibujar() {
     //Movimiento del jugador
 
     //colisionM();
+
+    if((ladron.x < (zona + borde + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+        ladron.velx = -ladron.velx;
+    }
+
+    if(ladron.y < (borde + ancho) || (ladron.y > (campo.height - borde - ancho))){
+        ladron.vely = -ladron.vely;
+    }
 
     //Moneda de mierda
 
@@ -181,19 +190,11 @@ function dibujarT(){
 }
 
 function dibujarL(){
-    ladron.img = '../img/ladron.png';
+    ladron.img.src = '../img/ladron.png';
     ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
 } 
 
 function colisionL(x, y){
-    if((ladron.x < (zona + borde + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
-        ladron.vel = -ladron.vel;
-    }
-
-    if(ladron.y < (borde + ancho) || (ladron.y > (campo.height - borde - ancho))){
-        ladron.vel = -ladron.vel;
-    }
-
     if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
         if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
             if(nmonedas > 0){
