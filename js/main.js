@@ -58,6 +58,7 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 
 
+
 //Main//
 
 function main(){
@@ -75,7 +76,7 @@ function dibujar() {
     clear();
 
     //Dibujar
-    dibujarJ();
+    
     dibujarM();
     if (obstaculosH.length != 0) {
         dibujarO();
@@ -84,6 +85,7 @@ function dibujar() {
     dibujarZ();
     dibujarP();
     dibujarT();
+    dibujarJ();
 
     //Contador
 
@@ -132,7 +134,8 @@ function dibujarM(){
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY + 40, ancho, ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY, ancho, ancho);
+        //ctx.drawImage(obsAbuela, obstaculosH[i].posJugadorY+ 120, obstaculosH[i].posJugadorX + 10, ancho, ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace 
         obstaculosH[i].obsX -= 3;
         if(obstaculosH[i].obsX < 0) {
@@ -165,7 +168,7 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    tren.img.src = 'imagen/tren.png';
+    tren.img.src = '../img/tren1.jpeg';
     ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
 }
 
@@ -175,7 +178,7 @@ function colisionJ(x){
 
     }else{
         if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
-            jugador.x = campo.width - 2*zona - borde;
+            jugador.x = campo.width - 2*zona - 3*borde;
         }
     }
     
@@ -199,13 +202,11 @@ function colisionM(x, y){
 
 function conta_abuela(){
     for(var i =0; i<obstaculosH.length;i++){
-        if( jugador.x>obstaculosH[i].obsX){
-            if (jugador.y > obstaculosH[i].obsY && jugador.y < obstaculosH[i].obsY + 25){
+        if( ratonX>obstaculosH[i].obsX){
+            if (ratonY > obstaculosH[i].obsY && ratonY < obstaculosH[i].obsY + 25){
                 obstaculosH.splice(i,1);
             }
         }
-      
-
     }
 }
 
