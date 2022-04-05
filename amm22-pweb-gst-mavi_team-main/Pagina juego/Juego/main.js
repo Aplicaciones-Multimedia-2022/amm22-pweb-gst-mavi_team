@@ -34,43 +34,16 @@ var moneda = {
     y: nAleatorio(borde, campo.height - borde)
 };
 
-
-var obsAbuela = {
-    // obsAbuelax: campo.width - 2*zona - borde,
-    // obsAbuelay: 150,
-    obsX : 0,
-    obsY : 0,
+var tren = {
+    x: 300,
+    y: 0,
     img: new Image,
-    obstaculos: [],
-    // dibujarO: function(){
-    //     //Funcion para dibujar los obstáculos
-    //     for(var i = 0; i < obsAbuela.obstaculos.length; i++) {
-    //         ctx.drawImage(obsAbuela, obsAbuela.obstaculos[i].obsX, obsAbuela.obstaculos[i].obsY, ancho, ancho);
-    //         //3 niveles, 3 velocidades distintas? con case o if se hace 
-    //         obsAbuela.obstaculos[i].obsX -= 3;
-    //         if(obsAbuenla.obstaculos[i].obsX < 0) {
-    //             obsAbuela.obstaculos.splice(i,1);
-    //         }
-    //     }
-    // },
-    creaObstaculo: function(){
-        //Funcion para generar los obstaculos, como si fuesen los objetos
-        var obstA = new obst (obsX, obsY);
-        obsAbuela.src = 'imagen/abuela1.png';
-        obstA.obsX = campo.width;
-        obstA.obsY = Math.floor(Math.random() * (campo.height - obsAbuela.height));
-        obsAbuela.obstaculos.push(obstA);
-    }
-    // update: function(){
-    //     ctx = canvas.context;
-    //     ctx.fillStyle = color;
-    //     ctx.fillRect(this.x, this.y, this.width, this.height);
-    // },
-    // newPos : function() {
-    //     this.x += this.speedX;
-    //     this.y += this.speedY;        
-    // }
+    tocaTren : false
 };
+
+
+// var obsAbuela = {
+// };
 
 var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
@@ -86,7 +59,7 @@ function main(){
     obsY = canvas.width;
     
     setInterval(dibujar, 10);
-    setInterval(obsAbuela.creaObstaculo(), 1000);
+    setInterval(creaObstaculo, 1000);
 
     setTimeout(contar,1000);
     
@@ -115,12 +88,6 @@ function dibujar() {
     nuevaM(jugador.x, jugador.y);
 
     //Movimiento de los obstáculos
-    //updateGameArea();
-    // for (i = 0; i < obsAbuela; i += 1) {
-    //     myObstacles.x += -1;
-    //     myObstacles[i].update();
-    // }
-    // obsAbuela.x += -0.5;
     
     //Colisiones con bordes
 
@@ -193,11 +160,8 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    ctx.beginPath();
-    ctx.rect(campo.width - borde, 0, borde, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    tren.img.src = 'imagen/tren.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
 }
 
 function nuevaM(x, y){
