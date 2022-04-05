@@ -1,6 +1,6 @@
 /*Imagen de fondo y título del juego*/
 body{
-    background-image: url(imagen/fondo.gif);
+    background-image: url(../img/fondoInicio.gif);
     background-size: cover;
 }
 
@@ -102,5 +102,5 @@ form{
 
 @font-face{
   font-family: texto;
-  src: url(nasalization-rg.otf);
+  src: url(../res/nasalization-rg.otf);
 }

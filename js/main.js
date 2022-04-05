@@ -35,6 +35,16 @@ var moneda = {
     y: nAleatorio(borde, campo.height - borde)
 };
 
+var tren = {
+    x: 300,
+    y: 0,
+    img: new Image,
+    tocaTren : false
+};
+
+
+// var obsAbuela = {
+// };
 var zonaS = {
     x: 85,
     y: 0,
@@ -85,17 +95,7 @@ function dibujar() {
     //Moneda de mierda
 
     //Movimiento de los obstáculos
-    //updateGameArea();
-    // for (i = 0; i < obsAbuela; i += 1) {
-    //     myObstacles.x += -1;
-    //     myObstacles[i].update();
-    // }
-    // obsAbuela.x += -0.5;
     
-
-    //Este for añade los obstaculos cada tanto
-
-
     //Colisiones con bordes
 
     //Colisiones con obstáculos
@@ -114,7 +114,7 @@ function obst (posJugadorX, posJugadorY) {
 //Dibujar
 
 function dibujarJ(){
-    jugador.img.src = 'imagen/icono.png';
+    jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
     canvas.style.cursor = "none";
 }
@@ -144,14 +144,14 @@ function dibujarO(){
 function creaObstaculo (){
     //Funcion para generar los obstaculos, como si fuesen los objetos
     var obstA = new obst (obsX, obsY);
-    obsAbuela.src = 'imagen/abuela.png';
+    obsAbuela.src = '../img/abuela.png';
     obstA.obsX = campo.width;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
 
 function dibujarZ(){
-    zonaS.img.src = "imagen/zona.jpeg";
+    zonaS.img.src = "../img/zona.jpeg";
     ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
 
 }
@@ -165,11 +165,8 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    ctx.beginPath();
-    ctx.rect(campo.width - borde, 0, borde, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    tren.img.src = 'imagen/tren.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
 }
 
 function colisionJ(x){
