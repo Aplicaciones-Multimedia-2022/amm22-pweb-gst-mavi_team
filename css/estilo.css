@@ -1,6 +1,6 @@
 /*Para el cuerpo pagina*/
 body{
-    background-image: url(imagen/fondo.jpeg);
+    background-image: url(../img/fondo.jpeg);
     background-size: cover
 }
 
@@ -183,13 +183,13 @@ button:hover{
 canvas{
     display: block;
     margin: 0 auto;
-    background-image: url(imagen/fondocanvas1.jpeg);
+    background-image: url(../img/fondocanvas.jpeg);
     /*background-color:rgb(189, 185, 185);*/
     border: 3px solid black;
 }
 
 @font-face{
     font-family: texto1;
-    src: url(nasalization-rg.otf);
+    src: url(../res/nasalization-rg.otf);
   }
 

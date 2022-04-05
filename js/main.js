@@ -112,7 +112,7 @@ function obst (posJugadorX, posJugadorY) {
 //Dibujar
 
 function dibujarJ(){
-    jugador.img.src = 'imagen/icono.png';
+    jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
     canvas.style.cursor = "none";
 }
@@ -142,14 +142,14 @@ function dibujarO(){
 function creaObstaculo (){
     //Funcion para generar los obstaculos, como si fuesen los objetos
     var obstA = new obst (obsX, obsY);
-    obsAbuela.src = 'imagen/abuela.png';
+    obsAbuela.src = '../img/abuela.png';
     obstA.obsX = campo.width;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
 
 function dibujarZ(){
-    zonaS.img.src = "imagen/zona.jpeg";
+    zonaS.img.src = "../img/zona.jpeg";
     ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
 
 }
