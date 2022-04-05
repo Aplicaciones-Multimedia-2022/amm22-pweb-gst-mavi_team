@@ -34,7 +34,6 @@ var moneda = {
     y: nAleatorio(borde, campo.height - borde)
 };
 
-<<<<<<< HEAD:amm22-pweb-gst-mavi_team-main/Pagina juego/Juego/main.js
 var tren = {
     x: 300,
     y: 0,
@@ -45,13 +44,11 @@ var tren = {
 
 // var obsAbuela = {
 // };
-=======
 var zonaS = {
     x: 85,
     y: 0,
     img: new Image,
 };
->>>>>>> e1b6db820222508bb96b2ed2cc165e2e36306537:js/main.js
 
 var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
