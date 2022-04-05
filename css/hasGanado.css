@@ -5,13 +5,20 @@ body{
 }
 
 /*Titulos y parrafos*/
-#over{
+#win{
     font-family: texto1;
     font-size: 100px;
     text-align: center;
-    margin-top: 250px;
+    margin-top: 150px;
     color: white;
+}
 
+#win1{
+    font-family: texto1;
+    font-size: 80px;
+    text-align: center;
+    margin-top: 100px;
+    color: white;
 }
 
 

@@ -15,6 +15,7 @@ var frameNo = 0;
 var nivel = 1;
 var monedas = [];
 var nmonedas = 0;
+var suboNivel = false;
 
 tiempo = 25;
 tiempo2 = 20;
@@ -37,7 +38,7 @@ var moneda = {
 };
 
 var tren = {
-    x: 300,
+    x: 875,
     y: 0,
     img: new Image,
     tocaTren : false
@@ -119,7 +120,7 @@ function obst (posJugadorX, posJugadorY) {
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    canvas.style.cursor = "none";
+    //canvas.style.cursor = "none";
 }
 
 function dibujarM(){
@@ -168,8 +169,8 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    tren.img.src = '../img/tren1.jpeg';
-    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
+    tren.img.src = '../img/tren.jpeg';
+    ctx.drawImage(tren.img, tren.x, tren.y, 80, campo.height);
 }
 
 function colisionJ(x){
@@ -223,6 +224,47 @@ function aleatoriaM(){
     moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
+function reseteo(){
+    jugador.bono = false;
+    jugador.monedas = 0;
+    nmonedas = 0;
+    jugador.x = 0;
+    jugador.y = 200;
+    ratonX = 0;
+    ratonY = 200;
+    document.getElementById("bono").innerHTML = "";
+    //obstaculosH[i].obsX ++;
+
+}
+
+function reseteoJ(x,y){
+    x = zona/2;
+    y = campo.height/2;
+}
+
+//Subir de nivel
+function subirNivel(x){
+    if(x > (campo.width - 100)){
+        tren.tocaTren = true;
+        if(tren.tocaTren){
+            nivel++;
+            dibujarM();
+            reseteo();
+        
+        }
+        document.getElementById("nivel").innerHTML = nivel;
+    }
+   
+    /*
+    if(jugador.x <= (canvas.width - 80)){
+        tocaTren = true;
+        if(tren.tocaTren){
+            nivel = nivel +1;
+            reseteo();
+        }
+    }*/
+}
+
 
 
 
@@ -263,8 +305,14 @@ function moverJ(e){
         
     }
 
+    if(tren.tocaTren){
+        reseteoJ(e.pageX,e.pageY);
+    }
+
     colisionJ(ratonX);
     colisionM(ratonX, ratonY);
+    subirNivel(ratonX);
+
     
 }
 //Funciones auxiliares
@@ -279,6 +327,11 @@ function clear(){
 
 function esperar(mili) {
     return new Promise(resolve => setTimeout(resolve, mili));
+}
+
+function refrescaPagina(){
+    window.location.href = '../html/Juego.html';
+    window.location.reload();
 }
 
 
