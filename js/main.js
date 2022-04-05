@@ -176,9 +176,14 @@ function colisionM(x, y){
     if((x < (moneda.x + 2*borde)) && (x > (moneda.x - borde))){
         if((y < (moneda.y + 2*borde)) && (y > (moneda.y - borde))){
             nmonedas++;
-            //Borrar moneda anterior
             aleatoriaM();
         }
+    }
+
+    if(nmonedas > 3){
+        moneda.img.src = null;
+        jugador.bono = true;
+        document.getElementById("bono").innerHTML = "Cargado";
     }
     document.getElementById("monedas").innerHTML = nmonedas;
 }
