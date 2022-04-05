@@ -170,11 +170,10 @@ function dibujarT(){
 }
 
 function colisionJ(x){
-
-    if(jugador.bono){
+    if(jugador.bono){                                          //Colisiona con tren
 
     }else{
-        if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+        if(x > (campo.width - 2*zona - borde)){                //Colisiona con torno
             jugador.x = campo.width - 2*zona - borde;
         }
     }
@@ -190,7 +189,7 @@ function colisionM(x, y){
         }
     }
 
-    if(nmonedas > 2){
+    if(nmonedas > 9){
         jugador.bono = true;
         document.getElementById("bono").innerHTML = "Cargado";
     }
