@@ -34,6 +34,7 @@ var moneda = {
     y: nAleatorio(borde, campo.height - borde)
 };
 
+<<<<<<< HEAD:amm22-pweb-gst-mavi_team-main/Pagina juego/Juego/main.js
 var tren = {
     x: 300,
     y: 0,
@@ -44,6 +45,13 @@ var tren = {
 
 // var obsAbuela = {
 // };
+=======
+var zonaS = {
+    x: 85,
+    y: 0,
+    img: new Image,
+};
+>>>>>>> e1b6db820222508bb96b2ed2cc165e2e36306537:js/main.js
 
 var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
@@ -107,7 +115,7 @@ function obst (posJugadorX, posJugadorY) {
 //Dibujar
 
 function dibujarJ(){
-    jugador.img.src = 'imagen/icono.png';
+    jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
     canvas.style.cursor = "none";
 }
@@ -137,16 +145,15 @@ function dibujarO(){
 function creaObstaculo (){
     //Funcion para generar los obstaculos, como si fuesen los objetos
     var obstA = new obst (obsX, obsY);
-    obsAbuela.src = 'imagen/abuela.png';
+    obsAbuela.src = '../img/abuela.png';
     obstA.obsX = campo.width;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
 
 function dibujarZ(){
-    var zonaS = new Image();
-    zonaS.src = "imagen/zona.jpeg";
-    ctx.drawImage(zonaS,85,0,25,campo.height);
+    zonaS.img.src = "../img/zona.jpeg";
+    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
 
 }
 

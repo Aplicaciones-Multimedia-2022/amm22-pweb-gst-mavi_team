@@ -3,7 +3,7 @@
     <head>
         <title>MAVI'S STATION</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="../estilo.css">
+        <link rel="stylesheet" type="text/css" href="../css/juego.css">
     </head>
 
     <body>
@@ -14,11 +14,11 @@
     
         <nav>
             <button class="nav" onclick="alert('Ya estas en juego')">Juego</button>
-            <button class="nav" onclick="window.location.href = ' ../Descripcion/Descripcion.html'">Descripción</button>
-            <button class="nav" onclick="window.location.href = ' ../Autores/Autores.html'">Autores</button>
-            <button class="nav" onclick="window.location.href = ' ../Multimedia/Multimedia.html'">Multimedia</button>
-            <button class="nav" onclick="window.location.href = ' ../Desarrollo/Desarrollo.html'">Desarrollo</button>
-            <button class="nav" onclick="window.location.href = ' ../Referencias/Referencias.html'">Referencias</button>
+            <button class="nav" onclick="window.location.href = 'Descripcion.html'">Descripción</button>
+            <button class="nav" onclick="window.location.href = 'Autores.html'">Autores</button>
+            <button class="nav" onclick="window.location.href = 'Multimedia.html'">Multimedia</button>
+            <button class="nav" onclick="window.location.href = 'Desarrollo.html'">Desarrollo</button>
+            <button class="nav" onclick="window.location.href = 'Referencias.html'">Referencias</button>
 
         </nav> 
 
@@ -32,7 +32,7 @@
         </section>
 
         <aside id="izq">
-            <p>Tiempo: <span id="contador1" class="contador">  </span></p>
+            <p>Tiempo: <span id="contador1" class="contador"> 00:00 </span></p>
                 
             <p>Nivel: <span></span></p>
         </aside>
@@ -42,6 +42,6 @@
 
     </body>
 
-    <script src="./main.js"></script>
+    <script src="../js/main.js"></script>
 
 </html>
