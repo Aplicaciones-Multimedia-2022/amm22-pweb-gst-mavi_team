@@ -121,7 +121,11 @@ function dibujarJ(){
 }
 
 function dibujarM(){
-    moneda.img.src = '../img/moneda.png';
+    if(jugador.bono){
+        moneda.img.src = null;
+    }else{
+        moneda.img.src = '../img/moneda.png';
+    }
     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
@@ -180,8 +184,7 @@ function colisionM(x, y){
         }
     }
 
-    if(nmonedas > 3){
-        moneda.img.src = null;
+    if(nmonedas > 2){
         jugador.bono = true;
         document.getElementById("bono").innerHTML = "Cargado";
     }
