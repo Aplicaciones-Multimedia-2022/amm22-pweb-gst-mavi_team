@@ -36,6 +36,13 @@ var moneda = {
     img: new Image
 };
 
+var ladron = {
+    x: nAleatorio(zona + ancho, campo.width - 2*zona - ancho),
+    y: nAleatorio(ancho, campo.height - ancho),
+    img: new Image,
+    vel: 3
+};
+
 var tren = {
     x: 300,
     y: 0,
@@ -74,6 +81,9 @@ function main(){
 function dibujar() {
     clear();
 
+    ladron.x += ladron.vel;
+    ladron.y += ladron.vel;
+
     //Dibujar
     dibujarJ();
     dibujarM();
@@ -84,6 +94,7 @@ function dibujar() {
     dibujarZ();
     dibujarP();
     dibujarT();
+    dibujarL();
 
     //Contador
 
@@ -165,8 +176,31 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    tren.img.src = 'imagen/tren.png';
+    tren.img.src = '../img/tren.png';
     ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
+}
+
+function dibujarL(){
+    ladron.img = '../img/ladron.png';
+    ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
+} 
+
+function colisionL(x, y){
+    if((ladron.x < (zona + borde + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+        ladron.vel = -ladron.vel;
+    }
+
+    if(ladron.y < (borde + ancho) || (ladron.y > (campo.height - borde - ancho))){
+        ladron.vel = -ladron.vel;
+    }
+
+    if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
+        if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
+            if(nmonedas > 0){
+                nmonedas--;
+            }
+        }
+    }
 }
 
 function colisionJ(x){
@@ -182,8 +216,8 @@ function colisionJ(x){
 
 function colisionM(x, y){
     
-    if((x < (moneda.x + 2*borde)) && (x > (moneda.x - borde))){
-        if((y < (moneda.y + 2*borde)) && (y > (moneda.y - borde))){
+    if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
+        if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
             nmonedas++;
             aleatoriaM();
         }
@@ -197,7 +231,7 @@ function colisionM(x, y){
 }
 
 function conta_abuela(){
-    for(var i =0; i<obstaculosH.length;i++){
+    for(var i = 0; i < obstaculosH.length ;i++){
         if( jugador.x>obstaculosH[i].obsX){
             if (jugador.y > obstaculosH[i].obsY && jugador.y < obstaculosH[i].obsY + 25){
                 obstaculosH.splice(i,1);
@@ -263,6 +297,7 @@ function moverJ(e){
 
     colisionJ(ratonX);
     colisionM(ratonX, ratonY);
+    colisionL(ratonX, ratonY);
     
 }
 //Funciones auxiliares
