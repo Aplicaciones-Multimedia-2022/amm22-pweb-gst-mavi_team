@@ -37,15 +37,26 @@ var moneda = {
 };
 
 var tren = {
-    x: 800,
+    x: 850,
     y: 0,
     img: new Image,
     tocaTren : false
 };
 
+var rail = {
+    x: 760,
+    y: 0,
+    img: new Image,
+    tocaRail : false
+};
 
-// var obsAbuela = {
-// };
+var torno = {
+    x: campo.width - 2*zona - borde,
+    y: 0,
+    img: new Image,
+    tocaTorno: false,
+};
+
 var zonaS = {
     x: 30,
     y: 0,
@@ -84,6 +95,7 @@ function dibujar() {
     }
     dibujarZ();
     dibujarP();
+    dibujarR();
     dibujarT();
     dibujarJ();
 
@@ -134,9 +146,8 @@ function dibujarM(){
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY, ancho, ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 75, obstaculosH[i].obsY, ancho, ancho);
         //ctx.drawImage(obsAbuela, obstaculosH[i].posJugadorY+ 120, obstaculosH[i].posJugadorX + 10, ancho, ancho);
-        //3 niveles, 3 velocidades distintas? con case o if se hace 
         obstaculosH[i].obsX -= 3;
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
@@ -145,10 +156,9 @@ function dibujarO(){
 }
 
 function creaObstaculo (){
-    //Funcion para generar los obstaculos, como si fuesen los objetos
     var obstA = new obst (obsX, obsY);
     obsAbuela.src = '../img/abuela.png';
-    obstA.obsX = campo.width;
+    obstA.obsX = campo.width - 300;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
@@ -160,16 +170,18 @@ function dibujarZ(){
 }
 
 function dibujarP(){
-    ctx.beginPath();
-    ctx.rect(campo.width - 2*zona - borde, 0, ancho, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    torno.img.src = '../img/torno1.jpg';
+    ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
 }
 
 function dibujarT(){
-    tren.img.src = '../img/tren2.png';
-    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-750, campo.height);
+    tren.img.src = '../img/trenes1.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
+}
+
+function dibujarR(){
+    rail.img.src = '../img/tracks.png';
+    ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
 }
 
 function colisionJ(x){
@@ -267,6 +279,7 @@ function moverJ(e){
     colisionM(ratonX, ratonY);
     
 }
+
 //Funciones auxiliares
 
 function nAleatorio(min, max) {
@@ -282,7 +295,7 @@ function esperar(mili) {
 }
 
 
-//CONTADOR
+//Contador
 
 function contar(){
     
