@@ -35,7 +35,7 @@ var moneda = {
 };
 
 var tren = {
-    x: 300,
+    x: 800,
     y: 0,
     img: new Image,
     tocaTren : false
@@ -45,7 +45,7 @@ var tren = {
 // var obsAbuela = {
 // };
 var zonaS = {
-    x: 85,
+    x: 30,
     y: 0,
     img: new Image,
 };
@@ -149,8 +149,8 @@ function creaObstaculo (){
 }
 
 function dibujarZ(){
-    zonaS.img.src = "../img/zona.jpeg";
-    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
+    zonaS.img.src = "../img/barranym.png";
+    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
 
 }
 
@@ -164,8 +164,8 @@ function dibujarP(){
 }
 
 function dibujarT(){
-    tren.img.src = 'imagen/tren.png';
-    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
+    tren.img.src = '../img/tren2.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-750, campo.height);
 }
 
 function nuevaM(x, y){

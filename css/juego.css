@@ -111,9 +111,10 @@ button:hover{
 canvas{
     display: block;
     margin: 0 auto;
-    background-image: url(../img/fondocanvas1.jpeg);
+    background-image: url(../img/fondocanvas2.jpg);
     /*background-color:rgb(189, 185, 185);*/
     border: 3px solid black;
+    background-size: cover;
 }
 
 /*Tipo de letra*/
