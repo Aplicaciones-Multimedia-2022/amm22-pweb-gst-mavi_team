@@ -32,7 +32,8 @@ var jugador = {
 
 var moneda = {
     x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
-    y: nAleatorio(borde, campo.height - borde)
+    y: nAleatorio(borde, campo.height - borde),
+    img: new Image
 };
 
 var tren = {
@@ -120,13 +121,8 @@ function dibujarJ(){
 }
 
 function dibujarM(){
-    ctx.beginPath();
-    ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
-    ctx.fillStyle = "yellow";
-    ctx.strokeStyle = "gray";
-    ctx.fill();
-    ctx.stroke();
-    ctx.closePath();
+    moneda.img.src = '../img/moneda.png';
+    ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
 function dibujarO(){
@@ -177,8 +173,8 @@ function colisionJ(x){
 
 function colisionM(x, y){
     
-    if((x < (moneda.x + borde)) && (x > moneda.x)){
-        if((y < (moneda.y + borde)) && (y > moneda.y)){
+    if((x < (moneda.x + 2*borde)) && (x > (moneda.x - borde))){
+        if((y < (moneda.y + 2*borde)) && (y > (moneda.y - borde))){
             nmonedas++;
             //Borrar moneda anterior
             aleatoriaM();
