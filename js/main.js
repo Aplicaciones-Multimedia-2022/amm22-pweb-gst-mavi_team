@@ -12,9 +12,8 @@ var canvas = document.getElementById('campo');
 var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
-
 var nmonedas = 0;
-var posJugadorX, posJugadorY = 0;
+                                                //Variables para los obstáculos
 var obsX,obsY;
 var obsAbuela = new Image;
 var obstaculosH = [];
@@ -29,7 +28,6 @@ var jugador = {
     x: zona/2,
     y: campo.height/2,
     img: new Image,
-    //monedas: 0,
     bono: false
 };
 
@@ -132,8 +130,7 @@ function dibujar() {
     
 //Funciones//
 
-function obst (posJugadorX, posJugadorY) {
-    //Funcion para crear los obstáculos
+function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
     this.obsX = posJugadorX;
     this.obsY = posJugadorY;
 }
