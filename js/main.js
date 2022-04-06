@@ -34,7 +34,7 @@ var jugador = {
 };
 
 var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - borde - ancho),
+    x: nAleatorio(zona + borde, campo.width - 2*zona - 2*borde),
     y: nAleatorio(borde, campo.height - 2*borde),
     img: new Image
 };
@@ -333,7 +333,8 @@ function paralizarJ(x, y){
 }
 
 function aleatoriaM(){
-    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
+    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - 2*borde);
+
     moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
