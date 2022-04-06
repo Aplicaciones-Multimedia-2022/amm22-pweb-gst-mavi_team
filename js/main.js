@@ -13,7 +13,7 @@ var canvas = document.getElementById('campo');
 var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
-var monedas = [];
+
 var nmonedas = 0;
 var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
