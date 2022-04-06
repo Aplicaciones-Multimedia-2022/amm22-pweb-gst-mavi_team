@@ -229,9 +229,7 @@ function colisionM(x, y){
         }
     }
 
-    if(nmonedas > 9){
     niveles(nmonedas);
-    }
     document.getElementById("monedas").innerHTML = nmonedas;
 }
 
@@ -327,7 +325,7 @@ function moverJ(e){
     }  
 }
 
-//Contador
+/*Contado*/
 function contar(){
     tiempo++;
     document.getElementById("contador1").innerHTML = String(tiempo);
@@ -362,7 +360,7 @@ function clear(){                                                           //Li
 }
 
 
-//Nombre del formulario
+/*Relacionados con HTML*/
 
 function getNombre(name, url){
     if (!url){
