@@ -13,11 +13,15 @@ var canvas = document.getElementById('campo');
 var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
+var monedas = [];
+var nmonedas = 0;
+var posJugadorX, posJugadorY = 0;
+var obsX,obsY;
+var obsAbuela = new Image;
+var obstaculosH = [];
 
 
-tiempo = 25;
-tiempo2 = 20;
-tiempo3 = 15;
+tiempo = 0;
 
 //Objetos//
 
@@ -25,13 +29,21 @@ var jugador = {
     x: zona/2,
     y: campo.height/2,
     img: new Image,
-    monedas: 0,
+    //monedas: 0,
     bono: false
 };
 
 var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
-    y: nAleatorio(borde, campo.height - borde)
+    x: nAleatorio(zona + borde, campo.width - 2*zona - borde - ancho),
+    y: nAleatorio(borde, campo.height - 2*borde),
+    img: new Image
+};
+
+var tren = {
+    x: 875,
+    y: 0,
+    img: new Image,
+    tocaTren : false
 };
 
 var zonaS = {
@@ -40,10 +52,6 @@ var zonaS = {
     img: new Image,
 };
 
-var posJugadorX, posJugadorY = 0;
-var obsX,obsY;
-var obsAbuela = new Image;
-var obstaculosH = [];
 
 
 //Main//
@@ -57,48 +65,35 @@ function main(){
     setInterval(creaObstaculo, 1000);
 
     setTimeout(contar,1000);
-    
 
 }
 
 function dibujar() {
     clear();
-
-    //Dibujar
-    dibujarJ();
-
+    
+    
+    dibujarM();
+    dibujarZ();
+    dibujarP();
+    dibujarT();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
     }
-
-    dibujarZ();
-    dibujarP();
-    dibujarT();
-
-    //Contador
+    dibujarJ();
 
     //Movimiento del jugador
 
-    nuevaM(jugador.x, jugador.y);
+    //colisionM();
+
+    //Moneda de mierda
 
     //Movimiento de los obstáculos
-    //updateGameArea();
-    // for (i = 0; i < obsAbuela; i += 1) {
-    //     myObstacles.x += -1;
-    //     myObstacles[i].update();
-    // }
-    // obsAbuela.x += -0.5;
     
-
-    //Este for añade los obstaculos cada tanto
-
-
     //Colisiones con bordes
 
     //Colisiones con obstáculos
 
-    
 }
 
 //Funciones//
@@ -109,33 +104,45 @@ function obst (posJugadorX, posJugadorY) {
     this.obsY = posJugadorY;
 }
 
-//Dibujar
+/*DIBUJAR*/
 
+//Jugador
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
     canvas.style.cursor = "none";
 }
 
+//Moneda
 function dibujarM(){
-    ctx.beginPath();
-    ctx.arc(moneda.x, moneda.y, borde/2, 0, 2 * Math.PI);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
-    ctx.closePath();
+    if(jugador.bono){
+        moneda.img.src = null;
+    }else{
+        moneda.img.src = '../img/moneda.png';
+    }
+    ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
+//Obstáculos
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY + 40, ancho, ancho);
-        //3 niveles, 3 velocidades distintas? con case o if se hace 
-        obstaculosH[i].obsX -= 3;
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY, ancho, ancho);
+        //3 niveles, 3 velocidades distintas? con case o if se hace
+        if(nivel ==1){
+            obstaculosH[i].obsX -= 3;
+        }else if(nivel == 2){
+            obstaculosH[i].obsX -= 5;
+        }else if(nivel == 3){
+            obstaculosH[i].obsX -= 4;
+            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, ancho, ancho);
+        }else if(nivel == 4){
+            obstaculosH[i].obsX -= 5.5;
+            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, ancho, ancho);
+        }
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
         }
-        
-        
     }
 }
 
@@ -148,53 +155,110 @@ function creaObstaculo (){
     obstaculosH.push(obstA);
 }
 
+//Zona de seguridad
 function dibujarZ(){
     zonaS.img.src = "../img/zona.jpeg";
     ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
 
 }
 
+//Torno de metro
 function dibujarP(){
     ctx.beginPath();
     ctx.rect(campo.width - 2*zona - borde, 0, ancho, campo.height);
     ctx.fillStyle = "gray";
     ctx.fill();
     ctx.closePath();
+}
+
+//Tren
+function dibujarT(){
+    tren.img.src = '../img/tren.jpeg';
+    ctx.drawImage(tren.img, tren.x, tren.y, 80, campo.height);
+}
+
+/*COLISIONES*/
+
+//Jugador
+function colisionJ(x){
+
+    if(jugador.bono){
+
+    }else{
+        if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+            jugador.x = campo.width - 2*zona - 3*borde;
+        }
+    }
     
 }
 
-function dibujarT(){
-    ctx.beginPath();
-    ctx.rect(campo.width - borde, 0, borde, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
-}
-
-function nuevaM(x, y){
-    document.getElementById("monedas").innerHTML = jugador.monedas;
-
-    if((jugador.x = x) && (jugador.y = y)){
-        jugador.monedas++;
-        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
-        setTimeout('', 5000);
-        moneda.x = nAleatorio(zona + borde/2, campo.width - 2*zona - borde/2);
-        moneda.y = nAleatorio(borde/2, campo.height - borde/2);
-        dibujarM();
+//Moneda
+function colisionM(x, y){
+    
+    if((x < (moneda.x + 2*borde)) && (x > (moneda.x - borde))){
+        if((y < (moneda.y + 2*borde)) && (y > (moneda.y - borde))){
+            nmonedas++;
+            aleatoriaM();
+        }
     }
 
-    if(jugador.monedas = 3){
-        bono = true;
-        document.getElementById("bono").innerHTML = "Recargado";
-        ctx.clearRect(moneda.x, moneda.y, borde/2, borde/2);
+    niveles(nmonedas);
+    document.getElementById("monedas").innerHTML = nmonedas ;
+}
+
+//Tren
+function colisionT(x){
+    if(jugador.bono){
+        if(x > (campo.width - 80)){
+            window.location.href = 'hasGanado.html';
+        }
+    }
+   
+}
+
+//No funciona
+//Abuelas
+function colisionAbuela(x,y){
+    if((x < (obstA.obsX + ancho)) && (x > (obstA.obsX - borde))){
+        if((y < (obstA.obsY + ancho)) && (y > (obstA.obsY - borde))){
+                tiempo--;
+            
+        }
     }
 }
+
+/*NIVELES*/
+function niveles(nmonedas){
+    if(nmonedas ==10){
+        nivel = 2;  
+    }
+    if(nmonedas == 20){
+        nivel = 3;
+    }
+    if(nmonedas == 30){
+        nivel = 4;
+    }
+    if(nmonedas == 40){
+        jugador.bono = true;
+        document.getElementById("bono").innerHTML = "Cargado";
+    }
+    document.getElementById("nivel").innerHTML = nivel;
+}
+
+
 
 function abrirP(){
     //Borrar tornos
 }
 
+function paralizarJ(x, y){
+    // 
+}
 
+function aleatoriaM(){
+    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
+    moneda.y = nAleatorio(borde, campo.height - borde);
+}
 
 
 //Nombre del formulario
@@ -234,6 +298,14 @@ function moverJ(e){
         
     }
 
+
+    colisionJ(ratonX);
+    colisionM(ratonX, ratonY);
+    colisionT(ratonX);
+    //No funciona
+    colisionAbuela(ratonX,ratonY);
+
+    
 }
 //Funciones auxiliares
 
@@ -245,43 +317,33 @@ function clear(){
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
+function esperar(mili) {
+    return new Promise(resolve => setTimeout(resolve, mili));
+}
 
-//CONTADOR
+
+
+/*CONTADOR*/
 
 function contar(){
     
-    if(nivel ==1){
-        tiempo--;
-        document.getElementById("contador1").innerHTML = String(tiempo);
-        if(tiempo>0){
-            setTimeout(contar,1000);
-        }
-        if(tiempo==0){
-          document.location.href = "gameOver.html";
-        }
+    tiempo++;
+    document.getElementById("contador1").innerHTML = String(tiempo);
+    if(tiempo>0){
+        setTimeout(contar,1000);
+    }
 
-    }else if(nivel==2){
-        tiempo2--;
-        document.getElementById("contador1").innerHTML = String(tiempo2);
-        if(tiempo2>0){
-            setTimeout(contar,1000);
-        }
-        if(tiempo2==0){
-            document.location.href = "gameOver.html";
-        }
+    if((tiempo == 15) && (nmonedas <10)){
+        window.location.href = "gameOver.html";
+    }else if((tiempo == 30) && (nmonedas <20)){
+        window.location.href = "gameOver.html";
+    }else if((tiempo == 45) && (nmonedas <30)){
+        window.location.href = "gameOver.html";
+    }   
+      
+}
 
-    }else if(nivel==3){
-        tiempo3--;
-        document.getElementById("contador1").innerHTML = String(tiempo3);
-        if(tiempo3>0){
-            setTimeout(contar,1000);
-        }
-        if(tiempo3==0){
-            document.location.href = "gameOver.html";
-        }
-    }       
-        
-};
+
 
 //JQUIRE
 

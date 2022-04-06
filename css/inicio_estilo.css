@@ -4,7 +4,7 @@ body{
     background-size: cover;
 }
 
-
+          
 .titulo{
   background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
   -webkit-background-clip: text;
@@ -21,6 +21,8 @@ body{
   font-family: texto;
   font-size: 45px;
   text-shadow: -4px 3px rgb(110, 138, 173);
+  justify-content: center;
+    margin-left: 100px;
 }
 
 /*Animacion para el usuario*/
@@ -55,6 +57,10 @@ p:nth-child(1){
 .boton{
   font-family: texto;
   font-size: 20px;
+  
+}
+
+form{
   
 }
   
