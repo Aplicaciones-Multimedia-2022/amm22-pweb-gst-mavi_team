@@ -13,7 +13,7 @@ var canvas = document.getElementById('campo');
 var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
-var monedas = [];
+
 var nmonedas = 0;
 var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
@@ -37,6 +37,14 @@ var moneda = {
     x: nAleatorio(zona + borde, campo.width - 2*zona - borde - ancho),
     y: nAleatorio(borde, campo.height - 2*borde),
     img: new Image
+};
+
+var ladron = {
+    x: nAleatorio(zona + ancho, campo.width - 2*zona - ancho),
+    y: nAleatorio(ancho, campo.height - ancho),
+    img: new Image,
+    velx: 3,
+    vely: 3
 };
 
 var tren = {
@@ -214,6 +222,12 @@ function dibujarT(){
     ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
 }
 
+function dibujarL(){
+    ladron.img.src = '../img/ladron.png';
+    ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
+} 
+    
+
 function dibujarR(){
     rail.img.src = '../img/tracks.png';
     ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
@@ -222,9 +236,19 @@ function dibujarR(){
 /*COLISIONES*/
 
 //Jugador
-function colisionJ(x){
 
-    if(jugador.bono){
+function colisionL(x, y){
+    if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
+        if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
+            if(nmonedas > 0){
+                nmonedas--;
+            }
+        }
+    }
+}
+
+function colisionJ(x){
+    if(jugador.bono){                                          //Colisiona con tren
 
     }else{
         if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
@@ -237,15 +261,17 @@ function colisionJ(x){
 //Moneda
 function colisionM(x, y){
     
-    if((x < (moneda.x + 2*borde)) && (x > (moneda.x - borde))){
-        if((y < (moneda.y + 2*borde)) && (y > (moneda.y - borde))){
+    if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
+        if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
             nmonedas++;
             aleatoriaM();
         }
     }
 
+    if(nmonedas > 9){
     niveles(nmonedas);
-    document.getElementById("monedas").innerHTML = nmonedas ;
+    }
+    document.getElementById("monedas").innerHTML = nmonedas;
 }
 
 function colisionL(x, y){
@@ -297,8 +323,6 @@ function niveles(nmonedas){
     }
     document.getElementById("nivel").innerHTML = nivel;
 }
-
-
 
 function abrirP(){
     //Borrar tornos
@@ -354,6 +378,7 @@ function moverJ(e){
 
     colisionJ(ratonX);
     colisionM(ratonX, ratonY);
+    colisionL(ratonX, ratonY);
     colisionT(ratonX);
     colisionAbuela(ratonX,ratonY);
     colisionL(ratonX, ratonY);
@@ -416,7 +441,3 @@ var resultado=$('#resultado');
 
 
 });
-
-
-
-
