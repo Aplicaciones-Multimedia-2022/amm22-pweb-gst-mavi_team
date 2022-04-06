@@ -278,6 +278,7 @@ function paralizarJ(x, y){
 
 function aleatoriaM(){
     moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
+    
     moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
