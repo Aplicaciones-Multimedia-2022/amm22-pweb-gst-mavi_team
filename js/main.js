@@ -75,7 +75,6 @@ function main(){
     
     setInterval(dibujar, 10);
     setInterval(creaObstaculo, 1000);
-
     setTimeout(contar,1000);
 }
 
@@ -105,7 +104,7 @@ function dibujar() {
 
     //colisionM();
 
-    if((ladron.x < (zona + borde + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+    if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
         ladron.velx = -ladron.velx;
     }
 
