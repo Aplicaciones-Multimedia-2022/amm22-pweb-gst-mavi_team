@@ -176,7 +176,7 @@ function dibujarL(){
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY, ancho, ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 70, obstaculosH[i].obsY, 3*ancho, 2*ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace
         if(nivel ==1){
             obstaculosH[i].obsX -= 3;
@@ -184,10 +184,10 @@ function dibujarO(){
             obstaculosH[i].obsX -= 5;
         }else if(nivel == 3){
             obstaculosH[i].obsX -= 4;
-            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, ancho, ancho);
+            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, 3*ancho, 2*ancho);
         }else if(nivel == 4){
             obstaculosH[i].obsX -= 5.5;
-            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, ancho, ancho);
+            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, 3*ancho, 2*ancho);
         }
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
