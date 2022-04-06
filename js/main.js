@@ -67,6 +67,9 @@ var zonaS = {
     img: new Image,
 };
 
+
+
+
 //Main//
 
 function main(){
@@ -234,13 +237,14 @@ function colisionT(x){
    
 }
 
-//No funciona
 //Abuelas
 function colisionAbuela(x,y){
-    if((x < (obstA.obsX + ancho)) && (x > (obstA.obsX - borde))){
-        if((y < (obstA.obsY + ancho)) && (y > (obstA.obsY - borde))){
-                tiempo--;
-            
+    for(i = 0; i < obstaculosH.length;i++){
+        if(x > (obstaculosH[i].obsX)){
+            if((y> obstaculosH[i].obsY) && y < (obstaculosH[i].obsY + borde)){
+                obstaculosH.splice(i,1);
+                tiempo++;
+            }
         }
     }
 }
@@ -322,7 +326,6 @@ function moverJ(e){
     colisionJ(ratonX);
     colisionM(ratonX, ratonY);
     colisionT(ratonX);
-    //No funciona
     colisionAbuela(ratonX,ratonY);
 
     
@@ -358,6 +361,8 @@ function contar(){
     }else if((tiempo == 30) && (nmonedas <20)){
         window.location.href = "gameOver.html";
     }else if((tiempo == 45) && (nmonedas <30)){
+        window.location.href = "gameOver.html";
+    }else if(tiempo == 60){
         window.location.href = "gameOver.html";
     }   
       
