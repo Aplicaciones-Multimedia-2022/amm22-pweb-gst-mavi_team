@@ -27,15 +27,19 @@ nav{
 }
 
 
+
+
 /*Juego*/
 p{
-    color: rgba(255, 255, 255, 0.808); 
+    color: white; 
     border: black;
     font-family: texto1; 
     font-size: 20px; 
     font-weight: 500; 
     line-height: 32px; 
     margin: 0 0 24px;
+    text-align: left;
+    
 }
 
 .subtitulo{
@@ -46,24 +50,35 @@ p{
     line-height: 32px; 
     margin: 0 0 24px;
     text-decoration: underline;
+    text-align: center;
 }
 
-section{
-    display: inline;
-    float: left;
 
-}
-
-aside{
+#derecha{
     display: inline;
     float: right;
+    margin-right: 10px;
+    background:rgb(110, 138, 173); 
+    opacity: 0.8;
+    border-radius: 0px 35px 35px 35px;
+    border: 3px solid rgb(180, 212, 238); 
+    padding: 50px;
     text-align: left;
-    
 }
 
-#izq{
-    margin-right: 70px;
+#izquierda{
+    display: inline;
+    float: left;
+    text-align: left;
+    margin-right: 10px;
+    background:rgb(110, 138, 173); 
+    border-radius: 35px 0px 35px 35px; 
+    border: 3px solid rgb(180, 212, 238);
+    text-align: center;
+    padding: 50px;
+    opacity: 0.8;
 }
+
 
 /*Contador*/
 
