@@ -345,6 +345,23 @@ function contar(){
 
 
 
+//JQUIRE
+
+$(document).ready(function(){
+
+var resultado=$('#resultado');
+
+    $('.button').click(function(){
+        $('.caja').animate({right:'100px',
+                            opacity:'0.5',
+                            height:'0', // se agranda 150 px
+                            weight:'0'
+                            },'2000');
+    });
+
+
+});
+
 
 
 
