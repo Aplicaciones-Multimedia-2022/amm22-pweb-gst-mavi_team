@@ -229,9 +229,7 @@ function colisionM(x, y){
         }
     }
 
-    if(nmonedas > 9){
     niveles(nmonedas);
-    }
     document.getElementById("monedas").innerHTML = nmonedas;
 }
 
