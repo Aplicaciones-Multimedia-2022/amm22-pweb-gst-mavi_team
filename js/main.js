@@ -19,6 +19,7 @@ var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
 var obsAbuela = new Image;
 var obstaculosH = [];
+var tarjeta = new Image;
 
 
 tiempo = 0;
@@ -65,8 +66,6 @@ var zonaS = {
     y: 0,
     img: new Image,
 };
-
-
 
 //Main//
 
@@ -258,8 +257,10 @@ function niveles(nmonedas){
         nivel = 4;
     }
     if(nmonedas == 40){
-        jugador.bono = true;
-        document.getElementById("bono").innerHTML = "Cargado";
+        jugador.bono = true;7
+        tarjeta.src = "../img/tarjetacredito.png";
+        ctx.drawImage(tarjeta, 0, ancho, ancho);
+        document.getElementById("bono").innerHTML = tarjeta.src;
     }
     document.getElementById("nivel").innerHTML = nivel;
 }
