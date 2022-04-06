@@ -79,6 +79,12 @@ var ladron = {
     vely: 3
 };
 
+var sonido = {
+    moneda: new Audio('../sonido/Moneda.mp3'),
+    abuela: null,
+    ladron: null
+};
+
 
 //Main//
 
@@ -224,6 +230,7 @@ function colisionJ(x){
 function colisionM(x, y){
     if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
         if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
+            sonido.moneda.play();
             nmonedas++;
             aleatoriaM();
         }
@@ -325,7 +332,7 @@ function moverJ(e){
     }  
 }
 
-/*Contado*/
+/*Contador*/
 function contar(){
     tiempo++;
     document.getElementById("contador1").innerHTML = String(tiempo);
