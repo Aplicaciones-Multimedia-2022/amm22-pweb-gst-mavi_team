@@ -133,6 +133,8 @@ function dibujar() {
         ladron.vely = -ladron.vely;
     }
 
+    robaM();
+
     //Moneda de mierda
 
     //Movimiento de los obstáculos
@@ -242,6 +244,14 @@ function colisionL(x, y){
             if(nmonedas > 0){
                 nmonedas--;
             }
+        }
+    }
+}
+
+function robaM(){
+    if((ladron.x < (moneda.x + ancho)) && (ladron.x > (moneda.x - ancho))){
+        if((ladron.y < (moneda.y + ancho)) && (ladron.y > (moneda.y - ancho))){
+            aleatoriaM();
         }
     }
 }
