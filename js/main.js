@@ -19,7 +19,6 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 var empezar = false;
 
-
 tiempo = 0;
 
 //Objetos//
