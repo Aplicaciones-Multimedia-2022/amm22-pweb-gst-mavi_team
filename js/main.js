@@ -15,10 +15,13 @@ var frameNo = 0;
 var nivel = 1;
 var monedas = [];
 var nmonedas = 0;
+var posJugadorX, posJugadorY = 0;
+var obsX,obsY;
+var obsAbuela = new Image;
+var obstaculosH = [];
 
-tiempo = 25;
-tiempo2 = 20;
-tiempo3 = 15;
+
+tiempo = 0;
 
 //Objetos//
 
@@ -31,8 +34,8 @@ var jugador = {
 };
 
 var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - borde),
-    y: nAleatorio(borde, campo.height - borde),
+    x: nAleatorio(zona + borde, campo.width - 2*zona - borde - ancho),
+    y: nAleatorio(borde, campo.height - 2*borde),
     img: new Image
 };
 
@@ -45,25 +48,32 @@ var ladron = {
 };
 
 var tren = {
-    x: 300,
+    x: 850,
     y: 0,
     img: new Image,
     tocaTren : false
 };
 
+var rail = {
+    x: 760,
+    y: 0,
+    img: new Image,
+    tocaRail : false
+};
 
-// var obsAbuela = {
-// };
+var torno = {
+    x: campo.width - 2*zona - borde,
+    y: 0,
+    img: new Image,
+    tocaTorno: false,
+};
+
 var zonaS = {
-    x: 85,
+    x: 30,
     y: 0,
     img: new Image,
 };
 
-var posJugadorX, posJugadorY = 0;
-var obsX,obsY;
-var obsAbuela = new Image;
-var obstaculosH = [];
 
 
 //Main//
@@ -77,20 +87,24 @@ function main(){
     setInterval(creaObstaculo, 1000);
 
     setTimeout(contar,1000);
+
 }
 
 function dibujar() {
     clear();
-
-    //Dibujar
-    dibujarJ();
+    
+    
     dibujarM();
+    dibujarZ();
+    dibujarP();
+    dibujarT();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
     }
     dibujarZ();
     dibujarP();
+    dibujarR();
     dibujarT();
     dibujarL();
 
@@ -121,7 +135,6 @@ function dibujar() {
 
     //Colisiones con obstáculos
 
-    
 }
 
 //Funciones//
@@ -132,14 +145,16 @@ function obst (posJugadorX, posJugadorY) {
     this.obsY = posJugadorY;
 }
 
-//Dibujar
+/*DIBUJAR*/
 
+//Jugador
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
     canvas.style.cursor = "none";
 }
 
+//Moneda
 function dibujarM(){
     if(jugador.bono){
         moneda.img.src = null;
@@ -149,12 +164,23 @@ function dibujarM(){
     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
+//Obstáculos
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY + 40, ancho, ancho);
-        //3 niveles, 3 velocidades distintas? con case o if se hace 
-        obstaculosH[i].obsX -= 3;
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 120, obstaculosH[i].obsY, ancho, ancho);
+        //3 niveles, 3 velocidades distintas? con case o if se hace
+        if(nivel ==1){
+            obstaculosH[i].obsX -= 3;
+        }else if(nivel == 2){
+            obstaculosH[i].obsX -= 5;
+        }else if(nivel == 3){
+            obstaculosH[i].obsX -= 4;
+            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, ancho, ancho);
+        }else if(nivel == 4){
+            obstaculosH[i].obsX -= 5.5;
+            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, ancho, ancho);
+        }
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
         }
@@ -162,37 +188,46 @@ function dibujarO(){
 }
 
 function creaObstaculo (){
-    //Funcion para generar los obstaculos, como si fuesen los objetos
     var obstA = new obst (obsX, obsY);
     obsAbuela.src = '../img/abuela.png';
-    obstA.obsX = campo.width;
+    obstA.obsX = campo.width - 300;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
 
+//Zona de seguridad
 function dibujarZ(){
-    zonaS.img.src = "../img/zona.jpeg";
-    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
+    zonaS.img.src = "../img/barranym.png";
+    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
 
 }
 
+//Torno de metro
 function dibujarP(){
-    ctx.beginPath();
-    ctx.rect(campo.width - 2*zona - borde, 0, ancho, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    torno.img.src = '../img/torno1.jpg';
+    ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
 }
 
+//Tren
 function dibujarT(){
-    tren.img.src = '../img/tren.png';
-    ctx.drawImage(tren.img, tren.x, tren.y, campo.width-800, campo.height);
+    tren.img.src = '../img/trenes1.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
 }
 
 function dibujarL(){
     ladron.img.src = '../img/ladron.png';
     ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
 } 
+    
+
+function dibujarR(){
+    rail.img.src = '../img/tracks.png';
+    ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
+}
+
+/*COLISIONES*/
+
+//Jugador
 
 function colisionL(x, y){
     if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
@@ -208,13 +243,14 @@ function colisionJ(x){
     if(jugador.bono){                                          //Colisiona con tren
 
     }else{
-        if(x > (campo.width - 2*zona - borde)){                //Colisiona con torno
-            jugador.x = campo.width - 2*zona - borde;
+        if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+            jugador.x = campo.width - 2*zona - 3*borde;
         }
     }
     
 }
 
+//Moneda
 function colisionM(x, y){
     
     if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
@@ -225,23 +261,62 @@ function colisionM(x, y){
     }
 
     if(nmonedas > 9){
+    niveles(nmonedas);
+    document.getElementById("monedas").innerHTML = nmonedas ;
+    }
+}
+
+//Tren
+function colisionT(x){
+    if(jugador.bono){
+        if(x > (campo.width - 80)){
+            window.location.href = 'hasGanado.html';
+        }
+    }
+   
+}
+
+//No funciona
+//Abuelas
+function colisionAbuela(x,y){
+    if((x < (obstA.obsX + ancho)) && (x > (obstA.obsX - borde))){
+        if((y < (obstA.obsY + ancho)) && (y > (obstA.obsY - borde))){
+                tiempo--;
+            
+        }
+    }
+}
+
+/*NIVELES*/
+function niveles(nmonedas){
+    if(nmonedas ==10){
+        nivel = 2;  
+    }
+    if(nmonedas == 20){
+        nivel = 3;
+    }
+    if(nmonedas == 30){
+        nivel = 4;
+    }
+    if(nmonedas == 40){
         jugador.bono = true;
         document.getElementById("bono").innerHTML = "Cargado";
     }
-    document.getElementById("monedas").innerHTML = nmonedas;
+    document.getElementById("nivel").innerHTML = nivel;
 }
 
-function conta_abuela(){
-    for(var i = 0; i < obstaculosH.length ;i++){
-        if( jugador.x>obstaculosH[i].obsX){
-            if (jugador.y > obstaculosH[i].obsY && jugador.y < obstaculosH[i].obsY + 25){
-                obstaculosH.splice(i,1);
-            }
-        }
+// function conta_abuela(){
+//     for(var i = 0; i < obstaculosH.length ;i++){
+//         if( jugador.x>obstaculosH[i].obsX){
+//             if (jugador.y > obstaculosH[i].obsY && jugador.y < obstaculosH[i].obsY + 25){
+//                 obstaculosH.splice(i,1);
+//             }
+//         }
+
+//     }
+// }
       
 
-    }
-}
 
 function abrirP(){
     //Borrar tornos
@@ -255,8 +330,6 @@ function aleatoriaM(){
     moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - borde);
     moneda.y = nAleatorio(borde, campo.height - borde);
 }
-
-
 
 
 //Nombre del formulario
@@ -296,11 +369,17 @@ function moverJ(e){
         
     }
 
+
     colisionJ(ratonX);
     colisionM(ratonX, ratonY);
     colisionL(ratonX, ratonY);
+    colisionT(ratonX);
+    //No funciona
+    colisionAbuela(ratonX,ratonY);
+
     
 }
+
 //Funciones auxiliares
 
 function nAleatorio(min, max) {
@@ -316,43 +395,41 @@ function esperar(mili) {
 }
 
 
-//CONTADOR
+//Contador
 
 function contar(){
     
-    if(nivel ==1){
-        tiempo--;
-        document.getElementById("contador1").innerHTML = String(tiempo);
-        if(tiempo>0){
-            setTimeout(contar,1000);
-        }
-        if(tiempo==0){
-          document.location.href = "gameOver.html";
-        }
+    tiempo++;
+    document.getElementById("contador1").innerHTML = String(tiempo);
+    if(tiempo>0){
+        setTimeout(contar,1000);
+    }
 
-    }else if(nivel==2){
-        tiempo2--;
-        document.getElementById("contador1").innerHTML = String(tiempo2);
-        if(tiempo2>0){
-            setTimeout(contar,1000);
-        }
-        if(tiempo2==0){
-            document.location.href = "gameOver.html";
-        }
-
-    }else if(nivel==3){
-        tiempo3--;
-        document.getElementById("contador1").innerHTML = String(tiempo3);
-        if(tiempo3>0){
-            setTimeout(contar,1000);
-        }
-        if(tiempo3==0){
-            document.location.href = "gameOver.html";
-        }
-    }       
-        
-};
+    if((tiempo == 15) && (nmonedas <10)){
+        window.location.href = "gameOver.html";
+    }else if((tiempo == 30) && (nmonedas <20)){
+        window.location.href = "gameOver.html";
+    }else if((tiempo == 45) && (nmonedas <30)){
+        window.location.href = "gameOver.html";
+    }   
+      
+}
 
 
 
+//JQUIRE
 
+$(document).ready(function(){
+
+var resultado=$('#resultado');
+
+    $('.button').click(function(){
+        $('.caja').animate({right:'100px',
+                            opacity:'0.5',
+                            height:'0', // se agranda 150 px
+                            weight:'0'
+                            },'2000');
+    });
+
+
+});

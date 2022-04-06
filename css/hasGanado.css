@@ -1,70 +1,39 @@
 /*Para el cuerpo pagina*/
 body{
     background-image: url(../img/fondo.jpeg);
-    background-size: cover
+    background-size: cover;
 }
 
 /*Titulos y parrafos*/
-
-.titulo3{
-    background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
-    -webkit-background-clip: text;
-    color: transparent; 
+#win{
     font-family: texto1;
+    font-size: 100px;
     text-align: center;
-    font-size: 70px;
-    text-shadow: -4px 3px rgb(110, 138, 173);
-}
-
-#titulo{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 40px;
-}
-#titulo1{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 70px;
-}
-#titulo2{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 100px;
-}
-#titulo4{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 210px;
-}
-#titulo5{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 90px;
-}
-
-#texto{
-    font-family: texto1;
-    font-size: 20px;
+    margin-top: 150px;
     color: white;
-    margin-left: 50px;
+}
+
+#win1{
+    font-family: texto1;
+    font-size: 80px;
+    text-align: center;
+    margin-top: 100px;
+    color: white;
 }
 
 
-/*Botones*/
-
-nav{
+#nav1{
     margin: auto;
     background-color: inherit;
     display: flex;
-    align-items: center;
+    align-self: center;
     justify-content: center;
     font-family: texto1;
+    margin-top: 300px;
+    
 }
+
+/*Botones*/
 
 button{
     display: inline-block;

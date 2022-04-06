@@ -13,13 +13,13 @@ body{
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /*Botones*/
-
-
 nav{
-    margin: auto;
+    margin: 5px;
     background-color: inherit;
     display: flex;
     align-items: center;
@@ -53,22 +53,87 @@ button:hover{
     box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
     transform: scale(1.01);
 }
+h1{
+    font-family: texto1;
+    color:white;
+    margin-left: 125px;
+    margin-top: 2px;
+    margin-bottom:2px;
+}
 
-.caja { 
+.caja_right { 
+    text-align: center; 
+    background:rgb(110, 138, 173); 
+    margin: 8px; 
+    margin-left: 125px;
+    margin-right: 50px;
+    overflow: hidden; 
+    padding: 80px; 
+    border-radius: 0px 35px 35px 35px; 
+    -moz-border-radius: 0px 35px 35px 35px; 
+    -webkit-border-radius: 0px 35px 35px 35px; 
+    border: 5px solid rgb(180, 212, 238);
+    animation-duration: 4s;
+    animation-name: slidein_left;
+    animation-iteration-count: 1;
+/* 
+    animation: slide-in-rigth 3s ease-in-out both; */
+}
+.caja_left{
+    text-align: center; 
+    background:rgb(110, 138, 173); 
+    margin: 8px; 
+    margin-left: 125px;
+    margin-right: 50px;
+    overflow: hidden; 
+    padding: 80px; 
+    border-radius: 35px 0px 35px 35px; 
+    -moz-border-radius: 35px 0px 35px 35px; 
+    -webkit-border-radius: 35px 0px 35px 35px; 
+    border: 5px solid rgb(180, 212, 238);
+    animation-duration: 3s;
+    animation-name: slidein_right;
+    animation-iteration-count: 1;
+}
+
+.caja_right p{
     font-family:texto1; 
     color: #ffffff; 
     font-size: 18px; 
     font-weight: 400; 
-    text-align: center; 
-    background:  rgb(189, 185, 185); 
-    margin: none; 
-    overflow: hidden; 
-    padding: 70px; 
-    border-radius: 0px 35px 35px 35px; 
-    -moz-border-radius: 0px 35px 35px 35px; 
-    -webkit-border-radius: 0px 35px 35px 35px; 
-    border: 5px solid #808080;
 }
+.caja_left p{
+    font-family:texto1; 
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 400; 
+}
+
+
+
+@keyframes slidein_left{
+    from {
+        margin-left:0%;
+        width:0%;
+    }
+    to{
+        margin-left:10%;
+        margin-right: 10%;
+        width:72.5%;
+    }
+}
+@keyframes slidein_right{
+    from {
+       margin-left:100%;
+        width:10%;
+    }
+    to{
+        margin-right:10%;
+        margin-right: 10%;
+        width:72.5%;
+    }
+}
+
 
 /*Tipo de letra*/
 @font-face{
