@@ -40,14 +40,28 @@ var moneda = {
 };
 
 var tren = {
-    x: 875,
+    x: 850,
     y: 0,
     img: new Image,
     tocaTren : false
 };
 
+var rail = {
+    x: 760,
+    y: 0,
+    img: new Image,
+    tocaRail : false
+};
+
+var torno = {
+    x: campo.width - 2*zona - borde,
+    y: 0,
+    img: new Image,
+    tocaTorno: false,
+};
+
 var zonaS = {
-    x: 85,
+    x: 30,
     y: 0,
     img: new Image,
 };
@@ -80,6 +94,10 @@ function dibujar() {
         dibujarO();
         i = 0;
     }
+    dibujarZ();
+    dibujarP();
+    dibujarR();
+    dibujarT();
     dibujarJ();
 
     //Movimiento del jugador
@@ -147,34 +165,35 @@ function dibujarO(){
 }
 
 function creaObstaculo (){
-    //Funcion para generar los obstaculos, como si fuesen los objetos
     var obstA = new obst (obsX, obsY);
     obsAbuela.src = '../img/abuela.png';
-    obstA.obsX = campo.width;
+    obstA.obsX = campo.width - 300;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
 
 //Zona de seguridad
 function dibujarZ(){
-    zonaS.img.src = "../img/zona.jpeg";
-    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,borde,campo.height);
+    zonaS.img.src = "../img/barranym.png";
+    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
 
 }
 
 //Torno de metro
 function dibujarP(){
-    ctx.beginPath();
-    ctx.rect(campo.width - 2*zona - borde, 0, ancho, campo.height);
-    ctx.fillStyle = "gray";
-    ctx.fill();
-    ctx.closePath();
+    torno.img.src = '../img/torno1.jpg';
+    ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
 }
 
 //Tren
 function dibujarT(){
-    tren.img.src = '../img/tren.jpeg';
-    ctx.drawImage(tren.img, tren.x, tren.y, 80, campo.height);
+    tren.img.src = '../img/trenes1.png';
+    ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
+}
+
+function dibujarR(){
+    rail.img.src = '../img/tracks.png';
+    ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
 }
 
 /*COLISIONES*/
@@ -307,6 +326,7 @@ function moverJ(e){
 
     
 }
+
 //Funciones auxiliares
 
 function nAleatorio(min, max) {
@@ -322,8 +342,7 @@ function esperar(mili) {
 }
 
 
-
-/*CONTADOR*/
+//Contador
 
 function contar(){
     
