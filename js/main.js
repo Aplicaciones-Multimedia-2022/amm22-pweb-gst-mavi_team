@@ -197,7 +197,7 @@ function dibujarO(){
 
 function creaObstaculo (){
     var obstA = new obst (obsX, obsY);
-    obsAbuela.src = '../img/abuela.png';
+    obsAbuela.src = '../img/abuela1.png';
     obstA.obsX = campo.width - 300;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
