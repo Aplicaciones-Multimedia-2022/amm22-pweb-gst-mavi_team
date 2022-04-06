@@ -74,6 +74,13 @@ var zonaS = {
     img: new Image,
 };
 
+var ladron = {
+    x: nAleatorio(zona + ancho + borde, campo.width - 2*zona - ancho - borde),
+    y: nAleatorio(ancho + borde, campo.height - ancho - borde),
+    img: new Image,
+    velx: 3,
+    vely: 3
+};
 
 
 //Main//
@@ -92,7 +99,9 @@ function main(){
 
 function dibujar() {
     clear();
-    
+
+    ladron.x += ladron.velx;
+    ladron.y += ladron.vely;
     
     dibujarM();
     dibujarZ();
@@ -106,24 +115,18 @@ function dibujar() {
     dibujarP();
     dibujarR();
     dibujarT();
+    dibujarJ();
     dibujarL();
-
-    ladron.x += ladron.velx;
-    ladron.y += ladron.vely;
-
-    //Contador
-
-    conta_abuela();
 
     //Movimiento del jugador
 
     //colisionM();
 
-    if((ladron.x < (zona + borde + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+    if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
         ladron.velx = -ladron.velx;
     }
 
-    if(ladron.y < (borde + ancho) || (ladron.y > (campo.height - borde - ancho))){
+    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
         ladron.vely = -ladron.vely;
     }
 
@@ -162,6 +165,11 @@ function dibujarM(){
         moneda.img.src = '../img/moneda.png';
     }
     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
+}
+
+function dibujarL(){
+    ladron.img.src = '../img/ladron.png';
+    ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
 }
 
 //Obstáculos
@@ -266,6 +274,16 @@ function colisionM(x, y){
     }
 }
 
+function colisionL(x, y){
+    if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
+        if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
+            if(nmonedas > 0){
+                nmonedas--;
+            }
+        }
+    }
+}
+
 //Tren
 function colisionT(x){
     if(jugador.bono){
@@ -276,13 +294,14 @@ function colisionT(x){
    
 }
 
-//No funciona
 //Abuelas
 function colisionAbuela(x,y){
-    if((x < (obstA.obsX + ancho)) && (x > (obstA.obsX - borde))){
-        if((y < (obstA.obsY + ancho)) && (y > (obstA.obsY - borde))){
-                tiempo--;
-            
+    for(i = 0; i < obstaculosH.length;i++){
+        if(x > (obstaculosH[i].obsX)){
+            if((y> obstaculosH[i].obsY) && y < (obstaculosH[i].obsY + borde)){
+                obstaculosH.splice(i,1);
+                tiempo++;
+            }
         }
     }
 }
@@ -374,8 +393,8 @@ function moverJ(e){
     colisionM(ratonX, ratonY);
     colisionL(ratonX, ratonY);
     colisionT(ratonX);
-    //No funciona
     colisionAbuela(ratonX,ratonY);
+    colisionL(ratonX, ratonY);
 
     
 }
@@ -410,6 +429,8 @@ function contar(){
     }else if((tiempo == 30) && (nmonedas <20)){
         window.location.href = "gameOver.html";
     }else if((tiempo == 45) && (nmonedas <30)){
+        window.location.href = "gameOver.html";
+    }else if(tiempo == 60){
         window.location.href = "gameOver.html";
     }   
       
