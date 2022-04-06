@@ -327,7 +327,7 @@ function moverJ(e){
     }  
 }
 
-//Contador
+/*Contado*/
 function contar(){
     tiempo++;
     document.getElementById("contador1").innerHTML = String(tiempo);
@@ -362,7 +362,7 @@ function clear(){                                                           //Li
 }
 
 
-//Nombre del formulario
+/*Relacionados con HTML*/
 
 function getNombre(name, url){
     if (!url){
