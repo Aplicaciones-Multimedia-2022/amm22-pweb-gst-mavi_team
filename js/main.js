@@ -66,7 +66,13 @@ var zonaS = {
     img: new Image,
 };
 
-
+var ladron = {
+    x: nAleatorio(zona + ancho + borde, campo.width - 2*zona - ancho - borde),
+    y: nAleatorio(ancho + borde, campo.height - ancho - borde),
+    img: new Image,
+    velx: 3,
+    vely: 3
+};
 
 
 //Main//
@@ -85,7 +91,9 @@ function main(){
 
 function dibujar() {
     clear();
-    
+
+    ladron.x += ladron.velx;
+    ladron.y += ladron.vely;
     
     dibujarM();
     dibujarZ();
@@ -100,10 +108,19 @@ function dibujar() {
     dibujarR();
     dibujarT();
     dibujarJ();
+    dibujarL();
 
     //Movimiento del jugador
 
     //colisionM();
+
+    if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+        ladron.velx = -ladron.velx;
+    }
+
+    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
+        ladron.vely = -ladron.vely;
+    }
 
     //Moneda de mierda
 
@@ -140,6 +157,11 @@ function dibujarM(){
         moneda.img.src = '../img/moneda.png';
     }
     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
+}
+
+function dibujarL(){
+    ladron.img.src = '../img/ladron.png';
+    ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
 }
 
 //Obstáculos
@@ -224,6 +246,16 @@ function colisionM(x, y){
 
     niveles(nmonedas);
     document.getElementById("monedas").innerHTML = nmonedas ;
+}
+
+function colisionL(x, y){
+    if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
+        if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
+            if(nmonedas > 0){
+                nmonedas--;
+            }
+        }
+    }
 }
 
 //Tren
@@ -324,6 +356,7 @@ function moverJ(e){
     colisionM(ratonX, ratonY);
     colisionT(ratonX);
     colisionAbuela(ratonX,ratonY);
+    colisionL(ratonX, ratonY);
 
     
 }
