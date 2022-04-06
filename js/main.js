@@ -270,8 +270,8 @@ function colisionM(x, y){
 
     if(nmonedas > 9){
     niveles(nmonedas);
-    document.getElementById("monedas").innerHTML = nmonedas ;
     }
+    document.getElementById("monedas").innerHTML = nmonedas;
 }
 
 function colisionL(x, y){
@@ -323,19 +323,6 @@ function niveles(nmonedas){
     }
     document.getElementById("nivel").innerHTML = nivel;
 }
-
-// function conta_abuela(){
-//     for(var i = 0; i < obstaculosH.length ;i++){
-//         if( jugador.x>obstaculosH[i].obsX){
-//             if (jugador.y > obstaculosH[i].obsY && jugador.y < obstaculosH[i].obsY + 25){
-//                 obstaculosH.splice(i,1);
-//             }
-//         }
-
-//     }
-// }
-      
-
 
 function abrirP(){
     //Borrar tornos
