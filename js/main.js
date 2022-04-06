@@ -19,6 +19,7 @@ var posJugadorX, posJugadorY = 0;
 var obsX,obsY;
 var obsAbuela = new Image;
 var obstaculosH = [];
+var empezar = false;
 
 
 tiempo = 0;
@@ -86,6 +87,7 @@ var ladron = {
 //Main//
 
 function main(){
+    empezar = true;
 
     obsX = canvas.height;
     obsY = canvas.width;
@@ -94,6 +96,7 @@ function main(){
     setInterval(creaObstaculo, 1000);
 
     setTimeout(contar,1000);
+    
 
 }
 
@@ -137,8 +140,8 @@ function dibujar() {
     //Colisiones con bordes
 
     //Colisiones con obstáculos
-
-}
+    }
+    
 
 //Funciones//
 
@@ -376,13 +379,15 @@ function moverJ(e){
         
     }
 
-
-    colisionJ(ratonX);
-    colisionM(ratonX, ratonY);
-    colisionL(ratonX, ratonY);
-    colisionT(ratonX);
-    colisionAbuela(ratonX,ratonY);
-    colisionL(ratonX, ratonY);
+    if(empezar){
+        colisionJ(ratonX);
+        colisionM(ratonX, ratonY);
+        colisionL(ratonX, ratonY);
+        colisionT(ratonX);
+        colisionAbuela(ratonX,ratonY);
+        colisionL(ratonX, ratonY);
+    }
+   
 
     
 }
