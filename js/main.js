@@ -13,7 +13,7 @@ var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
 var nmonedas = 0;
-                                                //Variables para los obstáculos
+//Variables para los obstáculos
 var obsX,obsY;
 var obsAbuela = new Image;
 var obstaculosH = [];
@@ -106,15 +106,12 @@ function dibujar() {
     ladron.y += ladron.vely;
     
     dibujarM();
-    dibujarZ();
     dibujarP();
-    dibujarT();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
     }
     dibujarZ();
-    dibujarP();
     dibujarR();
     dibujarT();
     dibujarJ();
@@ -249,8 +246,8 @@ function creaObstaculo (){                                          //Crea las a
 
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
-        if(x > (obstaculosH[i].obsX)){
-            if((y> obstaculosH[i].obsY) && y < (obstaculosH[i].obsY + borde)){
+        if(x >= (obstaculosH[i].obsX) || y>= (obstaculosH[i].obsX)){
+            if(((y>= obstaculosH[i].obsY) && y <= (obstaculosH[i].obsY)) || ((x>= obstaculosH[i].obsY) && y <= (obstaculosH[i].obsY))){
                 obstaculosH.splice(i,1);
                 tiempo++;
             }
@@ -354,11 +351,11 @@ function contar(){
         setTimeout(contar,1000);
     }
 
-    if((tiempo == 15) && (nmonedas <10)){
+    if((tiempo > 15) && (nmonedas <10)){
         window.location.href = "gameOver.html";
-    }else if((tiempo == 30) && (nmonedas <20)){
+    }else if((tiempo > 30) && (nmonedas <20)){
         window.location.href = "gameOver.html";
-    }else if((tiempo == 45) && (nmonedas <30)){
+    }else if((tiempo >45 ) && (nmonedas <30)){
         window.location.href = "gameOver.html";
     }else if(tiempo == 60){
         window.location.href = "gameOver.html";
