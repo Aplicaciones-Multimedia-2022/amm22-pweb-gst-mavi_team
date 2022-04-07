@@ -83,7 +83,7 @@ var ladron = {
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
     abuela: new Audio('../sonido/gameOver.mp3'),
-    ladron: null
+    torno: null
 };
 
 
@@ -277,10 +277,12 @@ function colisionT(x){
 //Ladron
 
 function colisionL(x, y){
-    if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
-        if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
+    if((x < (ladron.x + ancho)) && ((x + ancho) > ladron.x)){
+        if((y < (ladron.y + ancho)) && ((y + ancho) > ladron.y)){
             if(nmonedas > 0){
                 nmonedas--;
+                ladron.velx = -ladron.velx;
+                ladron.vely = -ladron.vely;
             }
         }
     }
@@ -346,9 +348,11 @@ function moverJ(e){
     if(empezar){
         colisionJ(ratonX);
         colisionM(ratonX, ratonY);
-        colisionL(ratonX, ratonY);
         colisionT(ratonX);
         colisionAbuela(ratonX,ratonY);
+        if(nivel % 2 == 0){
+            colisionL(ratonX, ratonY);
+        }
     }  
 }
 
