@@ -13,11 +13,12 @@ var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
 var nmonedas = 0;
-                                                //Variables para los obstáculos
+//Variables para los obstáculos
 var obsX,obsY;
 var obsAbuela = new Image;
 var obstaculosH = [];
 var empezar = false;
+var contadorAbuela = 0;
 
 tiempo = 0;
 
@@ -86,6 +87,7 @@ var sonido = {
     // abuela: new Audio('../sonido/GolpeAbuela2.wav'),
     // abuela: new Audio('../sonido/GolpeAbuela3.wav'),
     abuela: new Audio('../sonido/GolpeAbuela4.mp3'),
+    //abuela: new Audio('../sonido/gameOver.mp3'),
     ladron: null
 };
 
@@ -110,15 +112,12 @@ function dibujar() {
     ladron.y += ladron.vely;
     
     dibujarM();
-    dibujarZ();
     dibujarP();
-    dibujarT();
     if (obstaculosH.length != 0) {
         dibujarO();
         i = 0;
     }
     dibujarZ();
-    dibujarP();
     dibujarR();
     dibujarT();
     dibujarJ();
@@ -126,14 +125,7 @@ function dibujar() {
 
     //Colisiones:
 
-    if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
-        ladron.velx = -ladron.velx;
-    }
-
-    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
-        ladron.vely = -ladron.vely;
-    }
-
+    bordesL();
     robaM();
 }
     
@@ -187,6 +179,7 @@ function dibujarO(){
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
         }
+
     }
 }
 
@@ -198,7 +191,12 @@ function dibujarZ(){
 
 //Torno de metro
 function dibujarP(){
-    torno.img.src = '../img/torno1.jpg';
+    if(jugador.bono){
+        torno.img.src = null;
+    }else{
+        torno.img.src = '../img/torno1.jpg';
+    }
+    
     ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
 }
 
@@ -258,15 +256,22 @@ function creaObstaculo (){                                          //Crea las a
 
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
-        if(x > (obstaculosH[i].obsX)){
-            if((y> obstaculosH[i].obsY) && y < (obstaculosH[i].obsY + borde)){
-                sonido.abuela.play();
-                obstaculosH.splice(i,1);
-                tiempo++;
+        if((x > obstaculosH[i].obsX || x < obstaculosH[i].obsX)){
+            if((y > obstaculosH[i].obsY) && y < (borde + obstaculosH[i].obsY )){
+                if((jugador.x > obstaculosH[i].obsX) || (jugador.x < obstaculosH[i].obsX)){
+                    if((jugador.y > borde +obstaculosH[i].obsX) || (jugador.y < borde -obstaculosH[i].obsX)){
+                        sonido.abuela.play();
+                        obstaculosH.splice(i,1);
+                        tiempo++;
+                        contadorAbuela++;
+                    }
+                }
             }
         }
     }
+    document.getElementById('abuela').innerHTML = contadorAbuela;
 }
+
 
 //Tren
 function colisionT(x){
@@ -287,6 +292,22 @@ function colisionL(x, y){
                 nmonedas--;
             }
         }
+    }
+}
+
+function bordesL(){
+    if(jugador.bono){
+        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - borde - ancho))){
+            ladron.velx = -ladron.velx;
+        }
+    }else{
+        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+            ladron.velx = -ladron.velx;
+        }
+    }
+    
+    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
+        ladron.vely = -ladron.vely;
     }
 }
 
@@ -348,11 +369,11 @@ function contar(){
         setTimeout(contar,1000);
     }
 
-    if((tiempo == 15) && (nmonedas <10)){
+    if((tiempo > 15) && (nmonedas <10)){
         window.location.href = "gameOver.html";
-    }else if((tiempo == 30) && (nmonedas <20)){
+    }else if((tiempo > 30) && (nmonedas <20)){
         window.location.href = "gameOver.html";
-    }else if((tiempo == 45) && (nmonedas <30)){
+    }else if((tiempo >45 ) && (nmonedas <30)){
         window.location.href = "gameOver.html";
     }else if(tiempo == 60){
         window.location.href = "gameOver.html";
