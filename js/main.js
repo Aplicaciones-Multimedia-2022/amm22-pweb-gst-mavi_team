@@ -127,8 +127,8 @@ function dibujar() {
 //Funciones//
 
 function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
-    this.obsX = posJugadorX;
-    this.obsY = posJugadorY;
+    this.posJugadorX = posJugadorX;
+    this.posJugadorY = posJugadorY;
 }
 
 /*DIBUJAR*/
@@ -137,7 +137,7 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    canvas.style.cursor = "none";
+    //canvas.style.cursor = "none";
 }
 
 //Moneda
@@ -249,9 +249,9 @@ function creaObstaculo (){                                          //Crea las a
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
         if((x > obstaculosH[i].obsX || x < obstaculosH[i].obsX)){
-            if((y > obstaculosH[i].obsY) && y < (borde + obstaculosH[i].obsY )){
+            if((y > borde- obstaculosH[i].obsY) && y < (borde + obstaculosH[i].obsY )){
                 if((jugador.x > obstaculosH[i].obsX) || (jugador.x < obstaculosH[i].obsX)){
-                    if((jugador.y > borde +obstaculosH[i].obsX) || (jugador.y < borde -obstaculosH[i].obsX)){
+                    if((jugador.y > borde + obstaculosH[i].obsX) || (jugador.y < borde - obstaculosH[i].obsX-borde)){
                         obstaculosH.splice(i,1);
                         tiempo++;
                         contadorAbuela++;
