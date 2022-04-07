@@ -88,7 +88,7 @@ var sonido = {
     // abuela: new Audio('../sonido/GolpeAbuela3.wav'),
     abuela: new Audio('../sonido/GolpeAbuela4.mp3'),
     //abuela: new Audio('../sonido/gameOver.mp3'),
-    ladron: null
+    tornito: new Audio('../sonido/torno.wav'),
 };
 
 
@@ -192,6 +192,7 @@ function dibujarZ(){
 //Torno de metro
 function dibujarP(){
     if(jugador.bono){
+        tornito.play();
         torno.img.src = null;
     }else{
         torno.img.src = '../img/torno1.jpg';
