@@ -21,7 +21,6 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 var empezar = false;
 
-
 tiempo = 0;
 
 //Objetos//
@@ -151,7 +150,11 @@ function obst (posJugadorX, posJugadorY) {
     this.obsY = posJugadorY;
 }
 
-/*DIBUJAR*/
+function sonido(src) {
+
+}
+
+//DIBUJAR//
 
 //Jugador
 function dibujarJ(){
