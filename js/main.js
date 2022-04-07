@@ -81,7 +81,11 @@ var ladron = {
 
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
-    abuela: null,
+    // abuela: new Audio('../sonido/GolpeAbuela.mp3'),
+    // abuela: new Audio('../sonido/GolpeAbuela1.mp3'),
+    // abuela: new Audio('../sonido/GolpeAbuela2.wav'),
+    // abuela: new Audio('../sonido/GolpeAbuela3.wav'),
+    abuela: new Audio('../sonido/GolpeAbuela4.mp3'),
     ladron: null
 };
 
@@ -169,8 +173,7 @@ function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
         ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 70, obstaculosH[i].obsY, 3*ancho, 2*ancho);
-        //3 niveles, 3 velocidades distintas? con case o if se hace
-        if(nivel ==1){
+        if(nivel == 1){
             obstaculosH[i].obsX -= 3;
         }else if(nivel == 2){
             obstaculosH[i].obsX -= 5;
@@ -257,6 +260,7 @@ function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
         if(x > (obstaculosH[i].obsX)){
             if((y> obstaculosH[i].obsY) && y < (obstaculosH[i].obsY + borde)){
+                sonido.abuela.play();
                 obstaculosH.splice(i,1);
                 tiempo++;
             }
