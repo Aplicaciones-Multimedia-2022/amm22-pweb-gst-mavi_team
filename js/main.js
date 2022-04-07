@@ -122,14 +122,7 @@ function dibujar() {
 
     //Colisiones:
 
-    if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
-        ladron.velx = -ladron.velx;
-    }
-
-    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
-        ladron.vely = -ladron.vely;
-    }
-
+    bordesL();
     robaM();
 }
     
@@ -146,7 +139,7 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    canvas.style.cursor = "none";
+    //canvas.style.cursor = "none";
 }
 
 //Moneda
@@ -191,7 +184,12 @@ function dibujarZ(){
 
 //Torno de metro
 function dibujarP(){
-    torno.img.src = '../img/torno1.jpg';
+    if(jugador.bono){
+        torno.img.src = null;
+    }else{
+        torno.img.src = '../img/torno1.jpg';
+    }
+    
     ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
 }
 
@@ -279,6 +277,22 @@ function colisionL(x, y){
                 nmonedas--;
             }
         }
+    }
+}
+
+function bordesL(){
+    if(jugador.bono){
+        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - borde - ancho))){
+            ladron.velx = -ladron.velx;
+        }
+    }else{
+        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+            ladron.velx = -ladron.velx;
+        }
+    }
+    
+    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
+        ladron.vely = -ladron.vely;
     }
 }
 
