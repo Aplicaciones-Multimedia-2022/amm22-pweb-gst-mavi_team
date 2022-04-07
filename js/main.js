@@ -18,6 +18,7 @@ var obsX,obsY;
 var obsAbuela = new Image;
 var obstaculosH = [];
 var empezar = false;
+var contadorAbuela = 0;
 
 tiempo = 0;
 
@@ -81,7 +82,7 @@ var ladron = {
 
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
-    abuela: null,
+    abuela: new Audio('../sonido/gameOver.mp3'),
     ladron: null
 };
 
@@ -136,7 +137,7 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    //canvas.style.cursor = "none";
+    canvas.style.cursor = "none";
 }
 
 //Moneda
@@ -154,7 +155,7 @@ function dibujarM(){
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 70, obstaculosH[i].obsY, 3*ancho, 2*ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 70, obstaculosH[i].obsY - borde, 3*ancho, 2*ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace
         if(nivel ==1){
             obstaculosH[i].obsX -= 3;
@@ -170,6 +171,7 @@ function dibujarO(){
         if(obstaculosH[i].obsX < 0) {
             obstaculosH.splice(i,1);
         }
+
     }
 }
 
@@ -246,14 +248,21 @@ function creaObstaculo (){                                          //Crea las a
 
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
-        if(x >= (obstaculosH[i].obsX) || y>= (obstaculosH[i].obsX)){
-            if(((y>= obstaculosH[i].obsY) && y <= (obstaculosH[i].obsY)) || ((x>= obstaculosH[i].obsY) && y <= (obstaculosH[i].obsY))){
-                obstaculosH.splice(i,1);
-                tiempo++;
+        if((x > obstaculosH[i].obsX || x < obstaculosH[i].obsX)){
+            if((y > obstaculosH[i].obsY) && y < (borde + obstaculosH[i].obsY )){
+                if((jugador.x > obstaculosH[i].obsX) || (jugador.x < obstaculosH[i].obsX)){
+                    if((jugador.y > borde +obstaculosH[i].obsX) || (jugador.y < borde -obstaculosH[i].obsX)){
+                        obstaculosH.splice(i,1);
+                        tiempo++;
+                        contadorAbuela++;
+                    }
+                }
             }
         }
     }
+    document.getElementById('abuela').innerHTML = contadorAbuela;
 }
+
 
 //Tren
 function colisionT(x){
