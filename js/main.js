@@ -131,6 +131,8 @@ function dibujar() {
     
 //Funciones//
 
+
+
 function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
     this.posJugadorX = posJugadorX;
     this.posJugadorY = posJugadorY;
@@ -159,6 +161,20 @@ function dibujarM(){
     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }    
+}
 
 //Obstáculos
 function dibujarO(){
@@ -258,6 +274,7 @@ function creaObstaculo (){                                          //Crea las a
 
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
+        
         if(((obstaculosH[i].obsX - (x+ancho) < borde) &&(( x- (obstaculosH[i].obsX + 3*ancho)) < borde))){
             if(((x + ancho) < obstaculosH[i].obsX) || (x > (obstaculosH[i].obsX + 3*ancho))){
                 if(((y > obstaculosH[i].obsY) && (y + ancho) < (obstaculosH[i].obsY +2*ancho)) || ((y > obstaculosH[i].obsY) &&((y+ancho) < (obstaculosH[i].obsY+2*ancho)))){
