@@ -232,7 +232,7 @@ function creaObstaculo (){                                          //Crea las a
     var obstA = new obst (obsX, obsY);
     obsAbuela.src = '../img/abuela1.png';
     obstA.obsX = campo.width - 250;
-    obstA.obsY = Math.floor(Math.random() * (campo.height-50));
+    obstA.obsY = Math.floor(Math.random() * (campo.height - 2*ancho));
     obstaculosH.push(obstA);
 }
 
