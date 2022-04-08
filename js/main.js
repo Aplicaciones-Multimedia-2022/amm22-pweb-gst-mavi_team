@@ -248,8 +248,8 @@ function creaObstaculo (){                                          //Crea las a
 
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
-        if(((obstaculosH[i].obsX - (x+ancho) < borde) &&(( x- (obstaculosH[i].obsX + 3*ancho)) < borde))){
-            if(((x + ancho) < obstaculosH[i].obsX) || (x > (obstaculosH[i].obsX + 3*ancho))){
+        if(((obstaculosH[i].obsX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsX + 3*ancho)) < borde))){
+            if(((x+ancho) < obstaculosH[i].obsX) || (x > (obstaculosH[i].obsX + 3*ancho))){
                 if(((y > obstaculosH[i].obsY) && (y + ancho) < (obstaculosH[i].obsY +2*ancho)) || ((y > obstaculosH[i].obsY) &&((y+ancho) < (obstaculosH[i].obsY+2*ancho)))){
                     obstaculosH.splice(i,1);
                     tiempo++;
@@ -359,15 +359,15 @@ function contar(){
         setTimeout(contar,1000);
     }
 
-    if((tiempo > 15) && (nmonedas <10)){
-        window.location.href = "gameOver.html";
-    }else if((tiempo > 30) && (nmonedas <20)){
-        window.location.href = "gameOver.html";
-    }else if((tiempo >45 ) && (nmonedas <30)){
-        window.location.href = "gameOver.html";
-    }else if(tiempo == 60){
-        window.location.href = "gameOver.html";
-    }   
+    // if((tiempo > 15) && (nmonedas <10)){
+    //     window.location.href = "gameOver.html";
+    // }else if((tiempo > 30) && (nmonedas <20)){
+    //     window.location.href = "gameOver.html";
+    // }else if((tiempo >45 ) && (nmonedas <30)){
+    //     window.location.href = "gameOver.html";
+    // }else if(tiempo == 60){
+    //     window.location.href = "gameOver.html";
+    // }   
 }
 
 /*Auxiliares*/
