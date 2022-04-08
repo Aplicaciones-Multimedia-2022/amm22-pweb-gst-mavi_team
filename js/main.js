@@ -359,15 +359,15 @@ function contar(){
         setTimeout(contar,1000);
     }
 
-    // if((tiempo > 15) && (nmonedas <10)){
-    //     window.location.href = "gameOver.html";
-    // }else if((tiempo > 30) && (nmonedas <20)){
-    //     window.location.href = "gameOver.html";
-    // }else if((tiempo >45 ) && (nmonedas <30)){
-    //     window.location.href = "gameOver.html";
-    // }else if(tiempo == 60){
-    //     window.location.href = "gameOver.html";
-    // }   
+    if((tiempo > 15) && (nmonedas <10)){
+        window.location.href = "gameOver.html";
+    }else if((tiempo > 30) && (nmonedas <20)){
+        window.location.href = "gameOver.html";
+    }else if((tiempo >45 ) && (nmonedas <30)){
+        window.location.href = "gameOver.html";
+    }else if(tiempo == 60){
+        window.location.href = "gameOver.html";
+    }   
 }
 
 /*Auxiliares*/
