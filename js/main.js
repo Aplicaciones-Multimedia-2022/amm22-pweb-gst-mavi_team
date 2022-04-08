@@ -132,8 +132,8 @@ function dibujar() {
 //Funciones//
 
 function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
-    this.obsX = posJugadorX;
-    this.obsY = posJugadorY;
+    this.posJugadorX = posJugadorX;
+    this.posJugadorY = posJugadorY;
 }
 
 function sonido(src) {
@@ -146,7 +146,7 @@ function sonido(src) {
 function dibujarJ(){
     jugador.img.src = '../img/icono.png';
     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    canvas.style.cursor = "none";
+    //canvas.style.cursor = "none";
 }
 
 //Moneda
@@ -165,15 +165,16 @@ function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
         ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 70, obstaculosH[i].obsY, 3*ancho, 2*ancho);
-        if(nivel == 1){
-            obstaculosH[i].obsX -= 3;
+        //3 niveles, 3 velocidades distintas? con case o if se hace
+        if(nivel ==1){
+            obstaculosH[i].obsX -= 2;
         }else if(nivel == 2){
-            obstaculosH[i].obsX -= 5;
-        }else if(nivel == 3){
             obstaculosH[i].obsX -= 4;
+        }else if(nivel == 3){
+            obstaculosH[i].obsX -= 3;
             ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, 3*ancho, 2*ancho);
         }else if(nivel == 4){
-            obstaculosH[i].obsX -= 5.5;
+            obstaculosH[i].obsX -= 4.5;
             ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, 3*ancho, 2*ancho);
         }
         if(obstaculosH[i].obsX < 0) {
@@ -250,22 +251,20 @@ function colisionM(x, y){
 function creaObstaculo (){                                          //Crea las abuelas
     var obstA = new obst (obsX, obsY);
     obsAbuela.src = '../img/abuela1.png';
-    obstA.obsX = campo.width - 300;
+    obstA.obsX = campo.width - 250;
     obstA.obsY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
 }
 
 function colisionAbuela(x,y){
     for(i = 0; i < obstaculosH.length;i++){
-        if((x > obstaculosH[i].obsX || x < obstaculosH[i].obsX)){
-            if((y > obstaculosH[i].obsY) && y < (borde + obstaculosH[i].obsY )){
-                if((jugador.x > obstaculosH[i].obsX) || (jugador.x < obstaculosH[i].obsX)){
-                    if((jugador.y > borde +obstaculosH[i].obsX) || (jugador.y < borde -obstaculosH[i].obsX)){
-                        sonido.abuela.play();
-                        obstaculosH.splice(i,1);
-                        tiempo++;
-                        contadorAbuela++;
-                    }
+        if(((obstaculosH[i].obsX - (x+ancho) < borde) &&(( x- (obstaculosH[i].obsX + 3*ancho)) < borde))){
+            if(((x + ancho) < obstaculosH[i].obsX) || (x > (obstaculosH[i].obsX + 3*ancho))){
+                if(((y > obstaculosH[i].obsY) && (y + ancho) < (obstaculosH[i].obsY +2*ancho)) || ((y > obstaculosH[i].obsY) &&((y+ancho) < (obstaculosH[i].obsY+2*ancho)))){
+                    obstaculosH.splice(i,1);
+                    tiempo++;
+                    contadorAbuela++;
+                    
                 }
             }
         }
@@ -429,3 +428,5 @@ var resultado=$('#resultado');
                             },'2000');
     });
 });
+
+
