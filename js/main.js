@@ -31,8 +31,6 @@ var jugador = {
     bono: false
 };
 
-
-
 var tren = {
     x: 850,
     y: 0,
@@ -79,7 +77,6 @@ var sonido = {
     abuela: new Audio('../sonido/gameOver.mp3'),
     torno: null
 };
-
 
 //Main//
 
@@ -143,7 +140,6 @@ function dibujarM(){
     }
     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
-
 
 //Obstáculos
 function dibujarO(){
@@ -256,7 +252,6 @@ function colisionAbuela(x,y){
     document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
-
 //Tren
 function colisionT(x){
     if(jugador.bono){
@@ -268,7 +263,6 @@ function colisionT(x){
 }
 
 //Ladron
-
 function colisionL(x, y){
     if((x < (ladron.x + ancho)) && ((x + ancho) > ladron.x)){
         if((y < (ladron.y + ancho)) && ((y + ancho) > ladron.y)){
