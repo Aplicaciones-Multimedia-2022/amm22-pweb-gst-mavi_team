@@ -31,19 +31,7 @@ var jugador = {
     bono: false
 };
 
-var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - 2*borde),
-    y: nAleatorio(borde, campo.height - 2*borde),
-    img: new Image
-};
 
-var ladron = {
-    x: nAleatorio(zona + ancho, campo.width - 2*zona - ancho),
-    y: nAleatorio(ancho, campo.height - ancho),
-    img: new Image,
-    velx: 3,
-    vely: 3
-};
 
 var tren = {
     x: 850,
@@ -63,21 +51,27 @@ var torno = {
     x: campo.width - 2*zona - borde,
     y: 0,
     img: new Image,
-    tocaTorno: false,
+    tocaTorno: false
 };
 
 var zonaS = {
     x: 30,
     y: 0,
-    img: new Image,
+    img: new Image
 };
 
 var ladron = {
-    x: nAleatorio(zona + ancho + borde, campo.width - 2*zona - ancho - borde),
+    x: nAleatorio(zonaS.x + ancho + zona, campo.width - 2*zona - ancho - borde),
     y: nAleatorio(ancho + borde, campo.height - ancho - borde),
     img: new Image,
     velx: 3,
     vely: 3
+};
+
+var moneda = {
+    x: nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde),
+    y: nAleatorio(borde, campo.height - 2*borde),
+    img: new Image
 };
 
 var sonido = {
@@ -289,11 +283,11 @@ function colisionL(x, y){
 
 function bordesL(){
     if(jugador.bono){
-        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - borde - ancho))){
+        if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - borde - ancho))){
             ladron.velx = -ladron.velx;
         }
     }else{
-        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+        if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
             ladron.velx = -ladron.velx;
         }
     }
@@ -377,7 +371,7 @@ function contar(){
 /*Auxiliares*/
 
 function aleatoriaM(){                                                      //Aleatorizar moneda
-    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - 2*borde);
+    moneda.x = nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde);
     moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
