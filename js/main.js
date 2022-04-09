@@ -86,7 +86,7 @@ var sonido = {
     // abuela: new Audio('../sonido/GolpeAbuela1.mp3'),
     // abuela: new Audio('../sonido/GolpeAbuela2.wav'),
     // abuela: new Audio('../sonido/GolpeAbuela3.wav'),
-    abuela: new Audio('../sonido/GolpeAbuela4.mp3'),
+    abuela: new Audio('../sonido/abuelaPaula.wav'),
     //abuela: new Audio('../sonido/gameOver.mp3'),
     tornito: new Audio('../sonido/torno.wav'),
 };
@@ -99,6 +99,8 @@ function main(){
 
     obsX = canvas.height;
     obsY = canvas.width;
+    musFondo = new sound("trenpasando.wav");    
+    musFondo.play();
     
     setInterval(dibujar, 10);
     setInterval(creaObstaculo, 1000);
@@ -277,6 +279,7 @@ function colisionAbuela(x,y){
         if(((obstaculosH[i].obsX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsX + 3*ancho)) < borde))){
             if(((x+ancho) < obstaculosH[i].obsX) || (x > (obstaculosH[i].obsX + 3*ancho))){
                 if(((y > obstaculosH[i].obsY) && (y + ancho) < (obstaculosH[i].obsY +2*ancho)) || ((y > obstaculosH[i].obsY) &&((y+ancho) < (obstaculosH[i].obsY+2*ancho)))){
+                    sonido.abuela.play();
                     obstaculosH.splice(i,1);
                     tiempo++;
                     contadorAbuela++;
