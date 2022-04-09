@@ -223,7 +223,7 @@ function dibujarR(){
     rail.img.src = '../img/tracks.png';
     ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
 }
-
+   
 /*COLISIONES*/
 
 //Jugador
@@ -276,6 +276,21 @@ function colisionAbuelaH(x,y){
                 }
             }
         }
+    }
+    document.getElementById('abuela').innerHTML = contadorAbuela;
+}
+
+function colisionAbuelaV(x,y){
+    for(j = 0; j < obstaculosV.length;j++){
+        if((obstaculosV[j].obsVX - (y-ancho) < borde) && (y - (obstaculosV[i].obsVX + 2*ancho) < borde)){
+            if(((y + ancho) > obstaculosV[j].obsVX) || (y< (obstaculosV[j].obsVX + 2*ancho))){
+                if((((x + ancho) > obstaculosV[j].obsVY)) || ( x < (obstaculosV[j].obsVY + ancho))){
+                    obstaculosV.splice(j,1);
+                    tiempo++;
+                    contadorAbuela++;
+                }
+            }
+        } 
     }
     document.getElementById('abuela').innerHTML = contadorAbuela;
 }
@@ -363,12 +378,14 @@ function moverJ(e){
     if(ratonY > 5 && ratonY < campo.height-40){
         jugador.y = ratonY - 10;
     }
+    
 
     if(empezar){
         colisionJ(ratonX);
         colisionM(ratonX, ratonY);
         colisionT(ratonX);
         colisionAbuelaH(ratonX,ratonY);
+        colisionAbuelaV(ratonX,ratonY);
         if(nivel % 2 == 0){
             colisionL(ratonX, ratonY);
         }
