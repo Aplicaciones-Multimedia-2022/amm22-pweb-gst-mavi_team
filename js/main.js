@@ -14,9 +14,11 @@ var frameNo = 0;
 var nivel = 1;
 var nmonedas = 0;
 //Variables para los obstáculos
-var obsX,obsY;
+var obsHX,obsHY;
+var obsVX,obsVY;
 var obsAbuela = new Image;
 var obstaculosH = [];
+var obstaculosV = [];
 var empezar = false;
 var contadorAbuela = 0;
 
@@ -31,19 +33,7 @@ var jugador = {
     bono: false
 };
 
-var moneda = {
-    x: nAleatorio(zona + borde, campo.width - 2*zona - 2*borde),
-    y: nAleatorio(borde, campo.height - 2*borde),
-    img: new Image
-};
 
-var ladron = {
-    x: nAleatorio(zona + ancho, campo.width - 2*zona - ancho),
-    y: nAleatorio(ancho, campo.height - ancho),
-    img: new Image,
-    velx: 3,
-    vely: 3
-};
 
 var tren = {
     x: 850,
@@ -63,21 +53,27 @@ var torno = {
     x: campo.width - 2*zona - borde,
     y: 0,
     img: new Image,
-    tocaTorno: false,
+    tocaTorno: false
 };
 
 var zonaS = {
     x: 30,
     y: 0,
-    img: new Image,
+    img: new Image
 };
 
 var ladron = {
-    x: nAleatorio(zona + ancho + borde, campo.width - 2*zona - ancho - borde),
+    x: nAleatorio(zonaS.x + ancho + zona, campo.width - 2*zona - ancho - borde),
     y: nAleatorio(ancho + borde, campo.height - ancho - borde),
     img: new Image,
     velx: 3,
     vely: 3
+};
+
+var moneda = {
+    x: nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde),
+    y: nAleatorio(borde, campo.height - 2*borde),
+    img: new Image
 };
 
 var sonido = {
@@ -101,6 +97,11 @@ function main(){
     obsY = canvas.width;
     musFondo = new sound("trenpasando.wav");    
     musFondo.play();
+    obsHX = canvas.height;
+    obsHY = canvas.width;
+
+    obsVX = canvas.height;
+    obsVY = canvas.width;
     
     setInterval(dibujar, 10);
     setInterval(creaObstaculo, 1000);
@@ -117,7 +118,7 @@ function dibujar() {
     dibujarP();
     if (obstaculosH.length != 0) {
         dibujarO();
-        i = 0;
+        i= 0;
     }
     dibujarZ();
     dibujarR();
@@ -182,23 +183,38 @@ function sound(src) {
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsX + 70, obstaculosH[i].obsY, 3*ancho, 2*ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + 70, obstaculosH[i].obsHY, 3*ancho, 2*ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace
         if(nivel ==1){
-            obstaculosH[i].obsX -= 2;
+            obstaculosH[i].obsHX -= 1.5;
         }else if(nivel == 2){
-            obstaculosH[i].obsX -= 4;
+            obstaculosH[i].obsHX -= 3;
         }else if(nivel == 3){
-            obstaculosH[i].obsX -= 3;
-            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, 3*ancho, 2*ancho);
+            obstaculosH[i].obsHX -= 4;
+            dibujarOV();
         }else if(nivel == 4){
-            obstaculosH[i].obsX -= 4.5;
-            ctx.drawImage(obsAbuela, obstaculosH[i].obsY + zona, obstaculosH[i].obsX, 3*ancho, 2*ancho);
+            obstaculosH[i].obsHX -= 5.5;
+            dibujarOV();
         }
-        if(obstaculosH[i].obsX < 0) {
+        if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
         }
+      
+    }
 
+}
+
+function dibujarOV(){
+    for( var i = 0; i < obstaculosV.length; i++){
+        ctx.drawImage(obsAbuela, obstaculosV[i].obsVY + zona, obstaculosV[i].obsVX, 3*ancho, 2*ancho);
+        if(nivel == 3){
+            obstaculosV[i].obsVX -=2;
+        }else if(nivel == 4){
+            obstaculosV[i].obsVX -=3;
+        }
+        if(obstaculosV[i].obsVY < 0){
+            obstaculosV.splice(i,1);
+        } 
     }
 }
 
@@ -237,7 +253,7 @@ function dibujarR(){
     rail.img.src = '../img/tracks.png';
     ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
 }
-
+   
 /*COLISIONES*/
 
 //Jugador
@@ -267,19 +283,22 @@ function colisionM(x, y){
 
 //Obstaculos
 function creaObstaculo (){                                          //Crea las abuelas
-    var obstA = new obst (obsX, obsY);
+    var obstA = new obst (obsHX, obsHY);
+    var obstB = new obst (obsVX,obsVY);
     obsAbuela.src = '../img/abuela1.png';
-    obstA.obsX = campo.width - 250;
-    obstA.obsY = Math.floor(Math.random() * (campo.height-50));
+    obstA.obsHX = campo.width - 250;
+    obstA.obsHY = Math.floor(Math.random() * (campo.height-50));
+    obstB.obsVX = campo.width - 250;
+    obstB.obsVY = Math.floor(Math.random() * (campo.height-50));
     obstaculosH.push(obstA);
+    obstaculosV.push(obstB);
 }
 
-function colisionAbuela(x,y){
+function colisionAbuelaH(x,y){
     for(i = 0; i < obstaculosH.length;i++){
-        if(((obstaculosH[i].obsX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsX + 3*ancho)) < borde))){
-            if(((x+ancho) < obstaculosH[i].obsX) || (x > (obstaculosH[i].obsX + 3*ancho))){
-                if(((y > obstaculosH[i].obsY) && (y + ancho) < (obstaculosH[i].obsY +2*ancho)) || ((y > obstaculosH[i].obsY) &&((y+ancho) < (obstaculosH[i].obsY+2*ancho)))){
-                    sonido.abuela.play();
+        if(((obstaculosH[i].obsHX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsHX + 3*ancho)) < borde))){
+            if(((x+ancho) < obstaculosH[i].obsHX) || (x > (obstaculosH[i].obsHX + 3*ancho))){
+                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho)) || ((y > obstaculosH[i].obsHY) &&((y+ancho) < (obstaculosH[i].obsHY+2*ancho)))){
                     obstaculosH.splice(i,1);
                     tiempo++;
                     contadorAbuela++;
@@ -290,6 +309,22 @@ function colisionAbuela(x,y){
     }
     document.getElementById('abuela').innerHTML = contadorAbuela;
 }
+
+function colisionAbuelaV(x,y){
+    for(j = 0; j < obstaculosV.length;j++){
+        if((obstaculosV[j].obsVX - (y-ancho) < borde) && (y - (obstaculosV[i].obsVX + 2*ancho) < borde)){
+            if(((y + ancho) > obstaculosV[j].obsVX) || (y< (obstaculosV[j].obsVX + 2*ancho))){
+                if((((x + ancho) > obstaculosV[j].obsVY)) || ( x < (obstaculosV[j].obsVY + ancho))){
+                    obstaculosV.splice(j,1);
+                    tiempo++;
+                    contadorAbuela++;
+                }
+            }
+        } 
+    }
+    document.getElementById('abuela').innerHTML = contadorAbuela;
+}
+
 
 
 //Tren
@@ -304,11 +339,14 @@ function colisionT(x){
 
 //Ladron
 
+//Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
 function colisionL(x, y){
-    if((x < (ladron.x + ancho)) && (x > (ladron.x - borde))){
-        if((y < (ladron.y + ancho)) && (y > (ladron.y - borde))){
+    if((x < (ladron.x + ancho)) && ((x+ancho) > ladron.x)){
+        if((y < (ladron.y + ancho)) && ((y+ ancho) > ladron.y)){
             if(nmonedas > 0){
                 nmonedas--;
+                ladron.velx = -ladron.velx;
+                ladron.velx = -ladron.vely;
             }
         }
     }
@@ -316,11 +354,11 @@ function colisionL(x, y){
 
 function bordesL(){
     if(jugador.bono){
-        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - borde - ancho))){
+        if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - borde - ancho))){
             ladron.velx = -ladron.velx;
         }
     }else{
-        if((ladron.x < (zona + ancho)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+        if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
             ladron.velx = -ladron.velx;
         }
     }
@@ -370,13 +408,17 @@ function moverJ(e){
     if(ratonY > 5 && ratonY < campo.height-40){
         jugador.y = ratonY - 10;
     }
+    
 
     if(empezar){
         colisionJ(ratonX);
         colisionM(ratonX, ratonY);
-        colisionL(ratonX, ratonY);
         colisionT(ratonX);
-        colisionAbuela(ratonX,ratonY);
+        colisionAbuelaH(ratonX,ratonY);
+        colisionAbuelaV(ratonX,ratonY);
+        if(nivel % 2 == 0){
+            colisionL(ratonX, ratonY);
+        }
     }  
 }
 
@@ -402,7 +444,7 @@ function contar(){
 /*Auxiliares*/
 
 function aleatoriaM(){                                                      //Aleatorizar moneda
-    moneda.x = nAleatorio(zona + borde, campo.width - 2*zona - 2*borde);
+    moneda.x = nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde);
     moneda.y = nAleatorio(borde, campo.height - borde);
 }
 
@@ -447,5 +489,6 @@ var resultado=$('#resultado');
                             },'2000');
     });
 });
+
 
 
