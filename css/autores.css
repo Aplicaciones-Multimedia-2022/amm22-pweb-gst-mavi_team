@@ -18,7 +18,7 @@ body{
 }
 
 /*Botones*/
-nav{
+#menu{
     margin: 5px;
     background-color: inherit;
     display: flex;
@@ -27,7 +27,7 @@ nav{
     font-family: texto1;
 }
 
-button{
+#menu a{
     display: inline-block;
     outline: 0;
     border:0;
@@ -49,7 +49,7 @@ button{
 
 }
 
-button:hover{
+#menu a:hover{
     box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
     transform: scale(1.01);
 }
@@ -76,6 +76,7 @@ h1{
     animation-duration: 4s;
     animation-name: slidein_left;
     animation-iteration-count: 1;
+ 
 /* 
     animation: slide-in-rigth 3s ease-in-out both; */
 }
@@ -94,6 +95,7 @@ h1{
     animation-duration: 3s;
     animation-name: slidein_right;
     animation-iteration-count: 1;
+    
 }
 
 .caja_right p{
@@ -108,8 +110,6 @@ h1{
     font-size: 18px; 
     font-weight: 400; 
 }
-
-
 
 @keyframes slidein_left{
     from {
@@ -133,10 +133,20 @@ h1{
         width:72.5%;
     }
 }
-
-
 /*Tipo de letra*/
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
   }
+  .fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.content{
+    padding: 16px;
+}
+.fixed + .content{
+    padding-top: 60px;
+}

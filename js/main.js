@@ -24,6 +24,8 @@ var contadorAbuela = 0;
 
 tiempo = 0;
 
+
+
 //Objetos//
 
 var jugador = {
@@ -446,6 +448,7 @@ function getNombre(name, url){
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+
 function introducirNombre(id){
     var newNombre = document.getElementById(id);
     if(newNombre.className == 'nombre'){
@@ -470,6 +473,7 @@ var resultado=$('#resultado');
                             },'2000');
     });
 });
+
 
 
 
