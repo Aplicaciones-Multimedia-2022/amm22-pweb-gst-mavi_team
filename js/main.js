@@ -27,6 +27,8 @@ var contadorAbuela = 0;
 
 tiempo = 0;
 
+
+
 //Objetos//
 
 function abuela(obsX, obsY) {
@@ -300,6 +302,8 @@ function dibujar() {
     tren.dibujarTren();
     jugador.dibujarJugador();
     ladron.dibujarLadron();
+    elegirPersonaje();
+
 
     //Colisiones:
 
@@ -322,6 +326,27 @@ function sound(src) {
     }
     this.stop = function () {
         this.sound.pause();
+function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
+    this.posJugadorX = posJugadorX;
+    this.posJugadorY = posJugadorY;
+}
+
+/*DIBUJAR*/
+
+//Jugador
+// function dibujarJ(){
+//     // jugador.img.src = '../img/icono.png';
+//     elegirPersonaje();
+//     //ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+//     //canvas.style.cursor = "none";
+// }
+
+//Moneda
+function dibujarM(){
+    if(jugador.bono){
+        moneda.img.src = null;
+    }else{
+        moneda.img.src = '../img/moneda.png';
     }
 }
 
@@ -441,20 +466,60 @@ function getNombre(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-//JQUIRE
-// $(document).ready(function () {
 
-//     var resultado = $('#resultado');
+function apareceFormulario(id){
+    var newNombre = document.getElementById(id);
+    if(newNombre.className == 'nombre'){
+        newNombre.className = '';
+        
+    }else{
+        newNombre.className = 'nombre';
+    }
+}
 
-//     $('.button').click(function () {
-//         $('.caja').animate({
-//             right: '100px',
-//             opacity: '0.5',
-//             height: '0', // se agranda 150 px
-//             weight: '0'
-//         }, '2000');
-//     });
-// });
+function desaparecePersonaje() {
+    var x = document.getElementById("elegirP");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 
+function elegirPersonaje() {
+    var personaje = document.getElementsByName('personajeS');
+      
+    for(i = 0; i < personaje.length; i++) {
+        if(personaje[i].checked)
+        document.getElementById("fraseP").innerHTML= personaje[i].value;
+        
+    }
+    if(personaje[i].value == 'perro'){
+        jugador.img.src = '../img/icono.png';
+        ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+    }else if(personaje[i].value == 'ladron'){
+        jugador.img.src = '../img/ladron.png';
+        ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+    }else if(personaje[i].value == 'abuela'){
+        jugador.img.src = '../img/abuela1.png';
+        ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+    } 
+}
+
+
+JQUIRE
+$(document).ready(function () {
+
+    var resultado = $('#resultado');
+
+    $('.button').click(function () {
+        $('.caja').animate({
+            right: '100px',
+            opacity: '0.5',
+            height: '0', // se agranda 150 px
+            weight: '0'
+        }, '2000');
+    });
+});
 
