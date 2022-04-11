@@ -84,6 +84,16 @@ div{
 #botonA{
   margin-left: 300px;
 }
+
+nav{
+  align-items: center;
+}
+
+#textoP{
+  font-family: texto;
+  color: rgb(97, 129, 179);
+  font-size: 20px;
+}
   
 /*BOTON*/
 
