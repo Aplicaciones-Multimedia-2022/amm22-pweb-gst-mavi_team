@@ -116,7 +116,8 @@ function dibujar() {
     dibujarZ();
     dibujarR();
     dibujarT();
-    dibujarJ();
+    // dibujarJ();
+    elegirPersonaje();
     dibujarL();
 
     //Colisiones:
@@ -135,11 +136,12 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
 /*DIBUJAR*/
 
 //Jugador
-function dibujarJ(){
-    jugador.img.src = '../img/icono.png';
-    ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    //canvas.style.cursor = "none";
-}
+// function dibujarJ(){
+//     // jugador.img.src = '../img/icono.png';
+//     elegirPersonaje();
+//     //ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+//     //canvas.style.cursor = "none";
+// }
 
 //Moneda
 function dibujarM(){
@@ -449,7 +451,7 @@ function getNombre(name, url){
 }
 
 
-function introducirNombre(id){
+function apareceFormulario(id){
     var newNombre = document.getElementById(id);
     if(newNombre.className == 'nombre'){
         newNombre.className = '';
@@ -457,6 +459,36 @@ function introducirNombre(id){
     }else{
         newNombre.className = 'nombre';
     }
+}
+
+function desaparecePersonaje() {
+    var x = document.getElementById("elegirP");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+
+function elegirPersonaje() {
+    var personaje = document.getElementsByName('personajeS');
+      
+    for(i = 0; i < personaje.length; i++) {
+        if(personaje[i].checked)
+        document.getElementById("fraseP").innerHTML= personaje[i].value;
+        
+    }
+    if(personaje[i].value == 'perro'){
+        jugador.img.src = '../img/icono.png';
+        ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+    }else if(personaje[i].value == 'ladron'){
+        jugador.img.src = '../img/ladron.png';
+        ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+    }else if(personaje[i].value == 'abuela'){
+        jugador.img.src = '../img/abuela1.png';
+        ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+    } 
 }
 
 
