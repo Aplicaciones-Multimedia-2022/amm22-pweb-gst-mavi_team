@@ -22,27 +22,6 @@ var empezar = false;
 tiempo = 0;
 
 
-//MENU PEGADO
-
-// window.onscroll=function(){
-//     myFunction()
-// };
-// var menu  = document.getElementById("menu");
-// //necesitamos saber la distancia que hay entre el título y las cajitas
-
-// var altura=menu.offsetTop;
-
-
-// //cuando haga scroll se quede ahí
-// function myFunction(){
-//     if(window.pageYOffset>= altura) {
-//         menu.classList.add('altura')
-//     } else {
-//         menu.classList.remove('altura');
-//     }
-// }
-
-
 
 //Objetos//
 
@@ -409,16 +388,3 @@ function getNombre(name, url){
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
-//JQUIRE
-// $(document).ready(function(){
-
-// var resultado=$('#resultado');
-
-//     $('.button').click(function(){
-//         $('.caja').animate({right:'100px',
-//                             opacity:'0.5',
-//                             height:'0', // se agranda 150 px
-//                             weight:'0'
-//                             },'2000');
-//     });
-// });
