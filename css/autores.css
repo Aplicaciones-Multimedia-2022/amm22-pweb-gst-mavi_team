@@ -76,6 +76,7 @@ h1{
     animation-duration: 4s;
     animation-name: slidein_left;
     animation-iteration-count: 1;
+ 
 /* 
     animation: slide-in-rigth 3s ease-in-out both; */
 }
@@ -94,6 +95,7 @@ h1{
     animation-duration: 3s;
     animation-name: slidein_right;
     animation-iteration-count: 1;
+    
 }
 
 .caja_right p{
@@ -108,8 +110,6 @@ h1{
     font-size: 18px; 
     font-weight: 400; 
 }
-
-
 
 @keyframes slidein_left{
     from {
@@ -133,8 +133,6 @@ h1{
         width:72.5%;
     }
 }
-
-
 /*Tipo de letra*/
 @font-face{
     font-family: texto1;

@@ -24,6 +24,8 @@ var contadorAbuela = 0;
 
 tiempo = 0;
 
+
+
 //Objetos//
 
 var jugador = {
