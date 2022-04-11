@@ -318,9 +318,9 @@ function colisionT(x){
 
 //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
 function colisionL(x, y){
-    if(Math.sqrt(Math.pow(x - ladron.x, 2) + Math.pow(y - ladron.y, 2)) < borde){
-        if(x < (ladron.x + ancho) || (x + ancho) < ladron.x){
-            if((y < (ladron.y + ancho)) || ((y + ancho) > ladron.y )){
+    if((Math.sqrt(Math.pow(x - ladron.x, 2) + Math.pow(y - ladron.y, 2)) < borde) && (Math.sqrt(Math.pow(y - ladron.y, 2) + Math.pow(y - ladron.y, 2)))){
+        if(x < (ladron.x + ancho + borde) || (x + ancho + borde) < ladron.x){
+            if((y < (ladron.y + ancho + borde)) || ((y + ancho + borde) > ladron.y )){
                 if(nmonedas > 0){
                     nmonedas--;
                     ladron.velx = -ladron.velx;
@@ -328,7 +328,7 @@ function colisionL(x, y){
                 }
             }
         }
-    }
+    } 
         
 }
 
