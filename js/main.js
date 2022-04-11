@@ -446,6 +446,17 @@ function getNombre(name, url){
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+function introducirNombre(id){
+    var newNombre = document.getElementById(id);
+    if(newNombre.className == 'nombre'){
+        newNombre.className = '';
+        
+    }else{
+        newNombre.className = 'nombre';
+    }
+}
+
+
 //JQUIRE
 $(document).ready(function(){
 
