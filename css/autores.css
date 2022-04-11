@@ -140,3 +140,15 @@ h1{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
   }
+  .fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.content{
+    padding: 16px;
+}
+.fixed + .content{
+    padding-top: 60px;
+}
