@@ -118,6 +118,15 @@ function dibujar() {
 
     bordesL();
     robaM();
+
+    colisionJ(jugador.x);
+    colisionM(jugador.x, jugador.y);
+    colisionT(jugador.x);
+    colisionAbuelaH(jugador.x, jugador.y);
+    colisionAbuelaV(jugador.x, jugador.y);
+    if(nivel % 2 == 0){
+        colisionL(jugador.x, jugador.y);
+    }  
 }
     
 //Funciones//
@@ -307,15 +316,18 @@ function colisionT(x){
 
 //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
 function colisionL(x, y){
-    if((x < (ladron.x + ancho)) && ((x+ancho) > ladron.x)){
-        if((y < (ladron.y + ancho)) && ((y+ ancho) > ladron.y)){
-            if(nmonedas > 0){
-                nmonedas--;
-                ladron.velx = -ladron.velx;
-                ladron.velx = -ladron.vely;
+    if(Math.sqrt(Math.pow(x - ladron.x, 2) + Math.pow(y - ladron.y, 2)) < borde){
+        if(x < (ladron.x + ancho) || (x + ancho) < ladron.x){
+            if((y < (ladron.y + ancho)) || ((y + ancho) > ladron.y )){
+                if(nmonedas > 0){
+                    nmonedas--;
+                    ladron.velx = -ladron.velx;
+                    ladron.velx = -ladron.vely;
+                }
             }
         }
     }
+        
 }
 
 function bordesL(){
@@ -373,18 +385,6 @@ function moverJ(e){
 
     if(ratonY > 5 && ratonY < campo.height-40){
         jugador.y = ratonY - 10;
-    }
-    
-
-    if(empezar){
-        colisionJ(ratonX);
-        colisionM(ratonX, ratonY);
-        colisionT(ratonX);
-        colisionAbuelaH(ratonX,ratonY);
-        colisionAbuelaV(ratonX,ratonY);
-        if(nivel % 2 == 0){
-            colisionL(ratonX, ratonY);
-        }
     }  
 }
 
