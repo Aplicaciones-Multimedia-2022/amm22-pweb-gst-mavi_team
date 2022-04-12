@@ -24,8 +24,6 @@ var contadorAbuela = 0;
 
 tiempo = 0;
 
-
-
 //Objetos//
 
 var jugador = {
@@ -244,26 +242,6 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
     this.posJugadorY = posJugadorY;
 }
 
-/*DIBUJAR*/
-
-//Jugador
-// function dibujarJ(){
-//     // jugador.img.src = '../img/icono.png';
-//     elegirPersonaje();
-//     //ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     //canvas.style.cursor = "none";
-// }
-
-//Moneda
-// function dibujarM(){
-//     if(jugador.bono){
-//         moneda.img.src = null;
-//     }else{
-//         moneda.img.src = '../img/moneda.png';
-//     }
-//     ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
-// }
-
 
 //Obstáculos
 function dibujarO(){
@@ -303,67 +281,6 @@ function dibujarOV(){
         } 
     }
 }
-
-//Zona de seguridad
-// function dibujarZ(){
-//     zonaS.img.src = "../img/barranym.png";
-//     ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
-// }
-
-//Torno de metro
-// function dibujarP(){
-//     if(jugador.bono){
-//         torno.img.src = null;
-//     }else{
-//         torno.img.src = '../img/torno1.jpg';
-//     }
-//     ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
-// }
-
-//Tren
-// function dibujarT(){
-//     tren.img.src = '../img/trenes1.png';
-//     ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
-// }
-
-//Ladrón
-// function dibujarL(){
-//     ladron.img.src = '../img/ladron.png';
-//     ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
-// } 
-    
-//Railes
-// function dibujarR(){
-//     rail.img.src = '../img/tracks.png';
-//     ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
-// }
-   
-/*COLISIONES*/
-
-//Jugador
-// function colisionJ(x){
-//     if(jugador.bono){                                          //Colisiona con tren
-
-//     }else{
-//         if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
-//             jugador.x = campo.width - 2*zona - 3*borde;
-//         }
-//     }
-// }
-
-//Moneda
-// function colisionM(x, y){
-//     if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
-//         if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-//             sonido.moneda.play();
-//             nmonedas++;
-//             aleatoriaM();
-//         }
-//     }
-
-//     niveles(nmonedas);
-//     document.getElementById("monedas").innerHTML = nmonedas;
-// }
 
 //Obstaculos
 function creaObstaculo (){                                          //Crea las abuelas
@@ -408,56 +325,6 @@ function colisionAbuelaV(x,y){
     }
     document.getElementById('abuela').innerHTML = contadorAbuela;
 }
-
-
-
-//Tren
-// function colisionT(x){
-//     if(jugador.bono){
-//         if(x > (campo.width - 80)){
-//             window.location.href = 'hasGanado.html';
-//         }
-//     }
-// }
-
-//Ladron
-
-// //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
-// function colisionL(x, y){
-//     if((x < (ladron.x + ancho)) && ((x+ancho) > ladron.x)){
-//         if((y < (ladron.y + ancho)) && ((y+ ancho) > ladron.y)){
-//             if(nmonedas > 0){
-//                 nmonedas--;
-//                 ladron.velx = -ladron.velx;
-//                 ladron.velx = -ladron.vely;
-//             }
-//         }
-//     }
-// }
-
-// function bordesL(){
-//     if(jugador.bono){
-//         if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - borde - ancho))){
-//             ladron.velx = -ladron.velx;
-//         }
-//     }else{
-//         if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
-//             ladron.velx = -ladron.velx;
-//         }
-//     }
-    
-//     if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
-//         ladron.vely = -ladron.vely;
-//     }
-// }
-
-// function robaM(){                                                               //Ladrón roba monedas con las que choca
-//     if((ladron.x < (moneda.x + ancho)) && (ladron.x > (moneda.x - ancho))){
-//         if((ladron.y < (moneda.y + ancho)) && (ladron.y > (moneda.y - ancho))){
-//             aleatoriaM();
-//         }
-//     }
-// }
 
 /*NIVELES*/
 function niveles(nmonedas){
