@@ -93,6 +93,7 @@ var torno = {
     dibujarTorno: function (){
         if(jugador.bono){
             torno.img.src = null;
+            sonido.tornito.play();
         }else{
             torno.img.src = '../img/torno1.jpg';
         }
@@ -191,7 +192,7 @@ var moneda = {
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
     abuela: new Audio('../sonido/gameOver.mp3'),
-    torno: null
+    tornito: new Audio('../sonido/torno.wav'),
 };
 
 
@@ -225,7 +226,7 @@ function dibujar() {
     }
     zonaS.dibujarZona();
     rail.dibujarRail();
-    torno.dibujarTorno();
+    tren.dibujarTren();
     jugador.dibujarJugador();
     // elegirPersonaje();
     ladron.dibujarLadron();
@@ -276,10 +277,10 @@ function dibujarO(){
             obstaculosH[i].obsHX -= 3;
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 4;
-            dibujarOV();
+            // dibujarOV();
         }else if(nivel == 4){
             obstaculosH[i].obsHX -= 5.5;
-            dibujarOV();
+            // dibujarOV();
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
