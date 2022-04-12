@@ -148,12 +148,15 @@ var ladron = {
 
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
-        if ((x < (ladron.x + ancho)) && ((x + ancho) > ladron.x)) {
-            if ((y < (ladron.y + ancho)) && ((y + ancho) > ladron.y)) {
-                if (nmonedas > 0) {
-                    nmonedas--;
-                    ladron.velx = -ladron.velx;
-                    ladron.velx = -ladron.vely;
+        if(((ladron.x - (x - ancho) < borde) && (( x- (ladron.x + ancho)) < borde))){
+            if(((x + ancho) < ladron.x) || (x > (ladron.x + ancho))){
+                if(((y > ladron.y) && (y + ancho) < (ladron.y + ancho)) || ((y > ladron.y) &&((y + ancho) < (ladron.y + ancho)))){
+                    if (nmonedas > 0) {
+                        nmonedas--;
+                        ladron.velx = -ladron.velx;
+                        ladron.velx = -ladron.vely;
+                    }
+                    
                 }
             }
         }
@@ -233,6 +236,16 @@ function dibujar() {
 
     ladron.bordesLadron();
     ladron.robaMoneda();
+
+
+    jugador.colisionJugador(jugador.x);
+    moneda.colisionMoneda(jugador.x, jugador.y);
+    tren.colisionTren(jugador.x);
+    colisionAbuelaH(jugador.x, jugador.y);
+    colisionAbuelaV(jugador.x, jugador.y);
+    if(nivel % 2 == 0){
+        ladron.colisionLadron(jugador.x, jugador.y);
+    }
 }
     
 //Funciones//
@@ -357,19 +370,7 @@ function moverJ(e){
 
     if(ratonY > 5 && ratonY < campo.height-40){
         jugador.y = ratonY - 10;
-    }
-    
-
-    if(empezar){
-        jugador.colisionJugador(ratonX);
-        moneda.colisionMoneda(ratonX, ratonY);
-        tren.colisionTren(ratonX);
-        colisionAbuelaH(ratonX,ratonY);
-        colisionAbuelaV(ratonX,ratonY);
-        if(nivel % 2 == 0){
-            ladorn.colisionLadron(ratonX, ratonY);
-        }
-    }  
+    } 
 }
 
 /*Contador*/
