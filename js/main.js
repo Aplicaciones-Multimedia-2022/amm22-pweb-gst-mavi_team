@@ -146,12 +146,12 @@ var ladron = {
 
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
-        if((dist(x, y, ladron.x, ladron.y) < ancho)){
-            if(((x + ancho) > ladron.x) || (x < (ladron.x + ancho))){
-                if(((y + ancho) > ladron.y) || (y < (ladron.y + ancho))){
+        if( dist(x, y, ladron.x, ladron.y) < borde){
+            if(((x + ancho + borde) > ladron.x) || (x < (ladron.x + ancho + borde))){
+                if(((y + ancho + borde) > ladron.y) || (y < (ladron.y + ancho + borde))){
                     if (nmonedas > 0) {
                         ladron.velx = -ladron.velx;
-                        ladron.velx = -ladron.vely;
+                        ladron.vely = -ladron.vely;
                         nmonedas--;
                     }
                     
@@ -339,7 +339,7 @@ function colisionAbuelaV(x,y){
 
 /*NIVELES*/
 function niveles(nmonedas){
-    if(nmonedas ==10){
+    if(nmonedas == 10){
         nivel = 2;  
     }
     if(nmonedas == 20){
