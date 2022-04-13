@@ -50,8 +50,6 @@ var jugador = {
     }
 };
 
-
-
 var tren = {
     x: 850,
     y: 0,
@@ -148,13 +146,13 @@ var ladron = {
 
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
-        if(((ladron.x - (x - ancho) < borde) && (( x- (ladron.x + ancho)) < borde))){
-            if(((x + ancho) < ladron.x) || (x > (ladron.x + ancho))){
-                if(((y > ladron.y) && (y + ancho) < (ladron.y + ancho)) || ((y > ladron.y) &&((y + ancho) < (ladron.y + ancho)))){
+        if((dist(x, y, ladron.x, ladron.y) < ancho)){
+            if(((x + ancho) > ladron.x) || (x < (ladron.x + ancho))){
+                if(((y + ancho) > ladron.y) || (y < (ladron.y + ancho))){
                     if (nmonedas > 0) {
-                        nmonedas--;
                         ladron.velx = -ladron.velx;
                         ladron.velx = -ladron.vely;
+                        nmonedas--;
                     }
                     
                 }
@@ -407,6 +405,12 @@ function clear(){                                                           //Li
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
+function dist(x1, y1, x2 ,y2){
+    var a = x1 - x2;
+    var b = y1 - y2;
+
+    return Math.sqrt(a*a + b*b);
+}
 
 /*Relacionados con HTML*/
 
