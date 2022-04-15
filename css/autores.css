@@ -18,7 +18,7 @@ body{
 }
 
 /*Botones*/
-#menu {
+#menu{
     margin: 5px;
     background-color: inherit;
     display: flex;
@@ -138,8 +138,7 @@ h1{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
   }
-
-.fixed{
+  .fixed{
     position: fixed;
     width: 100%;
     top: 0;
