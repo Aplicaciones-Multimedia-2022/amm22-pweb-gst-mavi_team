@@ -4,6 +4,7 @@ const borde = 25;
 const ancho = 50;
 const zona = 100;
 
+
 //Variables//
 
 document.getElementById("nombre").innerHTML = getNombre('username');
@@ -22,46 +23,97 @@ var obstaculosV = [];
 var empezar = false;
 var contadorAbuela = 0;
 
+
 tiempo = 0;
-
-
 
 //Objetos//
 
 var jugador = {
-    x: zona/2,
-    y: campo.height/2,
-    img: new Image,
-    bono: false
+    x: zona / 2,
+    y: campo.height / 2,
+    img: new Image(),
+    bono: false,
+
+    dibujarJugador: function () {
+        // jugador.img.src = '../img/icono.png';       
+        // ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+        //elegirPersonaje();
+       
+        //canvas.style.cursor = "none";
+ 
+        var jugadorE = localStorage.getItem("imagen");
+        ctx.drawImage(jugadorE,jugador.x,jugador.y,ancho,ancho);
+
+    },
+
+    colisionJugador: function(x){
+        if(jugador.bono){                                          //Colisiona con tren
+    
+        }else{
+            if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
+                jugador.x = campo.width - 2*zona - 3*borde;
+            }
+        }
+    }
 };
-
-
 
 var tren = {
     x: 850,
     y: 0,
     img: new Image,
-    tocaTren : false
+    tocaTren : false,
+
+    dibujarTren: function (){
+        tren.img.src = '../img/trenes1.png';
+        ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
+    },
+
+    colisionTren: function (x){
+        if(jugador.bono){
+            if(x > (campo.width - 80)){
+                window.location.href = 'hasGanado.html';
+            }
+        }
+    }
 };
 
 var rail = {
     x: 760,
     y: 0,
     img: new Image,
-    tocaRail : false
+
+    dibujarRail: function (){
+        rail.img.src = '../img/tracks.png';
+        ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
+    }
 };
 
 var torno = {
     x: campo.width - 2*zona - borde,
     y: 0,
     img: new Image,
-    tocaTorno: false
+
+    dibujarTorno: function (){
+        if(jugador.bono){
+            torno.img.src = null;
+            sonido.tornito.play();
+        }else{
+            torno.img.src = '../img/torno1.jpg';
+        }
+        ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
+    }
 };
 
 var zonaS = {
     x: 30,
     y: 0,
-    img: new Image
+    img: new Image,
+
+    dibujarZona: function (){
+        zonaS.img.src = "../img/barranym.png";
+        ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
+        sonido.zonaSeguridad.play();
+    }
 };
 
 var ladron = {
@@ -69,19 +121,89 @@ var ladron = {
     y: nAleatorio(ancho + borde, campo.height - ancho - borde),
     img: new Image,
     velx: 3,
-    vely: 3
+    vely: 3,
+
+    dibujarLadron: function (){
+        ladron.img.src = '../img/ladron.png';
+        ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
+    },
+
+    bordesLadron: function (){
+        if(jugador.bono){
+            if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - borde - ancho))){
+                ladron.velx = -ladron.velx;
+            }
+        }else{
+            if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
+                ladron.velx = -ladron.velx;
+            }
+        }
+        
+        if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
+            ladron.vely = -ladron.vely;
+        }
+    },
+
+    robaMoneda: function (){                                                               //Ladrón roba monedas con las que choca
+        if((ladron.x < (moneda.x + ancho)) && (ladron.x > (moneda.x - ancho))){
+            if((ladron.y < (moneda.y + ancho)) && (ladron.y > (moneda.y - ancho))){
+                aleatoriaM();
+            }
+        }
+    },
+    //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
+    colisionLadron: function (x, y) {
+        if( dist(x, y, ladron.x, ladron.y) < borde){
+            if(((x + ancho + borde) > ladron.x) || (x < (ladron.x + ancho + borde))){
+                if(((y + ancho + borde) > ladron.y) || (y < (ladron.y + ancho + borde))){
+                    if (nmonedas > 0) {
+                        ladron.velx = -ladron.velx;
+                        ladron.vely = -ladron.vely;
+                        nmonedas--;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+
 };
+
+
 
 var moneda = {
     x: nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde),
     y: nAleatorio(borde, campo.height - 2*borde),
-    img: new Image
+    img: new Image,
+
+    dibujarMoneda: function (){
+        if(jugador.bono){
+            moneda.img.src = null;
+        }else{
+            moneda.img.src = '../img/moneda.png';
+        }
+        ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
+    },
+
+    colisionMoneda: function (x, y){
+        if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
+            if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
+                // sonido.moneda.play();
+                nmonedas++;
+                aleatoriaM();
+            }
+        }
+        niveles(nmonedas);
+        document.getElementById("monedas").innerHTML = nmonedas;
+    }
 };
 
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
     abuela: new Audio('../sonido/gameOver.mp3'),
-    torno: null
+    tornito: new Audio('../sonido/torno.wav'),
+    zonaSeguridad: new Audio('../sonido/trenpasando.mp4'),
 };
 
 
@@ -107,22 +229,30 @@ function dibujar() {
     ladron.x += ladron.velx;
     ladron.y += ladron.vely;
     
-    dibujarM();
-    dibujarP();
-    if (obstaculosH.length != 0) {
-        dibujarO();
-        i= 0;
-    }
-    dibujarZ();
-    dibujarR();
-    dibujarT();
-    dibujarJ();
-    dibujarL();
+    moneda.dibujarMoneda();
+    torno.dibujarTorno();
+    dibujarO();
+    zonaS.dibujarZona();
+    rail.dibujarRail();
+    tren.dibujarTren();
+    jugador.dibujarJugador();
+    // elegirPersonaje();
+    ladron.dibujarLadron();
 
     //Colisiones:
 
-    bordesL();
-    robaM();
+    ladron.bordesLadron();
+    ladron.robaMoneda();
+
+
+    jugador.colisionJugador(jugador.x);
+    moneda.colisionMoneda(jugador.x, jugador.y);
+    tren.colisionTren(jugador.x);
+    colisionAbuelaH(jugador.x, jugador.y);
+    colisionAbuelaV(jugador.x, jugador.y);
+    if(nivel % 2 == 0){
+        ladron.colisionLadron(jugador.x, jugador.y);
+    }
 }
     
 //Funciones//
@@ -130,25 +260,6 @@ function dibujar() {
 function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
     this.posJugadorX = posJugadorX;
     this.posJugadorY = posJugadorY;
-}
-
-/*DIBUJAR*/
-
-//Jugador
-function dibujarJ(){
-    jugador.img.src = '../img/icono.png';
-    ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-    //canvas.style.cursor = "none";
-}
-
-//Moneda
-function dibujarM(){
-    if(jugador.bono){
-        moneda.img.src = null;
-    }else{
-        moneda.img.src = '../img/moneda.png';
-    }
-    ctx.drawImage(moneda.img, moneda.x, moneda.y, borde, borde)
 }
 
 
@@ -164,10 +275,10 @@ function dibujarO(){
             obstaculosH[i].obsHX -= 3;
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 4;
-            dibujarOV();
+            // dibujarOV();
         }else if(nivel == 4){
             obstaculosH[i].obsHX -= 5.5;
-            dibujarOV();
+            // dibujarOV();
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
@@ -189,68 +300,6 @@ function dibujarOV(){
             obstaculosV.splice(i,1);
         } 
     }
-}
-
-//Zona de seguridad
-function dibujarZ(){
-    zonaS.img.src = "../img/barranym.png";
-    ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
-}
-
-//Torno de metro
-function dibujarP(){
-    if(jugador.bono){
-        torno.img.src = null;
-    }else{
-        torno.img.src = '../img/torno1.jpg';
-    }
-    
-    ctx.drawImage(torno.img, torno.x, torno.y, ancho, campo.height);
-}
-
-//Tren
-function dibujarT(){
-    tren.img.src = '../img/trenes1.png';
-    ctx.drawImage(tren.img, tren.x, tren.y, campo.width - 850, campo.height);
-}
-
-//Ladrón
-function dibujarL(){
-    ladron.img.src = '../img/ladron.png';
-    ctx.drawImage(ladron.img, ladron.x, ladron.y, ancho, ancho);
-} 
-    
-//Railes
-function dibujarR(){
-    rail.img.src = '../img/tracks.png';
-    ctx.drawImage(rail.img, rail.x, rail.y, campo.width - 700, campo.height);
-}
-   
-/*COLISIONES*/
-
-//Jugador
-function colisionJ(x){
-    if(jugador.bono){                                          //Colisiona con tren
-
-    }else{
-        if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
-            jugador.x = campo.width - 2*zona - 3*borde;
-        }
-    }
-}
-
-//Moneda
-function colisionM(x, y){
-    if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
-        if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-            sonido.moneda.play();
-            nmonedas++;
-            aleatoriaM();
-        }
-    }
-
-    niveles(nmonedas);
-    document.getElementById("monedas").innerHTML = nmonedas;
 }
 
 //Obstaculos
@@ -297,60 +346,9 @@ function colisionAbuelaV(x,y){
     document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
-
-
-//Tren
-function colisionT(x){
-    if(jugador.bono){
-        if(x > (campo.width - 80)){
-            window.location.href = 'hasGanado.html';
-        }
-    }
-   
-}
-
-//Ladron
-
-//Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
-function colisionL(x, y){
-    if((x < (ladron.x + ancho)) && ((x+ancho) > ladron.x)){
-        if((y < (ladron.y + ancho)) && ((y+ ancho) > ladron.y)){
-            if(nmonedas > 0){
-                nmonedas--;
-                ladron.velx = -ladron.velx;
-                ladron.velx = -ladron.vely;
-            }
-        }
-    }
-}
-
-function bordesL(){
-    if(jugador.bono){
-        if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - borde - ancho))){
-            ladron.velx = -ladron.velx;
-        }
-    }else{
-        if((ladron.x < (zona + zonaS.x)) || (ladron.x > (campo.width - 2*zona - borde - ancho))){
-            ladron.velx = -ladron.velx;
-        }
-    }
-    
-    if(ladron.y <  ancho|| (ladron.y > (campo.height - ancho))){
-        ladron.vely = -ladron.vely;
-    }
-}
-
-function robaM(){                                                               //Ladrón roba monedas con las que choca
-    if((ladron.x < (moneda.x + ancho)) && (ladron.x > (moneda.x - ancho))){
-        if((ladron.y < (moneda.y + ancho)) && (ladron.y > (moneda.y - ancho))){
-            aleatoriaM();
-        }
-    }
-}
-
 /*NIVELES*/
 function niveles(nmonedas){
-    if(nmonedas ==10){
+    if(nmonedas == 10){
         nivel = 2;  
     }
     if(nmonedas == 20){
@@ -379,19 +377,7 @@ function moverJ(e){
 
     if(ratonY > 5 && ratonY < campo.height-40){
         jugador.y = ratonY - 10;
-    }
-    
-
-    if(empezar){
-        colisionJ(ratonX);
-        colisionM(ratonX, ratonY);
-        colisionT(ratonX);
-        colisionAbuelaH(ratonX,ratonY);
-        colisionAbuelaV(ratonX,ratonY);
-        if(nivel % 2 == 0){
-            colisionL(ratonX, ratonY);
-        }
-    }  
+    } 
 }
 
 /*Contador*/
@@ -428,6 +414,12 @@ function clear(){                                                           //Li
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
+function dist(x1, y1, x2 ,y2){
+    var a = x1 - x2;
+    var b = y1 - y2;
+
+    return Math.sqrt(a*a + b*b);
+}
 
 /*Relacionados con HTML*/
 
@@ -449,5 +441,81 @@ function getNombre(name, url){
 }
 
 
+function apareceFormulario(id){
+    var newNombre = document.getElementById(id);
+    if(newNombre.className == 'nombre'){
+        newNombre.className = '';
+        
+    }else{
+        newNombre.className = 'nombre';
+    }
+}
+
+function desaparecePersonaje() {
+    var x = document.getElementById("elegirP");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 
+// function elegirPersonaje() {
+//     var personaje = document.getElementsByName("personajeS");
+      
+//     for(i = 0; i < personaje.length; i++) {
+//         if(personaje[i].checked)
+//         document.getElementById("fraseP").innerHTML= personaje[i].value;
+//         // var seleccion = document.getElementById("fraseP").textContent;
+//     }
+//     // if(seleccion.toString() == 'niño'){
+//     //     jugador.img.src = '../img/niño.png';
+//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+//     // }
+//     // if(seleccion.toString() == 'abuela'){
+//     //     jugador.img.src = '../img/abuela1.png';
+//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+//     // }
+//     // if(seleccion.toString() == 'perro'){
+//     //     jugador.img.src = '../img/icono.png';
+//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
+//     // }
+    
+// }
+
+function botonNino(){
+
+    document.getElementById("fraseP").innerHTML = "Niño";
+
+    // var nino = new Image();
+    // nino.src = '../img/niño.png';
+
+    // localStorage.setItem("jugador",nino);
+    imagenNiño = document.getElementById("imagenNiño");
+    localStorage.setItem("imagen",imagenNiño);
+
+}
+    
+
+function botonNina(){
+
+   document.getElementById("fraseP").innerHTML = "Niña";
+
+   imagenNiña = document.getElementById("imagenNiña");
+   localStorage.setItem("imagen",imagenNiña);
+
+   
+}
+    
+
+
+function botonPerro(){
+
+    document.getElementById("fraseP").innerHTML = "Perro";
+
+    imagenPerro = document.getElementById("imagenPerro");
+    localStorage.setItem("imagen",imagenPerro);
+    
+}
+    
