@@ -1,6 +1,6 @@
 /*Para el cuerpo pagina*/
 body{
-    background-image: url(../img/fondo.jpeg);
+    background-image: url(../img/fondoInicio.gif);
     background-size: cover;
 }
 
@@ -8,17 +8,25 @@ body{
 #win{
     font-family: texto1;
     font-size: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(97, 129, 179);
     text-align: center;
-    margin-top: 150px;
-    color: white;
+    margin-left: 100px;
+    font-weight: 300px;
+    text-shadow: -4px 3px rgb(54, 63, 114);
 }
 
 #win1{
     font-family: texto1;
-    font-size: 80px;
+    font-size: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(97, 129, 179);
     text-align: center;
-    margin-top: 100px;
-    color: white;
+    margin-left: 80px;
+    font-weight: 150px;
+    text-shadow: -4px 3px rgb(54, 63, 114);
 }
 
 

@@ -1,6 +1,6 @@
 /*Imagen de fondo y título del juego*/
 body{
-    background-image: url(../img/fondoInicio.gif);
+    background-image: url(../img/fondo.jpeg);
     background-size: cover;
 }
 
@@ -64,6 +64,7 @@ body{
 .boton{
   font-family: texto;
   font-size: 20px;
+
   
 }
 
@@ -91,9 +92,16 @@ nav{
 
 #textoP{
   font-family: texto;
-  color: rgb(97, 129, 179);
-  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  margin-left: 150px;
+  
 }
+#seleccion{
+  margin-left: 150px;
+}
+
+
   
 /*BOTON*/
 

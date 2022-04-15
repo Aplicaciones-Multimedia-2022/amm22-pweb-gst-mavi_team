@@ -14,13 +14,13 @@
         <div class = "personaje" id="elegirP">
             <p class= "titulo1">Elige tu personaje:</p>
             <nav id="seleccion">
-                <input type="radio" name="personajeS" value="perro" onclick="elegirPersonaje()"><img width="50px" height="50px" src="../img/icono.png"></img>
-                <input type="radio" name="personajeS" value="ladron" onclick="elegirPersonaje()"><img width="50px" height="50px" src="../img/ladron.png"></img>
-                <input type="radio" name="personajeS" value="abuela" onclick="elegirPersonaje()"><img width="50px" height="50px" src="../img/abuela1.png"></img>
+                <button id="botonNino" onclick="botonNino()" name="personajeS" ><img width="100px" height="100px" src="../img/niño.png" id="imagenNiño"></img></button>
+                <button id="botonNina" onclick="botonNina()" name="personajeS"><img width="100px" height="100px" src="../img/niña.png" id="imagenNiña"></img></button>
+                <button id="botonPerro" onclick="botonPerro()" name="personajeS"><img width="100px" height="100px" src="../img/icono.png" id="imagenPerro"></img></button>
             </nav>
             <!-- <button class="botonGeneral" id="botonA"onclick="elegirPersonaje()">Elegir</button> -->
             <p id="textoP">Has elegido a: <span id="fraseP"></span></p>
-            <button class="botonGeneral"id="botonA" onclick="apareceFormulario('formulario'), desaparecePersonaje()">Aceptar</button>
+            <button class="botonGeneral"id="botonA" onclick="apareceFormulario('formulario'), desaparecePersonaje(),elegirPersonaje()">Aceptar</button>
         </div>
 
         <div class="nombre" id="formulario">
