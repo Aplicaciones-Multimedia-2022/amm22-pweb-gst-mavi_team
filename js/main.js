@@ -105,6 +105,7 @@ var zonaS = {
     dibujarZona: function (){
         zonaS.img.src = "../img/barranym.png";
         ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
+        sonido.zonaSeguridad.play();
     }
 };
 
@@ -143,7 +144,6 @@ var ladron = {
             }
         }
     },
-
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
         if( dist(x, y, ladron.x, ladron.y) < borde){
@@ -159,7 +159,11 @@ var ladron = {
             }
         }
     }
+
+
 };
+
+
 
 var moneda = {
     x: nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde),
@@ -178,7 +182,7 @@ var moneda = {
     colisionMoneda: function (x, y){
         if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
             if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-                sonido.moneda.play();
+                // sonido.moneda.play();
                 nmonedas++;
                 aleatoriaM();
             }
@@ -192,6 +196,7 @@ var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
     abuela: new Audio('../sonido/gameOver.mp3'),
     tornito: new Audio('../sonido/torno.wav'),
+    zonaSeguridad: new Audio('../sonido/trenpasando.mp4'),
 };
 
 
@@ -219,10 +224,7 @@ function dibujar() {
     
     moneda.dibujarMoneda();
     torno.dibujarTorno();
-    if (obstaculosH.length != 0) {
-        dibujarO();
-        i= 0;
-    }
+    dibujarO();
     zonaS.dibujarZona();
     rail.dibujarRail();
     tren.dibujarTren();
