@@ -57,8 +57,6 @@ var jugador = {
     }
 };
 
-
-
 var tren = {
     x: 850,
     y: 0,
@@ -114,6 +112,7 @@ var zonaS = {
     dibujarZona: function (){
         zonaS.img.src = "../img/barranym.png";
         ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
+        sonido.zonaSeguridad.play();
     }
 };
 
@@ -152,23 +151,26 @@ var ladron = {
             }
         }
     },
-
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
-        if(((ladron.x - (x - ancho) < borde) && (( x- (ladron.x + ancho)) < borde))){
-            if(((x + ancho) < ladron.x) || (x > (ladron.x + ancho))){
-                if(((y > ladron.y) && (y + ancho) < (ladron.y + ancho)) || ((y > ladron.y) &&((y + ancho) < (ladron.y + ancho)))){
+        if( dist(x, y, ladron.x, ladron.y) < borde){
+            if(((x + ancho + borde) > ladron.x) || (x < (ladron.x + ancho + borde))){
+                if(((y + ancho + borde) > ladron.y) || (y < (ladron.y + ancho + borde))){
                     if (nmonedas > 0) {
-                        nmonedas--;
                         ladron.velx = -ladron.velx;
-                        ladron.velx = -ladron.vely;
+                        ladron.vely = -ladron.vely;
+                        nmonedas--;
                     }
                     
                 }
             }
         }
     }
+
+
 };
+
+
 
 var moneda = {
     x: nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde),
@@ -187,7 +189,7 @@ var moneda = {
     colisionMoneda: function (x, y){
         if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
             if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-                sonido.moneda.play();
+                // sonido.moneda.play();
                 nmonedas++;
                 aleatoriaM();
             }
@@ -201,6 +203,7 @@ var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
     abuela: new Audio('../sonido/gameOver.mp3'),
     tornito: new Audio('../sonido/torno.wav'),
+    zonaSeguridad: new Audio('../sonido/trenpasando.mp4'),
 };
 
 
@@ -345,7 +348,7 @@ function colisionAbuelaV(x,y){
 
 /*NIVELES*/
 function niveles(nmonedas){
-    if(nmonedas ==10){
+    if(nmonedas == 10){
         nivel = 2;  
     }
     if(nmonedas == 20){
@@ -411,6 +414,12 @@ function clear(){                                                           //Li
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
+function dist(x1, y1, x2 ,y2){
+    var a = x1 - x2;
+    var b = y1 - y2;
+
+    return Math.sqrt(a*a + b*b);
+}
 
 /*Relacionados con HTML*/
 
