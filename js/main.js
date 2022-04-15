@@ -50,8 +50,6 @@ var jugador = {
     }
 };
 
-
-
 var tren = {
     x: 850,
     y: 0,
@@ -148,12 +146,15 @@ var ladron = {
     },
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
-        if ((x < (ladron.x + ancho)) && ((x + ancho) > ladron.x)) {
-            if ((y < (ladron.y + ancho)) && ((y + ancho) > ladron.y)) {
-                if (nmonedas > 0) {
-                    nmonedas--;
-                    ladron.velx = -ladron.velx;
-                    ladron.velx = -ladron.vely;
+        if( dist(x, y, ladron.x, ladron.y) < borde){
+            if(((x + ancho + borde) > ladron.x) || (x < (ladron.x + ancho + borde))){
+                if(((y + ancho + borde) > ladron.y) || (y < (ladron.y + ancho + borde))){
+                    if (nmonedas > 0) {
+                        ladron.velx = -ladron.velx;
+                        ladron.vely = -ladron.vely;
+                        nmonedas--;
+                    }
+                    
                 }
             }
         }
@@ -235,6 +236,16 @@ function dibujar() {
 
     ladron.bordesLadron();
     ladron.robaMoneda();
+
+
+    jugador.colisionJugador(jugador.x);
+    moneda.colisionMoneda(jugador.x, jugador.y);
+    tren.colisionTren(jugador.x);
+    colisionAbuelaH(jugador.x, jugador.y);
+    colisionAbuelaV(jugador.x, jugador.y);
+    if(nivel % 2 == 0){
+        ladron.colisionLadron(jugador.x, jugador.y);
+    }
 }
     
 //Funciones//
@@ -330,7 +341,7 @@ function colisionAbuelaV(x,y){
 
 /*NIVELES*/
 function niveles(nmonedas){
-    if(nmonedas ==10){
+    if(nmonedas == 10){
         nivel = 2;  
     }
     if(nmonedas == 20){
@@ -359,19 +370,7 @@ function moverJ(e){
 
     if(ratonY > 5 && ratonY < campo.height-40){
         jugador.y = ratonY - 10;
-    }
-    
-
-    if(empezar){
-        jugador.colisionJugador(ratonX);
-        moneda.colisionMoneda(ratonX, ratonY);
-        tren.colisionTren(ratonX);
-        colisionAbuelaH(ratonX,ratonY);
-        colisionAbuelaV(ratonX,ratonY);
-        if(nivel % 2 == 0){
-            ladron.colisionLadron(ratonX, ratonY);
-        }
-    }  
+    } 
 }
 
 /*Contador*/
@@ -408,6 +407,12 @@ function clear(){                                                           //Li
     ctx.clearRect(0, 0, campo.width, campo.height);
 }
 
+function dist(x1, y1, x2 ,y2){
+    var a = x1 - x2;
+    var b = y1 - y2;
+
+    return Math.sqrt(a*a + b*b);
+}
 
 /*Relacionados con HTML*/
 
