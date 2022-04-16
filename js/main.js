@@ -35,14 +35,11 @@ var jugador = {
     bono: false,
 
     dibujarJugador: function () {
-        // jugador.img.src = '../img/icono.png';       
-        // ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-        //elegirPersonaje();
-       
-        //canvas.style.cursor = "none";
- 
-        var jugadorE = localStorage.getItem("imagen");
-        ctx.drawImage(jugadorE,jugador.x,jugador.y,ancho,ancho);
+        
+        jugadorESRC = localStorage.getItem('imagen');
+        jugador.img.src = jugadorESRC;
+        ctx.drawImage(jugador.img,jugador.x,jugador.y,ancho,ancho);
+        canvas.style.cursor = "none";
 
     },
 
@@ -236,7 +233,6 @@ function dibujar() {
     rail.dibujarRail();
     tren.dibujarTren();
     jugador.dibujarJugador();
-    // elegirPersonaje();
     ladron.dibujarLadron();
 
     //Colisiones:
@@ -275,10 +271,10 @@ function dibujarO(){
             obstaculosH[i].obsHX -= 3;
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 4;
-            // dibujarOV();
+            dibujarOV();
         }else if(nivel == 4){
             obstaculosH[i].obsHX -= 5.5;
-            // dibujarOV();
+            dibujarOV();
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
@@ -292,9 +288,9 @@ function dibujarOV(){
     for( var i = 0; i < obstaculosV.length; i++){
         ctx.drawImage(obsAbuela, obstaculosV[i].obsVY + zona, obstaculosV[i].obsVX, 3*ancho, 2*ancho);
         if(nivel == 3){
-            obstaculosV[i].obsVX -=2;
+            obstaculosV[i].obsVY -=2;
         }else if(nivel == 4){
-            obstaculosV[i].obsVX -=3;
+            obstaculosV[i].obsVY -=3;
         }
         if(obstaculosV[i].obsVY < 0){
             obstaculosV.splice(i,1);
@@ -461,61 +457,40 @@ function desaparecePersonaje() {
 }
 
 
-// function elegirPersonaje() {
-//     var personaje = document.getElementsByName("personajeS");
-      
-//     for(i = 0; i < personaje.length; i++) {
-//         if(personaje[i].checked)
-//         document.getElementById("fraseP").innerHTML= personaje[i].value;
-//         // var seleccion = document.getElementById("fraseP").textContent;
-//     }
-//     // if(seleccion.toString() == 'niño'){
-//     //     jugador.img.src = '../img/niño.png';
-//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     // }
-//     // if(seleccion.toString() == 'abuela'){
-//     //     jugador.img.src = '../img/abuela1.png';
-//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     // }
-//     // if(seleccion.toString() == 'perro'){
-//     //     jugador.img.src = '../img/icono.png';
-//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     // }
-    
-// }
-
 function botonNino(){
 
     document.getElementById("fraseP").innerHTML = "Niño";
 
-    // var nino = new Image();
-    // nino.src = '../img/niño.png';
 
-    // localStorage.setItem("jugador",nino);
-    imagenNiño = document.getElementById("imagenNiño");
-    localStorage.setItem("imagen",imagenNiño);
+    var imagenNiño = new Image();
+    imagenNiño.src = '../img/niño.png';
+
+    localStorage.setItem("imagen",imagenNiño.src);
 
 }
-    
 
 function botonNina(){
 
    document.getElementById("fraseP").innerHTML = "Niña";
 
-   imagenNiña = document.getElementById("imagenNiña");
-   localStorage.setItem("imagen",imagenNiña);
+   var imagenNiña = new Image();
+   imagenNiña.src = '../img/niña.png';
 
+   localStorage.setItem("imagen",imagenNiña.src);
    
 }
     
-
 
 function botonPerro(){
 
     document.getElementById("fraseP").innerHTML = "Perro";
 
-    imagenPerro = document.getElementById("imagenPerro");
-    localStorage.setItem("imagen",imagenPerro);
+    var imagenPerro = new Image();
+    imagenPerro.src = '../img/icono.png';
+
+    localStorage.setItem("imagen",imagenPerro.src);
+
     
 }
+
     
