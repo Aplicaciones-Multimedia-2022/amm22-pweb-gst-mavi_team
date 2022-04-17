@@ -109,7 +109,7 @@ var zonaS = {
     dibujarZona: function (){
         zonaS.img.src = "../img/barranym.png";
         ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
-        sonido.zonaSeguridad.play();
+        //sonido.zonaSeguridad.play();
     }
 };
 
@@ -198,7 +198,6 @@ var moneda = {
 
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
-    abuela: new Audio('../sonido/gameOver.mp3'),
     tornito: new Audio('../sonido/torno.wav'),
     zonaSeguridad: new Audio('../sonido/trenpasando.mp4'),
 };
@@ -229,6 +228,7 @@ function dibujar() {
     moneda.dibujarMoneda();
     torno.dibujarTorno();
     dibujarO();
+    dibujarOV();
     zonaS.dibujarZona();
     rail.dibujarRail();
     tren.dibujarTren();
@@ -257,13 +257,17 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
     this.posJugadorX = posJugadorX;
     this.posJugadorY = posJugadorY;
 }
+function obst1 (posJugadorX1, posJugadorY1) {                              //Constructor obstáculos
+    this.posJugadorX1 = posJugadorX1;
+    this.posJugadorY1 = posJugadorY1;
+}
 
 
 //Obstáculos
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + 70, obstaculosH[i].obsHY, 3*ancho, 2*ancho);
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + (zona-borde), obstaculosH[i].obsHY - borde, 3*ancho, 2*ancho);
         //3 niveles, 3 velocidades distintas? con case o if se hace
         if(nivel ==1){
             obstaculosH[i].obsHX -= 1.5;
@@ -271,10 +275,8 @@ function dibujarO(){
             obstaculosH[i].obsHX -= 3;
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 4;
-            dibujarOV();
         }else if(nivel == 4){
-            obstaculosH[i].obsHX -= 5.5;
-            dibujarOV();
+            obstaculosH[i].obsHX -= 5;
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
@@ -285,12 +287,16 @@ function dibujarO(){
 }
 
 function dibujarOV(){
-    for( var i = 0; i < obstaculosV.length; i++){
-        ctx.drawImage(obsAbuela, obstaculosV[i].obsVY + zona, obstaculosV[i].obsVX, 3*ancho, 2*ancho);
-        if(nivel == 3){
-            obstaculosV[i].obsVY -=2;
+    for( i = 0; i < obstaculosV.length; i++){
+        ctx.drawImage(obsAbuela, obstaculosV[i].obsVY +zona, obstaculosV[i].obsVX +zona, 3*ancho, 2*ancho);
+        if(nivel == 1){
+            obstaculosV[i].obsVX +=5.5;
+        }else if(nivel == 2){
+            obstaculosV[i].obsVX +=5.5;
+        }else if(nivel == 3){
+            obstaculosV[i].obsVX -=2;
         }else if(nivel == 4){
-            obstaculosV[i].obsVY -=3;
+            obstaculosV[i].obsVX -=3;
         }
         if(obstaculosV[i].obsVY < 0){
             obstaculosV.splice(i,1);
@@ -301,7 +307,7 @@ function dibujarOV(){
 //Obstaculos
 function creaObstaculo (){                                          //Crea las abuelas
     var obstA = new obst (obsHX, obsHY);
-    var obstB = new obst (obsVX,obsVY);
+    var obstB = new obst1 (obsVX, obsVY);
     obsAbuela.src = '../img/abuela1.png';
     obstA.obsHX = campo.width - 250;
     obstA.obsHY = Math.floor(Math.random() * (campo.height-50));
@@ -328,17 +334,18 @@ function colisionAbuelaH(x,y){
 }
 
 function colisionAbuelaV(x,y){
-    for(j = 0; j < obstaculosV.length;j++){
-        if((obstaculosV[j].obsVX - (y-ancho) < borde) && (y - (obstaculosV[i].obsVX + 2*ancho) < borde)){
-            if(((y + ancho) > obstaculosV[j].obsVX) || (y< (obstaculosV[j].obsVX + 2*ancho))){
-                if((((x + ancho) > obstaculosV[j].obsVY)) || ( x < (obstaculosV[j].obsVY + ancho))){
-                    obstaculosV.splice(j,1);
+    for(i = 0; i < obstaculosV.length;i++){
+        if(((obstaculosV[i].obsVY - (y-ancho))<1) || ((y - (obstaculosV[i].obsVY + 2*ancho)) < 1)){
+            if((x < obstaculosV[i].obsVY + 3*ancho) || ((x+ancho)> obstaculosV[i].obsVY)){
+                if(((y+ancho) > obstaculosV[i].obsVX) && (obstaculosV[i].obsVX > y)){
+                    obstaculosV.splice(i,1);
                     tiempo++;
                     contadorAbuela++;
                 }
             }
-        } 
+        }    
     }
+    
     document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
@@ -417,7 +424,7 @@ function dist(x1, y1, x2 ,y2){
     return Math.sqrt(a*a + b*b);
 }
 
-/*Relacionados con HTML*/
+/*Relacionados con HTML(página inicio)*/
 
 function getNombre(name, url){
     if (!url){
@@ -456,14 +463,14 @@ function desaparecePersonaje() {
     }
 }
 
-
+/*ELEGIR PERSONAJE*/
 function botonNino(){
 
     document.getElementById("fraseP").innerHTML = "Niño";
 
 
     var imagenNiño = new Image();
-    imagenNiño.src = '../img/niño.png';
+    imagenNiño.src = '../img/niño1.png';
 
     localStorage.setItem("imagen",imagenNiño.src);
 
@@ -474,7 +481,7 @@ function botonNina(){
    document.getElementById("fraseP").innerHTML = "Niña";
 
    var imagenNiña = new Image();
-   imagenNiña.src = '../img/niña.png';
+   imagenNiña.src = '../img/niña1.png';
 
    localStorage.setItem("imagen",imagenNiña.src);
    
