@@ -109,7 +109,7 @@ var zonaS = {
     dibujarZona: function (){
         zonaS.img.src = "../img/barranym.png";
         ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
-        sonido.zonaSeguridad.play();
+        //sonido.zonaSeguridad.play();
     }
 };
 
@@ -151,8 +151,8 @@ var ladron = {
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
         if( dist(x, y, ladron.x, ladron.y) < borde){
-            if(((x + ancho + borde) > ladron.x) || (x < (ladron.x + ancho + borde))){
-                if(((y + ancho + borde) > ladron.y) || (y < (ladron.y + ancho + borde))){
+            if(((x + ancho + borde + ladron.velx) > ladron.x) || (x < (ladron.x + ancho + borde + ladron.velx))){
+                if(((y + ancho + borde + ladron.vely) > ladron.y) || (y < (ladron.y + ancho + borde + ladron.vely))){
                     if (nmonedas > 0) {
                         ladron.velx = -ladron.velx;
                         ladron.vely = -ladron.vely;
@@ -160,10 +160,9 @@ var ladron = {
                     }
                     
                 }
-            }
+            } 
         }
     }
-
 
 };
 
@@ -186,7 +185,7 @@ var moneda = {
     colisionMoneda: function (x, y){
         if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
             if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-                sonido.moneda.play();
+                //sonido.moneda.play();
                 nmonedas++;
                 aleatoriaM();
             }
@@ -267,7 +266,7 @@ function dibujarO(){
         if(nivel ==1){
             obstaculosH[i].obsHX -= 1.5;
         }else if(nivel == 2){
-            obstaculosH[i].obsHX -= 2;
+            obstaculosH[i].obsHX -= 2.5;
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 3;
         }else if(nivel == 4){
@@ -488,7 +487,6 @@ function botonPerro(){
 
     localStorage.setItem("imagen",imagenPerro.src);
 
-    
 }
 
     
