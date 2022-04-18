@@ -21,7 +21,7 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 var obstaculosV = [];
 var empezar = false;
-var contadorAbuela = 0;
+
 
 
 tiempo = 0;
@@ -35,14 +35,11 @@ var jugador = {
     bono: false,
 
     dibujarJugador: function () {
-        // jugador.img.src = '../img/icono.png';       
-        // ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-        //elegirPersonaje();
-       
-        //canvas.style.cursor = "none";
- 
-        var jugadorE = localStorage.getItem("imagen");
-        ctx.drawImage(jugadorE,jugador.x,jugador.y,ancho,ancho);
+        
+        jugadorESRC = localStorage.getItem('imagen');
+        jugador.img.src = jugadorESRC;
+        ctx.drawImage(jugador.img,jugador.x,jugador.y,ancho,ancho);
+        canvas.style.cursor = "none";
 
     },
 
@@ -189,7 +186,7 @@ var moneda = {
     colisionMoneda: function (x, y){
         if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
             if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-                // sonido.moneda.play();
+                sonido.moneda.play();
                 nmonedas++;
                 aleatoriaM();
             }
@@ -201,7 +198,6 @@ var moneda = {
 
 var sonido = {
     moneda: new Audio('../sonido/Moneda.mp3'),
-    abuela: new Audio('../sonido/gameOver.mp3'),
     tornito: new Audio('../sonido/torno.wav'),
     zonaSeguridad: new Audio('../sonido/trenpasando.mp4'),
 };
@@ -232,11 +228,11 @@ function dibujar() {
     moneda.dibujarMoneda();
     torno.dibujarTorno();
     dibujarO();
+    dibujarOV();
     zonaS.dibujarZona();
     rail.dibujarRail();
     tren.dibujarTren();
     jugador.dibujarJugador();
-    // elegirPersonaje();
     ladron.dibujarLadron();
 
     //Colisiones:
@@ -267,18 +263,15 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
 function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
-        ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + 70, obstaculosH[i].obsHY, 3*ancho, 2*ancho);
-        //3 niveles, 3 velocidades distintas? con case o if se hace
+        ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + (zona-borde), obstaculosH[i].obsHY - borde, 3*ancho, 2*ancho);
         if(nivel ==1){
             obstaculosH[i].obsHX -= 1.5;
         }else if(nivel == 2){
-            obstaculosH[i].obsHX -= 3;
+            obstaculosH[i].obsHX -= 2;
         }else if(nivel == 3){
-            obstaculosH[i].obsHX -= 4;
-            // dibujarOV();
+            obstaculosH[i].obsHX -= 3;
         }else if(nivel == 4){
-            obstaculosH[i].obsHX -= 5.5;
-            // dibujarOV();
+            obstaculosH[i].obsHX -= 4;
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
@@ -289,12 +282,16 @@ function dibujarO(){
 }
 
 function dibujarOV(){
-    for( var i = 0; i < obstaculosV.length; i++){
-        ctx.drawImage(obsAbuela, obstaculosV[i].obsVY + zona, obstaculosV[i].obsVX, 3*ancho, 2*ancho);
-        if(nivel == 3){
+    for( i = 0; i < obstaculosV.length; i++){
+        ctx.drawImage(obsAbuela, obstaculosV[i].obsVY +zona, obstaculosV[i].obsVX +zona, 3*ancho, 2*ancho);
+        if(nivel == 1){
+            obstaculosV[i].obsVX +=5.5;
+        }else if(nivel == 2){
+            obstaculosV[i].obsVX +=5.5;
+        }else if(nivel == 3){
             obstaculosV[i].obsVX -=2;
         }else if(nivel == 4){
-            obstaculosV[i].obsVX -=3;
+            obstaculosV[i].obsVX -=2;
         }
         if(obstaculosV[i].obsVY < 0){
             obstaculosV.splice(i,1);
@@ -305,7 +302,7 @@ function dibujarOV(){
 //Obstaculos
 function creaObstaculo (){                                          //Crea las abuelas
     var obstA = new obst (obsHX, obsHY);
-    var obstB = new obst (obsVX,obsVY);
+    var obstB = new obst (obsVX, obsVY);
     obsAbuela.src = '../img/abuela1.png';
     obstA.obsHX = campo.width - 250;
     obstA.obsHY = Math.floor(Math.random() * (campo.height-50));
@@ -319,31 +316,28 @@ function colisionAbuelaH(x,y){
     for(i = 0; i < obstaculosH.length;i++){
         if(((obstaculosH[i].obsHX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsHX + 3*ancho)) < borde))){
             if(((x+ancho) < obstaculosH[i].obsHX) || (x > (obstaculosH[i].obsHX + 3*ancho))){
-                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho)) || ((y > obstaculosH[i].obsHY) &&((y+ancho) < (obstaculosH[i].obsHY+2*ancho)))){
+                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho))|| ((y > obstaculosH[i].obsHY) &&((y+ancho) < (obstaculosH[i].obsHY+2*ancho)))){
                     obstaculosH.splice(i,1);
                     tiempo++;
-                    contadorAbuela++;
-                    
                 }
             }
         }
     }
-    document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
 function colisionAbuelaV(x,y){
-    for(j = 0; j < obstaculosV.length;j++){
-        if((obstaculosV[j].obsVX - (y-ancho) < borde) && (y - (obstaculosV[i].obsVX + 2*ancho) < borde)){
-            if(((y + ancho) > obstaculosV[j].obsVX) || (y< (obstaculosV[j].obsVX + 2*ancho))){
-                if((((x + ancho) > obstaculosV[j].obsVY)) || ( x < (obstaculosV[j].obsVY + ancho))){
-                    obstaculosV.splice(j,1);
-                    tiempo++;
-                    contadorAbuela++;
+    for(i = 0; i < obstaculosV.length;i++){
+        if((obstaculosV[i].obsVY - (x - ancho) < borde) && ((x - (obstaculosV[i].obsVY + 3*ancho)< borde))){
+            if((((obstaculosV[i].obsVX - (y-borde-ancho))<borde) &&  ((y-borde - (obstaculosV[i].obsVX + 2*ancho)) < borde))){
+                if((x > obstaculosV[i].obsVY + 3*ancho) || ((x+ancho)< obstaculosV[i].obsVY)){
+                    if(((y+ancho) < obstaculosV[i].obsVX + 2*ancho) || (obstaculosV[i].obsVX < y)){
+                        obstaculosV.splice(i,1);
+                        tiempo++;
+                    }
                 }
-            }
-        } 
+            } 
+        }    
     }
-    document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
 /*NIVELES*/
@@ -403,7 +397,7 @@ function contar(){
 
 function aleatoriaM(){                                                      //Aleatorizar moneda
     moneda.x = nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde);
-    moneda.y = nAleatorio(borde, campo.height - borde);
+    moneda.y = nAleatorio(borde, campo.height - 2*borde);
 }
 
 function nAleatorio(min, max) {                                             //Número aleatorio
@@ -421,7 +415,7 @@ function dist(x1, y1, x2 ,y2){
     return Math.sqrt(a*a + b*b);
 }
 
-/*Relacionados con HTML*/
+/*Relacionados con HTML(página inicio)*/
 
 function getNombre(name, url){
     if (!url){
@@ -460,62 +454,41 @@ function desaparecePersonaje() {
     }
 }
 
-
-// function elegirPersonaje() {
-//     var personaje = document.getElementsByName("personajeS");
-      
-//     for(i = 0; i < personaje.length; i++) {
-//         if(personaje[i].checked)
-//         document.getElementById("fraseP").innerHTML= personaje[i].value;
-//         // var seleccion = document.getElementById("fraseP").textContent;
-//     }
-//     // if(seleccion.toString() == 'niño'){
-//     //     jugador.img.src = '../img/niño.png';
-//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     // }
-//     // if(seleccion.toString() == 'abuela'){
-//     //     jugador.img.src = '../img/abuela1.png';
-//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     // }
-//     // if(seleccion.toString() == 'perro'){
-//     //     jugador.img.src = '../img/icono.png';
-//     //     ctx.drawImage(jugador.img, jugador.x, jugador.y, ancho, ancho);
-//     // }
-    
-// }
-
+/*ELEGIR PERSONAJE*/
 function botonNino(){
 
     document.getElementById("fraseP").innerHTML = "Niño";
 
-    // var nino = new Image();
-    // nino.src = '../img/niño.png';
 
-    // localStorage.setItem("jugador",nino);
-    imagenNiño = document.getElementById("imagenNiño");
-    localStorage.setItem("imagen",imagenNiño);
+    var imagenNiño = new Image();
+    imagenNiño.src = '../img/niño1.png';
+
+    localStorage.setItem("imagen",imagenNiño.src);
 
 }
-    
 
 function botonNina(){
 
    document.getElementById("fraseP").innerHTML = "Niña";
 
-   imagenNiña = document.getElementById("imagenNiña");
-   localStorage.setItem("imagen",imagenNiña);
+   var imagenNiña = new Image();
+   imagenNiña.src = '../img/niña1.png';
 
+   localStorage.setItem("imagen",imagenNiña.src);
    
 }
     
-
 
 function botonPerro(){
 
     document.getElementById("fraseP").innerHTML = "Perro";
 
-    imagenPerro = document.getElementById("imagenPerro");
-    localStorage.setItem("imagen",imagenPerro);
+    var imagenPerro = new Image();
+    imagenPerro.src = '../img/icono.png';
+
+    localStorage.setItem("imagen",imagenPerro.src);
+
     
 }
+
     
