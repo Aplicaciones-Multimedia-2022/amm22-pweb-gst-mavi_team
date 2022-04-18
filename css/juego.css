@@ -106,6 +106,26 @@ button:hover{
     transform: scale(1.01);
 }
 
+.juego{
+    display: inline-block;
+    outline: 0;
+    border:0;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    color: rgb(54, 52, 52);
+    background: rgb(180, 212, 238);
+    line-height: 15px;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 300;
+    box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
+    transition: all 0.2s;
+    font-family: texto1;
+    margin-left: 47%;
+}
+
 
 /*Campo de juego*/
 canvas{
@@ -115,6 +135,7 @@ canvas{
     /*background-color:rgb(189, 185, 185);*/
     border: 3px solid black;
     background-size: cover;
+    margin-left: 24%;
 }
 
 /*Tipo de letra*/
