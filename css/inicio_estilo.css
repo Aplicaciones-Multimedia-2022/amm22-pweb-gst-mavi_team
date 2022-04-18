@@ -87,14 +87,13 @@ body{
   padding-right: 40px;
 }
 
-
 div{
   margin: auto;
   background-color: inherit;
   align-items: center;
   justify-content: center;
   font-family: texto;
-  margin-left: 375px;
+  margin-left: 600px;
 } 
 
 #botonA{
@@ -161,7 +160,12 @@ nav{
   margin-left: 10px;
   margin-top: 5px;
   width: 120px;
+}
 
+form{
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 25%;
 }
 
 .botonGeneral:hover{
