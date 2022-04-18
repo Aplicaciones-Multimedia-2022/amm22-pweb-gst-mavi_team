@@ -21,7 +21,7 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 var obstaculosV = [];
 var empezar = false;
-var contadorAbuela = 0;
+// var contadorAbuela = 0;
 
 
 tiempo = 0;
@@ -276,7 +276,7 @@ function dibujarO(){
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 4;
         }else if(nivel == 4){
-            obstaculosH[i].obsHX -= 5;
+            obstaculosH[i].obsHX -= 4.5;
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
@@ -296,7 +296,7 @@ function dibujarOV(){
         }else if(nivel == 3){
             obstaculosV[i].obsVX -=2;
         }else if(nivel == 4){
-            obstaculosV[i].obsVX -=3;
+            obstaculosV[i].obsVX -=2;
         }
         if(obstaculosV[i].obsVY < 0){
             obstaculosV.splice(i,1);
@@ -321,7 +321,7 @@ function colisionAbuelaH(x,y){
     for(i = 0; i < obstaculosH.length;i++){
         if(((obstaculosH[i].obsHX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsHX + 3*ancho)) < borde))){
             if(((x+ancho) < obstaculosH[i].obsHX) || (x > (obstaculosH[i].obsHX + 3*ancho))){
-                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho)) || ((y > obstaculosH[i].obsHY) &&((y+ancho) < (obstaculosH[i].obsHY+2*ancho)))){
+                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho))){
                     obstaculosH.splice(i,1);
                     tiempo++;
                     contadorAbuela++;
@@ -330,23 +330,25 @@ function colisionAbuelaH(x,y){
             }
         }
     }
-    document.getElementById('abuela').innerHTML = contadorAbuela;
+    // document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
 function colisionAbuelaV(x,y){
     for(i = 0; i < obstaculosV.length;i++){
-        if(((obstaculosV[i].obsVY - (y-ancho))<1) || ((y - (obstaculosV[i].obsVY + 2*ancho)) < 1)){
-            if((x < obstaculosV[i].obsVY + 3*ancho) || ((x+ancho)> obstaculosV[i].obsVY)){
-                if(((y+ancho) > obstaculosV[i].obsVX) && (obstaculosV[i].obsVX > y)){
-                    obstaculosV.splice(i,1);
-                    tiempo++;
-                    contadorAbuela++;
+        if((obstaculosV[i].obsVY - (x - ancho) < borde) && ((x - (obstaculosV[i].obsVY + 3*ancho)< borde))){
+            if(((obstaculosV[i].obsVX - (y-ancho)<borde) &&  ((y - (obstaculosV[i].obsVX + 2*ancho)) < borde))){
+                if((x > obstaculosV[i].obsVY + 3*ancho) || ((x+ancho)< obstaculosV[i].obsVY)){
+                    if(((y+ancho) < obstaculosV[i].obsVX + 2*ancho) || (obstaculosV[i].obsVX < y)){
+                        obstaculosV.splice(i,1);
+                        tiempo++;
+                        contadorAbuela++;
+                    }
                 }
-            }
+            } 
         }    
     }
     
-    document.getElementById('abuela').innerHTML = contadorAbuela;
+    // document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
 /*NIVELES*/
@@ -406,7 +408,7 @@ function contar(){
 
 function aleatoriaM(){                                                      //Aleatorizar moneda
     moneda.x = nAleatorio(zonaS.x + zona, campo.width - 2*zona - 2*borde);
-    moneda.y = nAleatorio(borde, campo.height - borde);
+    moneda.y = nAleatorio(borde, campo.height - 2*borde);
 }
 
 function nAleatorio(min, max) {                                             //Número aleatorio
