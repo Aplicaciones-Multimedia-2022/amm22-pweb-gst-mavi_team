@@ -5,6 +5,7 @@
     src: url(../res/nasalization-rg.otf);
   }
 
+
 *{
     margin: 0;
     padding: 0;
@@ -16,6 +17,9 @@ body{
     background-image: url(../img/fondo.jpeg);
     background-size: cover;
 }
+html{
+    scroll-behavior: smooth;
+}
 
 .wrapper{
     max-width: 1080px;
@@ -26,11 +30,11 @@ body{
 
 .wrapper .linea-central{
     position:absolute;
-    height:100%;
-    width:4px;
+    height: 100%;
+    width: 4px;
     background: white;
-    left:50%;
-    /* top: 20px; */
+    left: 50%;
+    top: 20px; 
     transform:translateX(-50%);
 
 }
@@ -76,6 +80,7 @@ body{
 }
 
 .row section .detalles{
+
     display:flex;
     justify-content: space-between;  /*espacio entre 1parada y palabra)*/
 }
@@ -92,40 +97,41 @@ body{
 
 }
 
-.picture{
-    background: rgb(54, 63, 114);
-    /* right: -70px; */
-}
-/* IMAGEN */
-img{
-    display: block;
-    width: 24px;
-    height: 24px;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    margin-left: -12px;
-    margin-top: -12px;
-}
-.wrapper .row .timeline-img {
+
+/* CIRCULO */
+/* .row section .icon{
     position: absolute;
-    top: 13px;
-    left:0;
-    width: 40px;
-    height:40px;
+
+} */
+.row section .icon,.linea-central .scroll-icon{
+    content:'';
+    position: absolute;
+    height: 40px;
+    width:40px;
+    background-color: #f2f2f2 ;
     border-radius: 50%;
     line-height: 40px;
+    box-shadow: 0px 0px 5px 1px #fff, inset 0px 2px 0px rgb(0, 0, 0,0.08), 0px 4px 0px 5px rgba(0,0,0,0.05);
     text-align: center;
-    
+    color:rgb(97, 129, 179) ;
 }
-.wrapper .row-1  .timeline-img::before {
-   
+/* ponemos el circulo en el top of the line */
+.row-1 section .icon{
     right: -60px;
 }
-
-/* .row-1 section .picture{
-    right: -60px;
-} */
+/* circulos de izquierda */
+.row-2 section .icon{
+    top: 20px;
+    transform: translateX(-50%, -50%);
+    left: -60px;
+}
+.linea-central .scroll-icon{
+    bottom: 0px;
+    left: 50%;
+    font-size: 25px;
+    transform: translateX(-50%);
+    text-align: center;
+}
 
 /*Titulos y parrafos*/
 
@@ -138,7 +144,7 @@ img{
     font-size: 50px;
     text-shadow: -4px 3px rgb(110, 138, 173);
     margin-top: 2px;
-}
+} 
 
 /*Botones*/
 
@@ -179,6 +185,36 @@ img{
     transform: scale(1.01);
 }
 
+
+/* ESTO ES PARA QUE CUANDO MINIMICEMOS PANTALLA LA INFORMACIÓN SE REORDENE */
+@media(max-width:790px){
+    .wrapper .linea-central{
+        left: 30px;
+    }
+    .wrapper .row{
+        margin: 30px 0 3px 60px;
+    }
+    .wrapper .row section{
+        width: 100%;
+    }
+    .row-1 section::before{
+        left: -7px;
+    }
+    .row-1 section .icon{
+        left: -60px;
+    }
+}
+
+@media(max-width:440px){
+    .wrapper .linea-central,
+    .row section::before,
+    .row section .icon{
+        display:none;
+    }
+    .wrapper .row{
+        margin: 10px 0;
+    }
+}
 
 
 
