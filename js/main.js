@@ -21,7 +21,7 @@ var obsAbuela = new Image;
 var obstaculosH = [];
 var obstaculosV = [];
 var empezar = false;
-// var contadorAbuela = 0;
+
 
 
 tiempo = 0;
@@ -109,7 +109,7 @@ var zonaS = {
     dibujarZona: function (){
         zonaS.img.src = "../img/barranym.png";
         ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
-        //sonido.zonaSeguridad.play();
+        sonido.zonaSeguridad.play();
     }
 };
 
@@ -186,7 +186,7 @@ var moneda = {
     colisionMoneda: function (x, y){
         if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
             if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-                // sonido.moneda.play();
+                sonido.moneda.play();
                 nmonedas++;
                 aleatoriaM();
             }
@@ -257,10 +257,6 @@ function obst (posJugadorX, posJugadorY) {                              //Constr
     this.posJugadorX = posJugadorX;
     this.posJugadorY = posJugadorY;
 }
-function obst1 (posJugadorX1, posJugadorY1) {                              //Constructor obstáculos
-    this.posJugadorX1 = posJugadorX1;
-    this.posJugadorY1 = posJugadorY1;
-}
 
 
 //Obstáculos
@@ -268,15 +264,14 @@ function dibujarO(){
     //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
         ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + (zona-borde), obstaculosH[i].obsHY - borde, 3*ancho, 2*ancho);
-        //3 niveles, 3 velocidades distintas? con case o if se hace
         if(nivel ==1){
             obstaculosH[i].obsHX -= 1.5;
         }else if(nivel == 2){
-            obstaculosH[i].obsHX -= 3;
+            obstaculosH[i].obsHX -= 2;
         }else if(nivel == 3){
-            obstaculosH[i].obsHX -= 4;
+            obstaculosH[i].obsHX -= 3;
         }else if(nivel == 4){
-            obstaculosH[i].obsHX -= 4.5;
+            obstaculosH[i].obsHX -= 4;
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
@@ -307,7 +302,7 @@ function dibujarOV(){
 //Obstaculos
 function creaObstaculo (){                                          //Crea las abuelas
     var obstA = new obst (obsHX, obsHY);
-    var obstB = new obst1 (obsVX, obsVY);
+    var obstB = new obst (obsVX, obsVY);
     obsAbuela.src = '../img/abuela1.png';
     obstA.obsHX = campo.width - 250;
     obstA.obsHY = Math.floor(Math.random() * (campo.height-50));
@@ -321,34 +316,28 @@ function colisionAbuelaH(x,y){
     for(i = 0; i < obstaculosH.length;i++){
         if(((obstaculosH[i].obsHX - (x-ancho) < borde) && (( x- (obstaculosH[i].obsHX + 3*ancho)) < borde))){
             if(((x+ancho) < obstaculosH[i].obsHX) || (x > (obstaculosH[i].obsHX + 3*ancho))){
-                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho))){
+                if(((y > obstaculosH[i].obsHY) && (y + ancho) < (obstaculosH[i].obsHY +2*ancho))|| ((y > obstaculosH[i].obsHY) &&((y+ancho) < (obstaculosH[i].obsHY+2*ancho)))){
                     obstaculosH.splice(i,1);
                     tiempo++;
-                    contadorAbuela++;
-                    
                 }
             }
         }
     }
-    // document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
 function colisionAbuelaV(x,y){
     for(i = 0; i < obstaculosV.length;i++){
         if((obstaculosV[i].obsVY - (x - ancho) < borde) && ((x - (obstaculosV[i].obsVY + 3*ancho)< borde))){
-            if(((obstaculosV[i].obsVX - (y-ancho)<borde) &&  ((y - (obstaculosV[i].obsVX + 2*ancho)) < borde))){
+            if((((obstaculosV[i].obsVX - (y-borde-ancho))<borde) &&  ((y-borde - (obstaculosV[i].obsVX + 2*ancho)) < borde))){
                 if((x > obstaculosV[i].obsVY + 3*ancho) || ((x+ancho)< obstaculosV[i].obsVY)){
                     if(((y+ancho) < obstaculosV[i].obsVX + 2*ancho) || (obstaculosV[i].obsVX < y)){
                         obstaculosV.splice(i,1);
                         tiempo++;
-                        contadorAbuela++;
                     }
                 }
             } 
         }    
     }
-    
-    // document.getElementById('abuela').innerHTML = contadorAbuela;
 }
 
 /*NIVELES*/
