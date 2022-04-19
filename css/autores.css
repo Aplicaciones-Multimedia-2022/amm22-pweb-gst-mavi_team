@@ -111,6 +111,20 @@ h1{
     font-weight: 400; 
 }
 
+.img_left{
+    display: block;
+    width: 125px;
+    height: 125px;
+    float:left;
+}
+
+.img_right{
+    display: block;
+    width: 125px;
+    height: 125px;
+    float: right;
+}
+
 @keyframes slidein_left{
     from {
         margin-left:0%;
