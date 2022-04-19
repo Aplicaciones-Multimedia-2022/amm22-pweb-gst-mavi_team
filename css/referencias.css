@@ -56,15 +56,15 @@ button:hover{
 
 .img_left{
     display: block;
-    width: 100px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     float:left;
 }
 
 .img_right{
     display: block;
-    width: 100px;
-    height: 150px;
+    width: 125px;
+    height: 125px;
     float: right;
 }
 
@@ -78,7 +78,7 @@ button:hover{
     width: 100%;
     opacity: 0;
     transition: .5s ease;
-    background-color: #008CBA;
+    background-color: rgb(97, 127, 163);
 }
 
 .caja_left:hover .capa{
@@ -90,6 +90,7 @@ button:hover{
 }
 
 .texto{
+    font-family: texto1;
     color: white;
     font-size: 20px;
     position: absolute;
@@ -115,7 +116,7 @@ h1{
     margin-left: 125px;
     margin-right: 50px;
     overflow: hidden; 
-    padding: 80px; 
+    padding: 60px; 
     border-radius: 0px 35px 35px 35px; 
     -moz-border-radius: 0px 35px 35px 35px; 
     -webkit-border-radius: 0px 35px 35px 35px; 
@@ -158,6 +159,11 @@ h1{
     color: #ffffff; 
     font-size: 18px; 
     font-weight: 400; 
+}
+
+a{
+    color: white;
+    text-decoration: none;
 }
 
 @keyframes slidein_left{
