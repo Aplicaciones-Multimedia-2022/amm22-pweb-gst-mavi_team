@@ -93,7 +93,11 @@ div{
   align-items: center;
   justify-content: center;
   font-family: texto;
+
   margin-left: 300px;
+
+  margin-left: 25%;
+
 } 
 
 #botonA{
