@@ -9,7 +9,7 @@ body{
   background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
   -webkit-background-clip: text;
   color: transparent; 
-  font-family: texto;
+  font-family: texto1;
   text-align: center;
   justify-content: center;
   font-size: 90px;
@@ -215,4 +215,9 @@ form{
 @font-face{
   font-family: texto;
   src: url(../res/nasalization-rg.otf);
+}
+
+@font-face{
+  font-family: texto1;
+  src: url(../res/WaitingfortheSunrise.ttf);
 }

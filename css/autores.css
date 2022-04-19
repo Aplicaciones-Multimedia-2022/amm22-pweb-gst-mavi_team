@@ -1,7 +1,7 @@
 /*Para el cuerpo pagina*/
 body{
     background-image: url(../img/fondo.jpeg);
-    background-size: cover
+    background-size: cover;
 }
 
 /*Titulos y parrafos*/
@@ -9,7 +9,7 @@ body{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
     color: transparent; 
-    font-family: texto1;
+    font-family: texto;
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
@@ -137,6 +137,10 @@ h1{
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
+}
+@font-face{
+    font-family: texto;
+    src: url(../res/WaitingfortheSunrise.ttf);
   }
 .fixed{
     position: fixed;

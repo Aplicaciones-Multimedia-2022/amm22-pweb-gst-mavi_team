@@ -3,7 +3,11 @@
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
-  }
+}
+@font-face{
+    font-family: texto;
+    src: url(../res/WaitingfortheSunrise.ttf);
+}
 
 
 *{
@@ -139,7 +143,7 @@ html{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
     color: transparent; 
-    font-family: texto1;
+    font-family: texto;
     text-align: center;
     font-size: 50px;
     text-shadow: -4px 3px rgb(110, 138, 173);
@@ -216,44 +220,5 @@ html{
     }
 }
 
-
-
-/* #titulo{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 40px;
-}
-#titulo1{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 70px;
-}
-#titulo2{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 100px;
-}
-#titulo4{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 210px;
-}
-#titulo5{
-    font-family: texto1;
-    color: rgb(54, 63, 114);
-    text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-left: 90px;
-}
-
-#texto{
-    font-family: texto1;
-    font-size: 20px;
-    color: white;
-    margin-left: 50px;
-} */
 
 
