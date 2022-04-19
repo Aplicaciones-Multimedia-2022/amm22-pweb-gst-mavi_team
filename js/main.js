@@ -119,6 +119,7 @@ var ladron = {
     img: new Image,
     velx: 3,
     vely: 3,
+    ultimaRobada: Date.now(),
 
     dibujarLadron: function (){
         ladron.img.src = '../img/ladron.png';
@@ -151,16 +152,14 @@ var ladron = {
     //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
         if( dist(x, y, ladron.x, ladron.y) < borde){
-            if(((x + ancho + borde + ladron.velx) > ladron.x) || (x < (ladron.x + ancho + borde + ladron.velx))){
-                if(((y + ancho + borde + ladron.vely) > ladron.y) || (y < (ladron.y + ancho + borde + ladron.vely))){
-                    if (nmonedas > 0) {
-                        ladron.velx = -ladron.velx;
-                        ladron.vely = -ladron.vely;
-                        nmonedas--;
-                    }
-                    
-                }
-            } 
+            var ahora = Date.now();
+            var diferencia = ahora - this.ultimaRobada;
+            if (nmonedas > 0 && diferencia > 1000) { // 1000 milisegundos
+                ladron.velx = -ladron.velx;
+                ladron.vely = -ladron.vely;
+                nmonedas--;
+                this.ultimaRobada = Date.now();
+            }
         }
     }
 
