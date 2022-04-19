@@ -1,13 +1,14 @@
 // set up text to print, each item in array is new line
 var aText = new Array(
-    "", 
-    "",
-    "",
-    "",
-    "",
-    ""
+    "Es un lunes a las 8 de la mañana y te encuentras en la estación",
+    "de MAVI dispuesto a coger el metro. Desafortunadamente, hay un grupo", 
+    "de abuelas que te impiden el paso sumándote tiempo y un ladrón con", 
+    "la intención de dejarte sin dinero para que recargues tu bono.", 
+    "Con todo esto, ¿Serás capaz de llegar a tiempo a clase?",
     );
-    var iSpeed = 100; // time delay of print out
+
+   
+    var iSpeed = 50; // time delay of print out
     var iIndex = 0; // start printing array at this posision
     var iArrLength = aText[0].length; // the length of the text array
     var iScrollAt = 20; // start scrolling up at this many lines
