@@ -109,7 +109,7 @@ var zonaS = {
     dibujarZona: function (){
         zonaS.img.src = "../img/barranym.png";
         ctx.drawImage(zonaS.img,zonaS.x,zonaS.y,100,campo.height);
-        //sonido.zonaSeguridad.play();
+        sonido.zonaSeguridad.play();
     }
 };
 
@@ -185,7 +185,7 @@ var moneda = {
     colisionMoneda: function (x, y){
         if((x < (moneda.x + ancho)) && (x > (moneda.x - borde))){
             if((y < (moneda.y + ancho)) && (y > (moneda.y - borde))){
-                //sonido.moneda.play();
+                sonido.moneda.play();
                 nmonedas++;
                 aleatoriaM();
             }
