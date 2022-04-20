@@ -1,11 +1,11 @@
-//Constantes//
+/*Constantes*/
 
 const borde = 25;
 const ancho = 50;
 const zona = 100;
 
 
-//Variables//
+/*Variables*/
 
 document.getElementById("nombre").innerHTML = getNombre('username');
 
@@ -14,6 +14,7 @@ var ctx = canvas.getContext('2d');
 var frameNo = 0;
 var nivel = 1;
 var nmonedas = 0;
+
 //Variables para los obstáculos
 var obsHX,obsHY;
 var obsVX,obsVY;
@@ -26,7 +27,7 @@ var empezar = false;
 
 tiempo = 0;
 
-//Objetos//
+/*Objetos*/
 
 var jugador = {
     x: zona / 2,
@@ -44,7 +45,8 @@ var jugador = {
     },
 
     colisionJugador: function(x){
-        if(jugador.bono){                                          //Colisiona con tren
+       
+        if(jugador.bono){                //Colisiona con tren                           
     
         }else{
             if(x > (campo.width - 2*zona - borde)){                //Colisionar borde
@@ -142,14 +144,14 @@ var ladron = {
         }
     },
 
-    robaMoneda: function (){                                                               //Ladrón roba monedas con las que choca
+    //Ladrón roba monedas con las que choca (en el canvas)
+    robaMoneda: function (){                                                               
         if((ladron.x < (moneda.x + ancho)) && (ladron.x > (moneda.x - ancho))){
             if((ladron.y < (moneda.y + ancho)) && (ladron.y > (moneda.y - ancho))){
                 aleatoriaM();
             }
         }
     },
-    //Ladrón te roba 1 moneda y rebota, pero cuando lo pillas en diagonal te roba todas y no te rebota
     colisionLadron: function (x, y) {
         if( dist(x, y, ladron.x, ladron.y) < borde){
             var ahora = Date.now();
@@ -201,7 +203,7 @@ var sonido = {
 };
 
 
-//Main//
+/*Main*/
 
 function main(){
     empezar = true;
@@ -222,6 +224,8 @@ function dibujar() {
 
     ladron.x += ladron.velx;
     ladron.y += ladron.vely;
+
+    //Dibujar
     
     moneda.dibujarMoneda();
     torno.dibujarTorno();
@@ -238,7 +242,6 @@ function dibujar() {
     ladron.bordesLadron();
     ladron.robaMoneda();
 
-
     jugador.colisionJugador(jugador.x);
     moneda.colisionMoneda(jugador.x, jugador.y);
     tren.colisionTren(jugador.x);
@@ -249,17 +252,16 @@ function dibujar() {
     }
 }
     
-//Funciones//
+/*Constructor de obstáculos*/
 
-function obst (posJugadorX, posJugadorY) {                              //Constructor obstáculos
+function obst (posJugadorX, posJugadorY) {                        
     this.posJugadorX = posJugadorX;
     this.posJugadorY = posJugadorY;
 }
 
 
-//Obstáculos
+/*Dibujar obstáculos*/
 function dibujarO(){
-    //Funcion para dibujar los obstáculos
     for(var i = 0; i < obstaculosH.length; i++) {
         ctx.drawImage(obsAbuela, obstaculosH[i].obsHX + (zona-borde), obstaculosH[i].obsHY - borde, 3*ancho, 2*ancho);
         if(nivel ==1){
@@ -297,7 +299,7 @@ function dibujarOV(){
     }
 }
 
-//Obstaculos
+/*Obstaculos*/
 function creaObstaculo (){                                          //Crea las abuelas
     var obstA = new obst (obsHX, obsHY);
     var obstB = new obst (obsVX, obsVY);
@@ -338,7 +340,7 @@ function colisionAbuelaV(x,y){
     }
 }
 
-/*NIVELES*/
+/*Niveles*/
 function niveles(nmonedas){
     if(nmonedas == 10){
         nivel = 2;  
@@ -452,7 +454,7 @@ function desaparecePersonaje() {
     }
 }
 
-/*ELEGIR PERSONAJE*/
+/*Elegir personaje*/
 function botonNino(){
 
     document.getElementById("fraseP").innerHTML = "Niño";
