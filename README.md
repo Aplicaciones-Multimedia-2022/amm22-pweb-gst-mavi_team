@@ -9,7 +9,7 @@ Participantes:
  
 ++++++++++++++++++++++ MAVI PROJECT +++++++++++++++++++++++++++++
 
-Atención pasajeros, su aventura comenzará en la página de "Historia.html", en la caperta de html. Les será contado un breve contexto y serán redirigidos a
+Atención pasajeros, su aventura comenzará en la página de "Historia.html", en la carpeta de html. Les será contado un breve contexto y serán redirigidos a
 la selección de su personaje y nombre. Por último, llegarán al juego dónde podrán empezar su aventura pulsando el botón de jugar o navegar por las 
 diferentes páginas.
 Le recomendamos ir primero a la página de descripción para conocer las reglas y su jugabilidad.
