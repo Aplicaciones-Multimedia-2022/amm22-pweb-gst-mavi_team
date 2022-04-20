@@ -4,7 +4,7 @@ body{
     background-size: cover
 }
 
-/*Titulos y parrafos*/
+/*Titulo principal*/
 .titulo3{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
@@ -143,7 +143,6 @@ canvas{
     display: block;
     margin: 0 auto;
     background-image: url(../img/fondocanvas2.jpg);
-    /*background-color:rgb(189, 185, 185);*/
     border: 3px solid black;
     background-size: cover;
     margin-left: 15%;

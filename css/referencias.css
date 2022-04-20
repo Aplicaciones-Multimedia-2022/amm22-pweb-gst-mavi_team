@@ -4,7 +4,7 @@ body{
     background-size: cover
 }
 
-/*Titulos y parrafos*/
+/*Titulo principal*/
 .titulo3{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
@@ -16,6 +16,9 @@ body{
 }
 
 /*Botones*/
+nav{
+    margin: auto;
+}    
 #menu{
     margin: 5px;
     background-color: inherit;
@@ -52,6 +55,9 @@ body{
     transform: scale(1.01);
 }
 
+
+/*Imágenes*/
+
 .fixed{
     position: fixed;
     width: 100%;
@@ -63,9 +69,7 @@ body{
 }
 .fixed + .content{
     padding-top: 60px;
-
 }
-
 .img_left{
     display: block;
     width: 125px;
@@ -80,6 +84,7 @@ body{
     float: right;
 }
 
+/*Divisiones*/
 .capa{
     position: absolute;
     top: 0;
@@ -93,13 +98,6 @@ body{
     background-color: rgb(97, 127, 163);
 }
 
-.caja_left:hover .capa{
-    opacity: 1;
-}
-
-.caja_right:hover .capa{
-    opacity: 1;
-}
 
 .texto{
     font-family: texto1;
@@ -138,8 +136,6 @@ h1{
     animation-iteration-count: 1;
     position: relative;
  
-/* 
-    animation: slide-in-rigth 3s ease-in-out both; */
 }
 .caja_left{
     text-align: center; 
@@ -173,10 +169,21 @@ h1{
     font-weight: 400; 
 }
 
+.caja_right:hover .capa{
+    opacity: 1;
+}
+
+.caja_left:hover .capa{
+    opacity: 1;
+}
+
+/*Link*/
 a{
     color: white;
     text-decoration: none;
 }
+
+/*Animaciones*/
 
 @keyframes slidein_left{
     from {

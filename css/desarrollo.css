@@ -102,12 +102,6 @@ html{
 
 }
 
-
-/* CIRCULO */
-/* .row section .icon{
-    position: absolute;
-
-} */
 .row section .icon,.linea-central .scroll-icon{
     content:'';
     position: absolute;

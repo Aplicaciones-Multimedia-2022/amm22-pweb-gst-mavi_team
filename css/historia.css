@@ -7,7 +7,7 @@ body{
 *{
   font-family: texto;
 }
-/*Mavi Subway*/         
+/*Titulo principal*/         
 .titulo{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
@@ -28,7 +28,7 @@ body{
 
 }
 
-
+/*Tipo de letra*/
 @font-face{
   font-family: texto;
   src: url(../res/WaitingfortheSunrise.ttf);
