@@ -15,6 +15,7 @@ body{
     text-shadow: -4px 3px rgb(110, 138, 173);
 }
 
+
 /*Botones*/
 nav{
     margin: auto;
@@ -98,7 +99,6 @@ nav{
     background-color: rgb(97, 127, 163);
 }
 
-
 .texto{
     font-family: texto1;
     color: white;
@@ -144,7 +144,7 @@ h1{
     margin-left: 125px;
     margin-right: 50px;
     overflow: hidden; 
-    padding: 80px; 
+    padding: 60px; 
     border-radius: 35px 0px 35px 35px; 
     -moz-border-radius: 35px 0px 35px 35px; 
     -webkit-border-radius: 35px 0px 35px 35px; 
@@ -159,14 +159,16 @@ h1{
 .caja_right p{
     font-family:texto1; 
     color: #ffffff; 
-    font-size: 18px; 
+    font-size: 25px; 
     font-weight: 400; 
+    text-align: center;
 }
 .caja_left p{
     font-family:texto1; 
     color: #ffffff; 
-    font-size: 18px; 
+    font-size: 25px; 
     font-weight: 400; 
+    text-align: center;
 }
 
 .caja_right:hover .capa{
@@ -180,7 +182,6 @@ h1{
 /*Link*/
 a{
     color: white;
-    text-decoration: none;
 }
 
 /*Animaciones*/
