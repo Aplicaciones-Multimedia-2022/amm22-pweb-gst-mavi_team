@@ -18,8 +18,6 @@ body{
     animation-iteration-count: infinite;
 }
 
-
-
 #nav1{
     margin: auto;
     background-color: inherit;
@@ -30,18 +28,16 @@ body{
     margin-top: 50px;
     
 }
-/*Foto*/
 
+/*Foto*/
 #foto{
     justify-content: center;
     align-items: center;
-    margin-left: 500px;
+    margin-left: 550px;
     border-radius: 10px;
     -webkit-animation: fadein 8s;
     animation-duration: 2s;
     animation-iteration-count: infinite;
-
-
 }
 
 /*Botón de volver a jugar*/

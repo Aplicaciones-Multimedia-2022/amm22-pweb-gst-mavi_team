@@ -79,7 +79,6 @@ p{
     line-height: 32px; 
     margin: 0 0 24px;
     text-align: left;
-    
 }
 
 .subtitulo{
@@ -96,6 +95,7 @@ p{
 #izquierda{
     display: block;
     float: right;
+    margin-top: 40px;
     text-align: left;
     background:rgb(110, 138, 173); 
     border-radius: 35px 0px 35px 35px; 
@@ -117,13 +117,13 @@ p{
     margin-bottom: 10px;
 }
 
+/* Botón de Jugar */
 .juego{
     display: inline-block;
     outline: 0;
     border:0;
     cursor: pointer;
     text-decoration: none;
-    position: relative;
     color: rgb(54, 52, 52);
     background: rgb(180, 212, 238);
     line-height: 15px;
@@ -135,8 +135,15 @@ p{
     transition: all 0.2s;
     font-family: texto1;
     margin-left: 47%;
+    position: relative;
 }
 
+section{
+    display:inline;
+    float: left;
+    margin-top: 225px;
+    margin-left: 50px;
+}
 
 /*Campo de juego*/
 canvas{
