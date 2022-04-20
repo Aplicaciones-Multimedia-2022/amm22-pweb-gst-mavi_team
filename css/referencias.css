@@ -180,7 +180,7 @@ a{
 
 @keyframes slidein_left{
     from {
-        margin-left:0%;
+        margin-top:0%;
         width:0%;
     }
     to{

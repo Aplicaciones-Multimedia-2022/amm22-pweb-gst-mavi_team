@@ -13,8 +13,8 @@ body{
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /*Botones*/
@@ -53,14 +53,6 @@ body{
     transform: scale(1.01);
 }
 
-h1{
-    font-family: texto1;
-    color:white;
-    margin-left: 125px;
-    margin-top: 2px;
-    margin-bottom:2px;
-}
-
 .caja_right { 
     text-align: center; 
     background:rgb(110, 138, 173); 
@@ -76,9 +68,6 @@ h1{
     animation-duration: 4s;
     animation-name: slidein_left;
     animation-iteration-count: 1;
- 
-/* 
-    animation: slide-in-rigth 3s ease-in-out both; */
 }
 .caja_left{
     text-align: center; 
