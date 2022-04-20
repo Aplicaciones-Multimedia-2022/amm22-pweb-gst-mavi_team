@@ -3,6 +3,12 @@ body{
     background-image: url(../img/fondo.jpeg);
     background-size: cover
 }
+*{
+    font-family: texto1;
+    color:#ffff;
+    margin:0;
+
+}
 
 /*Titulo principal*/
 .titulo3{
@@ -15,6 +21,14 @@ body{
     text-shadow: -4px 3px rgb(110, 138, 173);
 }
 
+
+html{
+    font-size: 20px;
+
+    @media screen and (max-width: 540px) {
+        font-size: 16px;
+    }
+}
 /*Botones*/
 nav{
     margin: auto;
@@ -118,64 +132,29 @@ h1{
     margin-bottom:2px;
     text-align: center;
 }
-
-.caja_right { 
+.container{
+    max-width: 700px;
+    width:100%;
     text-align: center; 
-    background:rgb(110, 138, 173); 
-    margin: 8px; 
-    margin-left: 125px;
-    margin-right: 50px;
+    background:rgb(97, 127, 163); 
+    opacity: 0.8;
     overflow: hidden; 
-    padding: 60px; 
-    border-radius: 0px 35px 35px 35px; 
-    -moz-border-radius: 0px 35px 35px 35px; 
-    -webkit-border-radius: 0px 35px 35px 35px; 
-    border: 5px solid rgb(180, 212, 238);
-    animation-duration: 4s;
-    animation-name: slidein_left;
-    animation-iteration-count: 1;
-    position: relative;
- 
-}
-.caja_left{
-    text-align: center; 
-    background:rgb(110, 138, 173); 
-    margin: 8px; 
-    margin-left: 125px;
-    margin-right: 50px;
-    overflow: hidden; 
-    padding: 80px; 
-    border-radius: 35px 0px 35px 35px; 
-    -moz-border-radius: 35px 0px 35px 35px; 
-    -webkit-border-radius: 35px 0px 35px 35px; 
-    border: 5px solid rgb(180, 212, 238);
-    animation-duration: 3s;
-    animation-name: slidein_right;
-    animation-iteration-count: 1;
-    position: relative;
-    
+    padding: 30px; 
+    border-radius:10px; 
+    /* -moz-border-radius: 10px; 
+    -webkit-border-radius: 10px;  */
+    /* border: 5px solid rgb(180, 212, 238); */
+    margin:40px auto;
+    position:relative;
+    margin-top: 0px;
 }
 
-.caja_right p{
-    font-family:texto1; 
-    color: #ffffff; 
-    font-size: 18px; 
-    font-weight: 400; 
-}
-.caja_left p{
-    font-family:texto1; 
-    color: #ffffff; 
-    font-size: 18px; 
-    font-weight: 400; 
-}
 
-.caja_right:hover .capa{
+.container:hover .capa{
     opacity: 1;
 }
 
-.caja_left:hover .capa{
-    opacity: 1;
-}
+
 
 /*Link*/
 a{
@@ -183,30 +162,6 @@ a{
     text-decoration: none;
 }
 
-/*Animaciones*/
-
-@keyframes slidein_left{
-    from {
-        margin-left:0%;
-        width:0%;
-    }
-    to{
-        margin-left:10%;
-        margin-right: 10%;
-        width:72.5%;
-    }
-}
-@keyframes slidein_right{
-    from {
-       margin-left:100%;
-        width:10%;
-    }
-    to{
-        margin-right:10%;
-        margin-right: 10%;
-        width:72.5%;
-    }
-}
 
 /*Tipo de letra*/
 @font-face{
