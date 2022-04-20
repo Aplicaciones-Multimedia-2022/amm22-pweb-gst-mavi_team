@@ -1,7 +1,7 @@
 /*Para el cuerpo pagina*/
 body {
     background-image: url(../img/fondo.jpeg);
-    background-size: cover
+    background-size: cover;
 }
 
 /*Titulos y parrafos*/
@@ -13,6 +13,8 @@ body {
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /*Botones*/
@@ -180,10 +182,8 @@ body {
         width: 25%;
     }
   }
-}
 
   @font-face{
     font-family: texto;
     src: url(../res/WaitingfortheSunrise.ttf);
   }
-
