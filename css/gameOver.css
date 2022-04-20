@@ -6,7 +6,7 @@ body{
 
 /*Titulos y parrafos*/
 #over{
-    font-family: texto1;
+    font-family: texto;
     font-size: 100px;
     text-align: center;
     margin-top: 250px;
@@ -21,7 +21,7 @@ body{
     display: flex;
     align-self: center;
     justify-content: center;
-    font-family: texto1;
+    font-family: texto;
     margin-top: 300px;
     
 }
@@ -59,4 +59,9 @@ button:hover{
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
+  }
+
+  @font-face{
+    font-family: texto;
+    src: url(../res/WaitingfortheSunrise.ttf);
   }

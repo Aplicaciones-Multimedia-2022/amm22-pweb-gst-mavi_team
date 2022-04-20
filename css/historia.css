@@ -4,8 +4,10 @@ body{
     background-size: cover;
 }
 
-
-/*Mavi Subway*/         
+*{
+  font-family: texto;
+}
+/*Titulo principal*/         
 .titulo{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
@@ -17,135 +19,24 @@ body{
     text-shadow: -4px 3px rgb(110, 138, 173);
 }
 
+#historia{
+  justify-content: center;
+  text-align: center;
+  font-family: texto;
+  color: white;
+  font-size: 30px;
 
-p{
-    border-right: .15em solid rgb(54, 63, 114);
-    font-family: texto;
-    font-size: 30px;
-    white-space: nowrap;
-    overflow: hidden;
-    color: rgb(255, 255, 255);;
-    justify-content: center;
-    text-align: center;
-    margin-left: 100px;
-    font-weight: 300;
-    text-shadow: -2px 3px rgb(54, 63, 114);
 }
 
-/*Animación para p*/
-.historia{
-    width: 33em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-}
-.historia1{
-    width: 33em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 2s;
-    -webkit-animation-delay: 2s;
-}
-.historia2{
-    width: 30em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 4s;
-    -webkit-animation-delay: 4s;
-}
-.historia3{
-    width: 30em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 6s;
-    -webkit-animation-delay: 6s;
-}
-.historia4{
-    width: 31em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 8s;
-    -webkit-animation-delay: 8s;
-}
-.historia5{
-    width: 30em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 10s;
-    -webkit-animation-delay: 10s;
-}
-.historia6{
-    width: 28em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 12s;
-    -webkit-animation-delay: 12s;
-}
-.historia7{
-    width: 7em;
-    -webkit-animation: type 2s steps(30, end);
-    animation: type 2s steps(30, end);
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    animation-delay: 14s;
-    -webkit-animation-delay: 14s;
-}
-
-
-
-@keyframes type {
-    0% {
-        width:0;    }
-    99.9% {
-      border-right: .15em solid rgb(54, 63, 114);
-    }
-    100% {
-      border: none;
-    }
-}
-  
-@-webkit-keyframes type {
-    0% {
-      width: 0;
-    }
-    99.9% {
-      border-right: .15em solid rgb(54, 63, 114);
-    }
-    100% {
-      border: none;
-    }
-}
-  
-@keyframes blink {
-    50% {
-      border-color: transparent;
-    }
-  }
-  @-webkit-keyframes blink {
-    50% {
-      border-color: tranparent;
-    }
-}
-
-
-
+/*Tipo de letra*/
 @font-face{
   font-family: texto;
-  src: url(../res/nasalization-rg.otf);
+  src: url(../res/WaitingfortheSunrise.ttf);
 }
+
+
+
+
 
 
 

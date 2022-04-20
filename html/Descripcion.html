@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>MAVI'S STATION</title>
-        <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/descripcion.css">
     </head>
 
@@ -10,22 +10,100 @@
         <header>
             <h1 class="titulo3">MAVI SUBWAY</h1>
         </header>
-        
-        <nav>
-            <button class="nav" onclick="window.location.href = 'Juego.html'">Juego</button>
-            <button class="nav" onclick="alert('Ya estas en descripcion')">Descripción</button>
-            <button class="nav" onclick="window.location.href = 'Autores.html'">Autores</button>
-            <button class="nav" onclick="window.location.href = 'Multimedia.html'">Multimedia</button>
-            <button class="nav" onclick="window.location.href = 'Desarrollo.html'">Desarrollo</button>
-            <button class="nav" onclick="window.location.href = 'Referencias.html'">Referencias</button>
 
-        </nav> 
+        <div id="menu">
+
+            <a href="../html/Juego.html"> Juego</a>
+            <a href="../html/Descripcion.html" onclick="alert('Ya estas en Descripción')"> Descripción</a>
+            <a href="../html/Autores.html" > Autores</a>
+            <a href="../html/Multimedia.html">Multimedia</a>
+            <a href="../html/Desarrollo.html">Desarrollo</a>
+            <a href="../html/Referencias.html">Referencias</a>
+           
+        </div>
 
         <br>
+
+        <section class="objetivo">
+            <p align="center"> ¿CUÁL ES EL OBJETIVO DE NUESTRO JUEGO? <span></span></p>
+            
+            <p>Mavi Subway es un juego cuyo principal objetivo es llegar al metro. </p>
+            <p>Puedes ser una niña, un niño o un perro, que esta llegando tarde al metro MAVI.</p>
+            <p> Ademas de llegar tarde tienes un bono que recargar en el anden pero hay  </p>
+            <p>ciertos obstaculos: abuelas que se estan bajando del metro, abuelas que estan</p>
+            <p> caminando por el anden y un ladron codicioso que te quiere</p>
+                <p>robar las monedas para que no te puedas montar en el metro. </p>
+
+
+            
+<!-- 
+            PERSONAJES Y SUS ATRIBUTOS:             QUE HACEN LAS ABUELAS 
+
+            QUE HACE EL LADRON 
+
+            COMO RECARGAR
+
+
+            
+            LOS NIVELES
+
+            EL CONTADOR 
+
+            ZONA DE SEGURIDAD no te pueden robar ni vas a colisionar con las abuelas cuando estas en la zona de seguridad
+
+            TORNO cuando tienes las monedas necesarias para cargar el bono, la imagen desaparecera
+            y se escuchara un sonido para indicar que te puedes montar en el metro. 
+        
+        -->
+
+
+
+        </section>
+        <div><img src="../img/juego.jpeg" class="img_right1"></div>
+
+
+        <section  class="personajes">           
+            <p align="center"> PERSONAJES Y SUS ATRIBUTOS <span></span></p>
+
+            <p>JUGADOR: se puede escoger entre un niño, una niña y un perro.</p>
+            <p>El jugador aparecera en el area de juego, es decir, la estación</p>
+            <p>de metro y se moverá con el cursor.</p>
+            <p>LADRÓN: </p>
+            <p>ABUELAS:</p>
+            <p>ZONA DE SEGURIDAD:</p>
+            <p>TORNO:</p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+
+        </section>
+        
+        <div><img src="../img/personajes1principales.jpeg" class="img_right2"></div>
+        
+        <section class="instrucciones">
+            <p align="center"> ¿CÓMO JUGAR? <span></span></p>
+            <p>JUGADOR: se puede escoger entre un niño, una niña y un perro.</p>
+            <p>El jugador aparecera en el area de juego, es decir, la estación</p>
+            <p>de metro y se moverá con el cursor.</p>
+            <p>LADRÓN: el ladrón se desplaza aleatoriamente por el area del anden,</p>
+            <p>no llega a la zona de seguridad y según el nivel en que estes hará</p>
+            <p>algo específico. En los 4 niveles roba las monedas que aparecen</p>
+            <p>constantemente en el mapa, en los niveles pares el ladron roba al jugador y en los niveles impares no te roba simplemente pasa por encima</p>
+        </section>
+        
+        
+
+
 
 
     </body>
 
-    <script src="../js/main.js"></script>
+        <script language="javascript" type="text/javascript" src="../js/descripcion.js"></script>
+        
+        
+        <script src="../js/descripcion.js"></script>
+        <script src="../js/main.js"></script>
 
 </html>

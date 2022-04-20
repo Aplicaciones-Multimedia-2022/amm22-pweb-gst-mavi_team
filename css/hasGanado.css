@@ -1,6 +1,6 @@
 /*Para el cuerpo pagina*/
 body{
-    background-image: url(../img/fondoInicio.gif);
+    background-image: url(../img/fondoHasGanado.gif);
     background-size: cover;
 }
 
@@ -41,7 +41,7 @@ body{
     
 }
 
-/*Botones*/
+/*Botón de volver a jugar*/
 
 button{
     display: inline-block;
@@ -74,4 +74,6 @@ button:hover{
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
-  }
+}
+
+  
