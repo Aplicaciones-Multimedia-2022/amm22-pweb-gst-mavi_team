@@ -87,6 +87,8 @@ body{
     transform: scale(1.01);
 }
 
+/*Div*/
+
 .caja_right { 
     text-align: center; 
     background:rgb(110, 138, 173); 
@@ -120,6 +122,8 @@ body{
     animation-iteration-count: 1;
 }
 
+/*Imágenes*/
+
 .img_left{
     display: block;
     width: 175px;
@@ -133,6 +137,8 @@ body{
     height: 200px;
     float: right;
 }
+
+/*Animacion de las cajas*/
 
 @keyframes slidein_left{
     from {
