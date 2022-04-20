@@ -91,18 +91,19 @@ body {
 .personajes {
     font-family: texto1;
     color: white;
-    margin: 8px;
     margin-top: 50px;
-    margin-left: 70px;
+    margin-right: 150px;
+    margin-left: 300px;
+    margin-bottom: 50px;
     display: inline;
     float: left;
-    text-align: left;
+    text-align: center;
     background: rgb(110, 138, 173);
     overflow: auto;
     padding: 30px;
-    border-radius: 0px 35px 35px 35px;
-    -moz-border-radius: 0px 35px 35px 35px;
-    -webkit-border-radius: 0px 35px 35px 35px;
+    border-radius: 35px 35px 35px 35px;
+    -moz-border-radius: 35px 35px 35px 35px;
+    -webkit-border-radius: 35px 35px 35px 35px;
     border: 5px solid rgb(180, 212, 238);
     position: relative;
 }
