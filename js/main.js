@@ -19,6 +19,7 @@ var nmonedas = 0;
 var obsHX,obsHY;
 var obsVX,obsVY;
 var obsAbuela = new Image;
+var obsAbuelo = new Image;
 var obstaculosH = [];
 var obstaculosV = [];
 var empezar = false;
@@ -283,7 +284,7 @@ function dibujarO(){
 
 function dibujarOV(){
     for( i = 0; i < obstaculosV.length; i++){
-        ctx.drawImage(obsAbuela, obstaculosV[i].obsVY +zona, obstaculosV[i].obsVX +zona, 3*ancho, 2*ancho);
+        ctx.drawImage(obsAbuelo, obstaculosV[i].obsVY +zona, obstaculosV[i].obsVX +zona, 3*ancho, 2*ancho);
         if(nivel == 1){
             obstaculosV[i].obsVX +=5.5;
         }else if(nivel == 2){
@@ -304,6 +305,7 @@ function creaObstaculo (){                                          //Crea las a
     var obstA = new obst (obsHX, obsHY);
     var obstB = new obst (obsVX, obsVY);
     obsAbuela.src = '../img/abuela1.png';
+    obsAbuelo.src = '../img/abuelo.png';
     obstA.obsHX = campo.width - 250;
     obstA.obsHY = Math.floor(Math.random() * (campo.height-50));
     obstB.obsVX = campo.width - 250;
