@@ -17,7 +17,7 @@ Le recomendamos ir primero a la página de descripción para conocer las reglas 
 - En la página de Juego, encontrarás el juego en sí.
 - En la página de Descripción, encontrarás el objetivo del juego, sus reglas, cómo jugar y los diferentes personajes.
 - En la página de Autores, encontrarás una breve descripción de las responsabilidades de cada integrante.
-- En la página de Multimedia, la enontrarás en reforma.
+- En la página de Multimedia, la encontrarás en reforma.
 - En la página de Desarrollo, encontrarás las responsabilidades detalladas de cada uno de los integrantes, las dificultades que se han presentado durante
   el desarrollo del juego, los puntos fuertes del proyecto y el planning del mismo.
 - En la página de Referencias, encontrarás los diferentes links que han ayudado a la resolución de este proyecto.
