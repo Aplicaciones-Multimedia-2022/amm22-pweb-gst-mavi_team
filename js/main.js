@@ -463,7 +463,7 @@ function botonNino(){
 
 
     var imagenNiño = new Image();
-    imagenNiño.src = '../img/niño1.png';
+    imagenNiño.src = '../img/chico.png';
 
     localStorage.setItem("imagen",imagenNiño.src);
 
@@ -474,7 +474,7 @@ function botonNina(){
    document.getElementById("fraseP").innerHTML = "Niña";
 
    var imagenNiña = new Image();
-   imagenNiña.src = '../img/niña1.png';
+   imagenNiña.src = '../img/chica.png';
 
    localStorage.setItem("imagen",imagenNiña.src);
    
