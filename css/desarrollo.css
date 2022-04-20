@@ -64,6 +64,7 @@ html{
     width : calc(50% - 40px);
     padding: 20px;
     position: relative;
+    
 } 
 /*pestañas*/
 .wrapper .row section::before{
