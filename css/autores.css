@@ -17,6 +17,40 @@ body{
     margin-bottom: 2px;
 }
 
+.caja_right p{
+    font-family:texto1; 
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 400; 
+    text-align: center;
+    margin: 5px;
+}
+
+.caja_left p{
+    font-family:texto1; 
+    color: #ffffff; 
+    font-size: 18px; 
+    font-weight: 400; 
+    text-align: center;
+    margin: 5px;
+}
+
+.caja_left h3{
+    font-family:texto1; 
+    color: #ffffff; 
+    font-size: 25px; 
+    font-weight: 400;
+    text-align: center;
+}
+
+.caja_right h3{
+    font-family:texto1; 
+    color: #ffffff; 
+    font-size: 25px; 
+    font-weight: 400;
+    text-align: center;
+}
+
 /*Botones*/
 #menu{
     margin: 5px;
@@ -60,7 +94,7 @@ body{
     margin-left: 125px;
     margin-right: 50px;
     overflow: hidden; 
-    padding: 80px; 
+    padding: 40px; 
     border-radius: 0px 35px 35px 35px; 
     -moz-border-radius: 0px 35px 35px 35px; 
     -webkit-border-radius: 0px 35px 35px 35px; 
@@ -76,7 +110,7 @@ body{
     margin-left: 125px;
     margin-right: 50px;
     overflow: hidden; 
-    padding: 80px; 
+    padding: 40px; 
     border-radius: 35px 0px 35px 35px; 
     -moz-border-radius: 35px 0px 35px 35px; 
     -webkit-border-radius: 35px 0px 35px 35px; 
@@ -86,31 +120,17 @@ body{
     animation-iteration-count: 1;
 }
 
-.caja_right p{
-    font-family:texto1; 
-    color: #ffffff; 
-    font-size: 18px; 
-    font-weight: 400; 
-}
-
-.caja_left p{
-    font-family:texto1; 
-    color: #ffffff; 
-    font-size: 18px; 
-    font-weight: 400; 
-}
-
 .img_left{
     display: block;
-    width: 125px;
-    height: 150px;
+    width: 175px;
+    height: 200px;
     float:left;
 }
 
 .img_right{
     display: block;
-    width: 125px;
-    height: 150px;
+    width: 175px;
+    height: 200px;
     float: right;
 }
 
