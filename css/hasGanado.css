@@ -12,22 +12,13 @@ body{
     overflow: hidden;
     color: rgb(97, 129, 179);
     text-align: center;
-    margin-left: 100px;
+   
     font-weight: 300px;
     text-shadow: -4px 3px rgb(54, 63, 114);
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
 
-#win1{
-    font-family: texto1;
-    font-size: 70px;
-    white-space: nowrap;
-    overflow: hidden;
-    color: rgb(97, 129, 179);
-    text-align: center;
-    margin-left: 80px;
-    font-weight: 150px;
-    text-shadow: -4px 3px rgb(54, 63, 114);
-}
 
 
 #nav1{
@@ -37,8 +28,21 @@ body{
     align-self: center;
     justify-content: center;
     font-family: texto1;
-    margin-top: 300px;
+    margin-top: 50px;
     
+}
+/*Foto*/
+
+#foto{
+    justify-content: center;
+    align-items: center;
+    margin-left: 500px;
+    border-radius: 10px;
+    -webkit-animation: fadein 8s;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+
+
 }
 
 /*Botón de volver a jugar*/
@@ -61,7 +65,7 @@ button{
     transition: all 0.2s;
     font-family: texto1;
     margin-left: 10px;
-    margin-top: 5px;
+
 
 }
 
@@ -70,10 +74,27 @@ button:hover{
     transform: scale(1.01);
 }
 
+#foto{
+    animation-name: bounce-2;
+    animation-timing-function: ease;
+}
+#win{
+    animation-name: bounce-2;
+    animation-timing-function: ease;
+}
+@keyframes bounce-2 {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-50px); }
+    100% { transform: translateY(0); }
+}
+
+
+
 /*Tipo de letra*/
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
 }
+
 
   

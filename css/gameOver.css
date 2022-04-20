@@ -9,7 +9,7 @@ body{
     font-family: texto;
     font-size: 100px;
     text-align: center;
-    margin-top: 250px;
+    margin-top: 50px;
     color: white;
 
 }
@@ -22,8 +22,21 @@ body{
     align-self: center;
     justify-content: center;
     font-family: texto;
-    margin-top: 300px;
+    margin-top: 100px;
     
+}
+
+/*Imagen*/
+
+#foto{
+    justify-content: center;
+    align-items: center;
+    margin-left: 470px;
+    border-radius: 10px;
+    border:rgb(34, 44, 54);
+    border: 5px solid rgb(34, 44, 54);
+    padding: 3px;
+    border-image:url("../img/hasPerdido.jpg") 30 30 stretch;
 }
 
 /*Botones*/
