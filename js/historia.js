@@ -1,4 +1,3 @@
-
 var aText = new Array(
     "Es un lunes a las 8 de la mañana y te encuentras en la estación",
     "de MAVI dispuesto a coger el metro. Desafortunadamente, hay un grupo", 
