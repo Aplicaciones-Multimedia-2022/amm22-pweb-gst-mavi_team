@@ -13,23 +13,26 @@ body{
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /*Botones*/
 
-nav{
-    margin: auto;
+#menu {
+    margin: 5px;
     background-color: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: texto1;
+    z-index: 1;
 }
 
-button{
+#menu a {
     display: inline-block;
     outline: 0;
-    border:0;
+    border: 0;
     cursor: pointer;
     text-decoration: none;
     position: relative;
@@ -45,12 +48,24 @@ button{
     font-family: texto1;
     margin-left: 10px;
     margin-top: 5px;
-
 }
 
-button:hover{
+#menu a:hover {
     box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
     transform: scale(1.01);
+}
+
+.fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.content{
+    padding: 16px;
+}
+.fixed + .content{
+    padding-top: 60px;
 }
 
 /*Tipo de letra*/

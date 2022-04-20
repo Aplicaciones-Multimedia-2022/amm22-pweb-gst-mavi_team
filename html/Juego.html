@@ -11,17 +11,16 @@
             <h1 class="titulo3">MAVI SUBWAY</h1>
         </header>
     
-        <nav>
-            <button class="nav" onclick="alert('Ya estas en juego')">Juego</button>
-            <button class="nav" onclick="window.location.href = 'Descripcion.html'">Descripción</button>
-           
-            <button class="nav" onclick="window.location.href = 'Autores.html'">Autores</button>
-           
-            <button class="nav" onclick="window.location.href = 'Multimedia.html'">Multimedia</button>
-            <button class="nav" onclick="window.location.href = 'Desarrollo.html'">Desarrollo</button>
-            <button class="nav" onclick="window.location.href = 'Referencias.html'">Referencias</button>
+        <div id="menu">
 
-        </nav> 
+            <a href="../html/Juego.html" onclick="alert('Ya estas en Juego')"> Juego</a>
+            <a href="../html/Descripcion.html" > Descripción</a>
+            <a href="../html/Autores.html" > Autores</a>
+            <a href="../html/Multimedia.html">Multimedia</a>
+            <a href="../html/Desarrollo.html">Desarrollo</a>
+            <a href="../html/Referencias.html" >Referencias</a>
+           
+        </div>
 
         <br>
 
@@ -32,7 +31,7 @@
             <p>Bono: <span id="bono"></span></p>
             
             <p>Nivel: <span id="nivel"></span></p>
-            <p>Tiempo: <span id="contador1" class="contador"> 00:00 </span></p>
+            <p>Tiempo: <span id="contador1" class="contador"> 00 </span></p>
         </section>
             
         <br>
@@ -46,10 +45,10 @@
         <input type="range" min="1" max="10" value="5" id="myNumber"> 
     </body>
 
+    <script language="javascript" type="text/javascript" src="../js/juego.js"></script>
+        
+        
+    <script src="../js/juego.js"></script>
     <script src="../js/main.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
 
 </html>
