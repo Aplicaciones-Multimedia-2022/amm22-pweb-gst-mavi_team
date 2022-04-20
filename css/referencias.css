@@ -64,6 +64,8 @@ body{
 .fixed + .content{
     padding-top: 60px;
 
+}
+
 .img_left{
     display: block;
     width: 125px;
