@@ -46,13 +46,13 @@ body{
     font-family: texto1;
     margin-left: 10px;
     margin-top: 5px;
-
 }
 
 #menu a:hover{
     box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
     transform: scale(1.01);
 }
+
 h1{
     font-family: texto1;
     color:white;
@@ -95,7 +95,6 @@ h1{
     animation-duration: 3s;
     animation-name: slidein_right;
     animation-iteration-count: 1;
-    
 }
 
 .caja_right p{
@@ -104,6 +103,7 @@ h1{
     font-size: 18px; 
     font-weight: 400; 
 }
+
 .caja_left p{
     font-family:texto1; 
     color: #ffffff; 
