@@ -114,14 +114,14 @@ h1{
 .img_left{
     display: block;
     width: 125px;
-    height: 125px;
+    height: 150px;
     float:left;
 }
 
 .img_right{
     display: block;
     width: 125px;
-    height: 125px;
+    height: 150px;
     float: right;
 }
 
