@@ -8,8 +8,8 @@ body {
 .titulo3 {
     background: linear-gradient(rgb(54, 63, 114), rgb(97, 129, 179), rgb(54, 63, 114));
     -webkit-background-clip: text;
-    color: transparent;
-    font-family: texto1;
+    color: transparent; 
+    font-family: texto;
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
@@ -179,4 +179,11 @@ body {
         margin-right: 10%;
         width: 25%;
     }
+  }
 }
+
+  @font-face{
+    font-family: texto;
+    src: url(../res/WaitingfortheSunrise.ttf);
+  }
+

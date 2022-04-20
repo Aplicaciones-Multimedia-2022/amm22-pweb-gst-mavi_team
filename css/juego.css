@@ -9,7 +9,7 @@ body{
     background: linear-gradient(rgb(54, 63, 114),rgb(97, 129, 179),rgb(54, 63, 114));
     -webkit-background-clip: text;
     color: transparent; 
-    font-family: texto1;
+    font-family: texto;
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
@@ -53,21 +53,9 @@ p{
     text-align: center;
 }
 
-
-#derecha{
-    display: inline;
-    float: right;
-    background:rgb(110, 138, 173); 
-    opacity: 0.8;
-    border-radius: 0px 35px 35px 35px;
-    border: 3px solid rgb(180, 212, 238); 
-    padding: 40px;
-    text-align: left;
-}
-
 #izquierda{
-    display: inline;
-    float: left;
+    display: block;
+    float: right;
     text-align: left;
     background:rgb(110, 138, 173); 
     border-radius: 35px 0px 35px 35px; 
@@ -110,13 +98,32 @@ button{
     transition: all 0.2s;
     font-family: texto1;
     margin-left: 10px;
-    margin-top: 5px;
 
 }
 
 button:hover{
     box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
     transform: scale(1.01);
+}
+
+.juego{
+    display: inline-block;
+    outline: 0;
+    border:0;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    color: rgb(54, 52, 52);
+    background: rgb(180, 212, 238);
+    line-height: 15px;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 300;
+    box-shadow: rgb(110, 138, 173) -1px -1px 0px 1px, rgb(34, 44, 54) 0px 0px 0px 2px, rgba(0, 0, 0, 0.05) 0px 0px 1px 3px;
+    transition: all 0.2s;
+    font-family: texto1;
+    margin-left: 47%;
 }
 
 
@@ -128,11 +135,18 @@ canvas{
     /*background-color:rgb(189, 185, 185);*/
     border: 3px solid black;
     background-size: cover;
+    margin-left: 15%;
 }
 
 /*Tipo de letra*/
 @font-face{
     font-family: texto1;
     src: url(../res/nasalization-rg.otf);
+}
+
+@font-face{
+    font-family: texto;
+    src: url(../res/WaitingfortheSunrise.ttf);
   }
+
 

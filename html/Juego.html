@@ -2,13 +2,12 @@
 <html>
     <head>
         <title>MAVI'S STATION</title>
-        <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="../css/juego.css">
     </head>
 
     <body>
         <header>
-            <!--<img id="titulo1" src="imagen/titulo.png"></img>-->
             <h1 class="titulo3">MAVI SUBWAY</h1>
         </header>
     
@@ -28,20 +27,21 @@
 
         <section id="izquierda">
             <p class="subtitulo">Puntuaje: <span></span></p>
-            <p>Usuario: <span id="nombre"></span></p>
+            <p>Usuario: <span id="nombre"><br/></span></p>
             <p>Monedas: <span id="monedas"></span></p>
             <p>Bono: <span id="bono"></span></p>
-        </section>
-
-        <aside id="derecha">
-            <p>Tiempo: <span id="contador1" class="contador"> 00:00 </span></p>
-                
+            
             <p>Nivel: <span id="nivel"></span></p>
-
-            <p>Abuelas: <span id="abuela"></span></p>
-        </aside>
+            <p>Tiempo: <span id="contador1" class="contador"> 00:00 </span></p>
+        </section>
+            
+        <br>
         
         <canvas width="950" height="500" id="campo"></canvas>
+
+        <br>
+        <br>
+
         <button class="juego" justify-content="center" onclick="main()">Jugar</button>
         <input type="range" min="1" max="10" value="5" id="myNumber"> 
     </body>
