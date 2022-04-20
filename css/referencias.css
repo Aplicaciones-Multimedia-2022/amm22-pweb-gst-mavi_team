@@ -7,7 +7,6 @@ body{
     font-family: texto1;
     color:#ffff;
     margin:0;
-
 }
 
 html{
@@ -27,6 +26,8 @@ html{
     text-align: center;
     font-size: 70px;
     text-shadow: -4px 3px rgb(110, 138, 173);
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 .texto{
@@ -40,20 +41,7 @@ html{
     -ms-transform: translate(-50%, -50%);
 }
 
-
-h1{
-    font-family: texto1;
-    color:white;
-    margin-left: 125px;
-    margin-top: 2px;
-    margin-bottom:2px;
-    text-align: center;
-}
-
 /*Botones*/
-nav{
-    margin: auto;
-}    
 #menu{
     margin: 5px;
     background-color: inherit;
@@ -90,8 +78,6 @@ nav{
     transform: scale(1.01);
 }
 
-/*Imágenes*/
-
 .fixed{
     position: fixed;
     width: 100%;
@@ -104,6 +90,8 @@ nav{
 .fixed + .content{
     padding-top: 60px;
 }
+
+/*Imágenes*/
 .img_left{
     display: block;
     width: 125px;

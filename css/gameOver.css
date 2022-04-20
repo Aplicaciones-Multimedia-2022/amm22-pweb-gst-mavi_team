@@ -10,8 +10,8 @@ body{
     font-size: 100px;
     text-align: center;
     margin-top: 50px;
+    margin-right: 10px;
     color: white;
-
 }
 
 
@@ -23,7 +23,6 @@ body{
     justify-content: center;
     font-family: texto;
     margin-top: 100px;
-    
 }
 
 /*Imagen*/
@@ -31,7 +30,8 @@ body{
 #foto{
     justify-content: center;
     align-items: center;
-    margin-left: 470px;
+    margin-top: -100px;
+    margin-left: 510px;
     border-radius: 10px;
     border:rgb(34, 44, 54);
     border: 5px solid rgb(34, 44, 54);

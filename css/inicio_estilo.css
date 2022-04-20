@@ -49,9 +49,10 @@ nav{
     margin-left: 100px;
     font-weight: 300;
     text-shadow: -4px 3px rgb(54, 63, 114);
-
-
+    display: flex;
+    justify-content: flex-start;
 }
+
 /*Animación para: Elige tu personaje*/
 .titulo1:nth-child(1){
     width: 10em;
@@ -128,6 +129,7 @@ form{
   padding-bottom: 20px;
   padding-left: 40px;
   padding-right: 40px;
+  margin-left: 70px;
 }
 
   
