@@ -268,10 +268,10 @@ function dibujarO(){
             obstaculosH[i].obsHX -= 3;
         }else if(nivel == 3){
             obstaculosH[i].obsHX -= 4;
-            // dibujarOV();
+            dibujarOV();
         }else if(nivel == 4){
             obstaculosH[i].obsHX -= 5.5;
-            // dibujarOV();
+            dibujarOV();
         }
         if(obstaculosH[i].obsHX < 0) {
             obstaculosH.splice(i,1);
