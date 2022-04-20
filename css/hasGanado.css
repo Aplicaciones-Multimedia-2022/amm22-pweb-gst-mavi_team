@@ -12,7 +12,6 @@ body{
     overflow: hidden;
     color: rgb(97, 129, 179);
     text-align: center;
-   
     font-weight: 300px;
     text-shadow: -4px 3px rgb(54, 63, 114);
     animation-duration: 2s;
@@ -75,14 +74,14 @@ button:hover{
 }
 
 #foto{
-    animation-name: bounce-2;
+    animation-name: bounce;
     animation-timing-function: ease;
 }
 #win{
-    animation-name: bounce-2;
+    animation-name: bounce;
     animation-timing-function: ease;
 }
-@keyframes bounce-2 {
+@keyframes bounce {
     0%   { transform: translateY(0); }
     50%  { transform: translateY(-50px); }
     100% { transform: translateY(0); }
